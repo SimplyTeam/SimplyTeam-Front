@@ -2,16 +2,15 @@
 module.exports = {
     content: ['./src/**/*.{html,js,svelte,ts}'],
     theme: {
-        extend: {},
     },
     plugins: [require("daisyui")],
     daisyui: {
         themes: [
             {
                 'mytheme': {
-                    'primary': '#5C4580',
-                    'secondary': '#8E6ECA',
-                    'accent': '#F68B71',
+                    'primary': '#8E6ECA',
+                    'secondary': '#F68B71',
+                    'accent': '#5C4580',
                     'neutral': '#878499',
                     'base-100': '#EBE8EF',
                     'info': '#FFA800',
