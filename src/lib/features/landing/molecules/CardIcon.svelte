@@ -7,12 +7,12 @@
 </script>
 
 <script lang='ts'>
-	import classNames from 'classnames';
-	import Icon from '$lib/components/Icon.svelte';
+	import classNames from 'classnames'
+	import Icon from '$lib/components/Icon.svelte'
 
-	export let title: string;
-	export let description: string;
-	export let icon: string;
+	export let title: string
+	export let description: string
+	export let icon: string
 </script>
 
 <div class={classNames('flex flex-col justify-center items-center', $$props.class)}>

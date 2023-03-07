@@ -6,3 +6,17 @@
     box-sizing: border-box;
     margin: 0;
 }
+
+@layer components {
+    .nav-item-active {
+        @apply bg-base-200 text-primary;
+    }
+
+    .project-item-active {
+        @apply bg-secondary text-white;
+    }
+
+    .project-expanded {
+        @apply bg-primary text-white;
+    }
+}

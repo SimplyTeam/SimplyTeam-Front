@@ -1,8 +1,10 @@
 <script lang="ts">
-	import Button from '$lib/components/Button.svelte';
-	import HeroIllustration from '$lib/components/HeroIllustration.svelte';
-	import CardIcon from '$lib/components/CardIcon.svelte';
-	import type { CardIconProps } from '$lib/components/CardIcon.svelte';
+	import Button from '$lib/components/Button.svelte'
+	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
+	import CardIcon from '$lib/features/landing/molecules/CardIcon.svelte'
+	import type { CardIconProps } from '$lib/components/CardIcon.svelte'
+
+	import whiteLogo from '$lib/assets/logo-white.svg'
 
 	const sections: CardIconProps[] = [
 		{
@@ -20,12 +22,12 @@
 			description: 'Accumulez des points et des badges en complétant des tâches importantes et utilisez-les pour accéder à des offres spéciales de nos partenaires.',
 			icon: 'percentage'
 		}
-	];
+	]
 </script>
 
 <header class='bg-primary h-screen'>
 	<nav class='grid grid-cols-[1fr_auto_1fr] px-12 py-4'>
-		<a><img src='' alt='SimplyTeam logo'></a>
+		<a href=""><img src={whiteLogo} class="h-16" alt='SimplyTeam logo'></a>
 		<div class='flex gap-8 text-white text-xl'>
 			<a href=''>Pricing</a>
 			<a href=''>Teams</a>
