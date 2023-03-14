@@ -1,9 +1,11 @@
-import {writable} from 'svelte/store';
-import axios from "axios";
+import { writable } from 'svelte/store';
+import axios from '$lib/utils/axios'
 
 export interface IUser {
+  name?: string;
   email: string;
   password: string;
+  confirmPassword?: string;
 }
 
 interface IAuth {
@@ -21,19 +23,18 @@ const initialAuth: IAuth = {
 }
 
 const CreateLoginStore = () => {
-  const {subscribe, update, set} = writable({...initialAuth});
+  const { subscribe, update, set } = writable({ ...initialAuth });
+
   const login = async (user: IUser) => {
-    update((state) => ({...state, isLoading: true}));
+    update((state) => ({ ...state, isLoading: true }));
     try {
-      const res = await axios.post<{ token: string }>('/login', user);
+      const res = await axios.post<{ access_token: string, userResponse: object }>('/login', user);
       update((state) => ({
         ...state,
-        token: res.data.token,
+        token: res.data.access_token,
         error: null,
         isLoading: false,
       }));
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('user', JSON.stringify(user));
     } catch (err: any) {
       update((state) => ({
         ...state,
@@ -46,26 +47,34 @@ const CreateLoginStore = () => {
   const logout = () => {
     set(initialAuth);
     axios.post('/logout');
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
   };
-
-  const init = () => {
-    const token = localStorage.getItem('token');
-    const user = localStorage.getItem('user');
-    if (token && user) {
+  const register = async (user: IUser | FormDataEvent) => {
+    update((state) => ({ ...state, isLoading: true }));
+    try {
+      const res = await axios.post<{ access_token: string, userResponse: object }>('/register', user);
       update((state) => ({
         ...state,
-        token,
-        user: JSON.parse(user),
+        token: res.data.access_token,
+        error: null,
+        isLoading: false,
       }));
+      return res
+    } catch (err: any) {
+      update((state) => ({
+        ...state,
+        token: null,
+        error: err.response.data.errors,
+        isLoading: false,
+      }));
+      return err.response.data.message;
     }
   };
   return {
     subscribe,
     login,
     logout,
-    init,
+    register,
+    update
   };
 };
 export const authStore = CreateLoginStore();
