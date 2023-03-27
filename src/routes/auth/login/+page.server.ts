@@ -1,10 +1,10 @@
-
 import axios from '$lib/utils/axios'
-import { fail, redirect, type ServerLoad } from '@sveltejs/kit'
+import {fail, redirect} from '@sveltejs/kit'
+import type {PageServerLoad} from './$types'
 
-export const load: ServerLoad = ({ locals }) => {
+export const load = (({locals}) => {
   if (locals.user) throw redirect(302, '/')
-}
+}) satisfies PageServerLoad
 
 export const actions = {
   default: async ({request, cookies}) => {
@@ -15,7 +15,7 @@ export const actions = {
     }
     try {
       const res = await axios().post<{ access_token: string }>('/login', payload)
-        
+
       cookies.set('access_token', res.data.access_token, {
         // send cookie for every page
         path: '/',
@@ -27,9 +27,8 @@ export const actions = {
         secure: process.env.NODE_ENV === 'production',
         maxAge: 60 * 60 * 24 * 30
       })
-    }
-    catch (err: any) {
-      return fail(422,{message: JSON.stringify(err.response.data)})
+    } catch (err: any) {
+      return fail(422, err.response.data)
     }
   }
 }

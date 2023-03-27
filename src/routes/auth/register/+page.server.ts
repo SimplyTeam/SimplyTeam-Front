@@ -1,8 +1,7 @@
-
 import axios from '$lib/utils/axios'
-import { fail, redirect, type ServerLoad } from '@sveltejs/kit'
+import {fail, redirect, type ServerLoad} from '@sveltejs/kit'
 
-export const load: ServerLoad = ({ locals }) => {
+export const load: ServerLoad = ({locals}) => {
   if (locals.user) throw redirect(302, '/')
 }
 
@@ -30,9 +29,7 @@ export const actions = {
         secure: process.env.NODE_ENV === 'production',
         maxAge: 60 * 60 * 24 * 30
       })
-    }
-    catch (err: any) {
-      console.log(err)
+    } catch (err: any) {
       return fail(422, err.response.data)
     }
   }
