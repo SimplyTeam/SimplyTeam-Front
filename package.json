@@ -38,6 +38,7 @@
 		"daisyui": "^2.50.0",
 		"install": "^0.13.0",
 		"sass": "^1.58.1",
-		"svelte-fa": "^3.0.3"
+		"svelte-fa": "^3.0.3",
+		"sveltekit-autoimport": "^1.6.10"
 	}
 }
