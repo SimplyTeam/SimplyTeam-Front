@@ -3,7 +3,8 @@
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
 	import CardIcon from '$lib/features/landing/molecules/CardIcon.svelte'
 	import type { CardIconProps } from '$lib/components/CardIcon.svelte'
-
+	import {page} from '$app/stores'
+	import { enhance } from '$app/forms'
 	import whiteLogo from '$lib/assets/logo-white.svg'
 
 	const sections: CardIconProps[] = [
@@ -33,7 +34,13 @@
 			<a href=''>Teams</a>
 			<a href=''>Teams</a>
 		</div>
-		<Button class='ml-auto'>Se connecter</Button>
+		{#if $page.data.accessToken}
+		<form method='POST' use:enhance action='/auth/logout'>
+			<Button type="submit" class='ml-auto'>Déconnexion</Button>
+			</form>
+			{:else}
+			<Button class='ml-auto'>Se connecter</Button>
+		{/if}
 	</nav>
 	<div class='hero relative min-h-[60vh]'>
 		<div class='hero-content flex-col lg:flex-row-reverse'>

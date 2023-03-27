@@ -74,6 +74,7 @@
 	.top-right {
 		bottom: 20px;
 		right: 20px;
+		animation: toastIt 3000ms cubic-bezier(0.785, 0.135, 0.15, 0.86) forwards;
 	}
 
 	.bottom-left {

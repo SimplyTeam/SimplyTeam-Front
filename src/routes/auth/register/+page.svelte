@@ -1,32 +1,43 @@
 <script lang="ts">
-	import image from '$lib/assets/logo.png';
-	import Button from '$lib/components/Button.svelte';
+	import image from '$lib/assets/logo.png'
+	import Button from '$lib/components/Button.svelte'
 
-	import { authStore, type IUser } from '$lib/store/login';
-	import Input from '$lib/components/Input.svelte';
-	import { enhance } from '$app/forms';
-	export let form;
+	import Input from '$lib/components/Input.svelte'
+	import { enhance } from '$app/forms'
+  import type { ActionData } from './$types'
+  import Toast from '$lib/components/Toast.svelte'
+	export let form: ActionData
 	let login:IUser = {
-		name: '',
+		name: '',	
 		email: '',
 		password: '',
 		confirmPassword: ''
-	};
+	}
+	let loading= false
+	const showToast = (messageToast: string, themeToast: string) => {
+		const message = messageToast
+		const duration = 3000
+		const theme = themeToast
+		const position = 'top-right'
+
+		new Toast({
+			target: document.body,
+			props: { message, duration, theme, position }
+		})
+	}
 
 	let otherField:boolean = false;
 	// function qui permet de mettre otherField si login.name et login.email sont remplis
 	const checkOtherField = () => {
-		otherField = login.name !== '' && login.email !== '';
+		otherField = login.name !== '' && login.email !== ''
 	};
 	// computed qui permet de check si tous les champs sont remplis
-	$: isFilled = Object.values(login).every(value => value !== '');
-	$:isFilledNameAndEmail = login.name !== '' && login.email !== '';
-	$: hasError = JSON.stringify($authStore.error);
+	$:isFilled = Object.values(login).every(value => value !== '')
+	$:isFilledNameAndEmail = login.name !== '' && login.email !== ''
 
 </script>
 <img alt="logo" src={image} class="w-20 mx-auto" />
 <div class="mt-5 flex flex-col items-center">
-	{JSON.stringify($authStore)}	
 	<h1 class="text-xl xl:text-2xl font-bold">Bienvenue sur SimplyTeam !</h1>
 	<div class="w-full flex-1 mt-8">
 		<div class="flex flex-col items-center">
@@ -67,13 +78,20 @@
 		</div>
 	</div>
 	<div class="flex flex-col w-full">
-		<form method="POST" use:enhance>
+		<form method="POST" use:enhance={() => {
+			loading = true;
+	
+			return async ({ update }) => {
+				await update();
+				loading = false;
+			}
+		}}>
 			<div class:hidden={otherField}>
 				<div class="flex flex-col items-center">
-					<Input name="email" bind:value={login.email} type="email" placeholder="Email" fieldName={'email'}/>
+					<Input errorMessage="{form?.errors?.email}" name="email" bind:value={login.email} type="email" placeholder="Email" fieldName={'email'}/>
 				</div>
 				<div class="flex mt-5 flex-col items-center">
-					<Input name="name" bind:value={login.name} type="text" placeholder="Nom d'utilisateur" fieldName={'name'} />
+					<Input errorMessage="{form?.errors?.name}" name="name" bind:value={login.name} type="text" placeholder="Nom d'utilisateur" fieldName={'name'} />
 				</div>
 				<div class="flex flex-col items-center">
 					<Button on:click={checkOtherField} class="{ isFilledNameAndEmail ? 'w-full max-w-sm mt-5' : ' btn-disabled w-full max-w-sm mt-5' }">Continuer</Button>
@@ -85,10 +103,10 @@
 			</div>
 			<div class:hidden={!otherField}>
 			<div class="flex mt-5 flex-col items-center">
-				<Input name="password" bind:value={login.password} type="password" placeholder="Mot de passe" fieldName={'password'}/>
+				<Input errorMessage="{form?.errors?.password}" name="password" bind:value={login.password} type="password" placeholder="Mot de passe" fieldName={'password'}/>
 			</div>
 			<div class="flex mt-5 flex-col items-center">
-				<Input
+				<Input errorMessage="{form?.errors?.confirmPassword}"
 						bind:value={login.confirmPassword}
 						name="confirmPassword"
 						type="password"

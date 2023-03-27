@@ -1,20 +1,31 @@
 <script lang="ts">
-	import image from '$lib/assets/logo.png';
-	import Button from '$lib/components/Button.svelte';
+	import { enhance } from '$app/forms'
+	import image from '$lib/assets/logo.png'
+	import Button from '$lib/components/Button.svelte'
 
-	import { authStore } from '$lib/store/login';
-	import type { IUser } from '$lib/store/login';
-	import Input from '$lib/components/Input.svelte';
+	import { authStore } from '$lib/store/login'
+	import type { IUser } from '$lib/store/login'
+	import Input from '$lib/components/Input.svelte'
+  import type { ActionData } from './$types'
+  import Toast from '$lib/components/Toast.svelte'
 
 	const login: IUser = {
 		email: '',
 		password: ''
 	};
-	$: hasError = !!$authStore.error;
+	let loading = false
+	export let form: ActionData
+	const showToast = (messageToast: string, themeToast: string) => {
+		const message = messageToast
+		const duration = 3000
+		const theme = themeToast
+		const position = 'top-right'
 
-	const handleLogin = async() => {
-		await authStore.login(login);
-	};
+		new Toast({
+			target: document.body,
+			props: { message, duration, theme, position }
+		})
+	}
 </script>
 
 <img alt="logo" src={image} class="w-20 mx-auto" />
@@ -58,22 +69,32 @@
 			Ou avec votre compte
 		</div>
 	</div>
-	<div class="flex flex-col w-full">
+	<form method="POST" use:enhance={() => {
+		loading = true;
+
+		return async ({ update }) => {
+			await update();
+			loading = false;
+				if(!login.email || !login.password) showToast('Veillez remplir les champs', 'error')
+			else if (form?.message) showToast(JSON.parse(form?.message).errors.message, 'error')
+			else showToast('Bienvenue', 'success')
+		}
+	}} class="flex flex-col w-full">
 		<div class="flex flex-col items-center">
-			<Input type="email" value={login.email} placeholder="Email" />
+			<Input name="email" type="email" bind:value={login.email} placeholder="Email" />
 		</div>
 		<div class="flex mt-5 flex-col items-center">
-			<Input type="password" value={login.password} placeholder="Mot de passe" />
+			<Input type="password" name="password" bind:value={login.password} placeholder="Mot de passe" />
 		</div>
 		<div class="flex w-full max-w-sm justify-end items-center self-center">
 			<a href="/auth/forgot-password" class="text-sm text-gray-500 hover:text-primary"> Mot de passe oublié ? </a>
 		</div>
 		<div class="flex flex-col items-center">
-			<Button on:click={handleLogin} class="w-full max-w-sm mt-5">Se connecter</Button>
+			<Button type="submit" loading={loading} class="w-full max-w-sm mt-5">Se connecter</Button>
 			<div class="flex justify-center w-full max-w-sm items-center mt-6">
 				<span class="text-sm xl:text-md mr-3"> Pas de compte ? </span>
 				<a href="/auth/register" class="text-sm text-gray-500 hover:text-primary"> S'inscrire! </a>
 			</div>
 		</div>
-	</div>
+	</form>
 </div>

@@ -11,14 +11,11 @@ export const actions = {
     const data = await request.formData()
     const payload = {
       email: data.get('email'),
-      name: data.get('name'),
-      password: data.get('password'),
-      confirmPassword: data.get('confirmPassword')
+      password: data.get('password')
     }
-
     try {
-      const res = await axios().post<{ access_token: string, user: IUser }>('/register', payload)
-
+      const res = await axios().post<{ access_token: string }>('/login', payload)
+        
       cookies.set('access_token', res.data.access_token, {
         // send cookie for every page
         path: '/',
@@ -32,8 +29,7 @@ export const actions = {
       })
     }
     catch (err: any) {
-      console.log(err)
-      return fail(422, err.response.data)
+      return fail(422,{message: JSON.stringify(err.response.data)})
     }
   }
 }

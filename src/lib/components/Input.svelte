@@ -1,17 +1,16 @@
 <script lang="ts">
-import { authStore, type IUser } from '$lib/store/login';
-  import { derived } from 'svelte/store';
+import { authStore, type IUser } from '$lib/store/login'
+  import { derived } from 'svelte/store'
 
-	export let value: string;
-	export let placeholder: string;
-	export let type: string;
-	export let fieldName: string = '';
-	export let name: string;
+	export let value: string
+	export let placeholder: string
+	export let type: string
+	export let name: string
+	export let errorMessage = ""
 
 	function typeAction(node: { type: any }) {
 		node.type = type;
 	}
-	$: errorMessage = $authStore.error && fieldName ? $authStore.error[fieldName] || '' : '';
 </script>
 
 <div class="relative w-full max-w-sm">
@@ -22,9 +21,7 @@ import { authStore, type IUser } from '$lib/store/login';
 		{name}
 		{placeholder}
 	/>
-	{#if fieldName && $authStore.error && $authStore.error[fieldName]}
-	{#each errorMessage as error }
-	<small class=" text-xs text-error h-4 block">{error}</small>
-	{/each}
+	{#if errorMessage}
+	<small class=" text-xs text-error h-4 block">{errorMessage}</small>
 	{/if}
 </div>
