@@ -78,7 +78,7 @@
         </div>
     </div>
     <div class="flex flex-col w-full">
-        <form method="POST" use:enhance={() => {
+        <form method="POST" action="?/register" use:enhance={() => {
 			loading = true;
 	
 			return async ({ update }) => {

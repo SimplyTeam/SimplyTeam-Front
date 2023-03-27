@@ -27,7 +27,7 @@
 </script>
 
 <header class='bg-primary h-screen'>
-	<nav class='grid grid-cols-[1fr_auto_1fr] px-12 py-4'>
+	<nav class=' relative z-1 grid grid-cols-[1fr_auto_1fr] px-12 py-4'>
 		<a href=""><img src={whiteLogo} class="h-16" alt='SimplyTeam logo'></a>
 		<div class='flex gap-8 text-white text-xl'>
 			<a href=''>Pricing</a>
@@ -45,7 +45,7 @@
 	<div class='hero relative min-h-[60vh]'>
 		<div class='hero-content flex-col lg:flex-row-reverse'>
 			<div class='h-[20rem] md:w-2/3'>
-				<HeroIllustration class='absolute top-[-15vh] right-0 w-[100vh]' />
+				<HeroIllustration class='absolute z-0 top-[-15vh] right-0 w-[100vh]' />
 			</div>
 			<div class='text-white'>
 				<h1 class='text-5xl font-bold'>Gérez vos projets avec plaisir et simplement !</h1>

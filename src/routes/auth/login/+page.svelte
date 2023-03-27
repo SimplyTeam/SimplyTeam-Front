@@ -8,6 +8,10 @@
   import type {ActionData} from './$types'
   import Toast from '$lib/components/Toast.svelte'
 
+  let popup;
+  function init() {
+        popup =  window.open("http://127.0.0.1/api/auth/google", "_blank", "width=800, height=600");
+     }
   const login: IUser = {
     email: '',
     password: ''
@@ -31,8 +35,12 @@
 <div class="mt-5 flex flex-col items-center">
     <h1 class="text-xl xl:text-2xl font-bold">Bienvenue sur le site de Simply Team !</h1>
     <div class="w-full flex-1 mt-8">
-        <div class="flex flex-col items-center">
-            <button
+        <form method="POST" action="?/google" use:enhance={() => {
+			return async ({ result, update }) => {
+				await update()
+			}
+		}} class="flex flex-col items-center">
+            <button on:click={() => init()}
                     class="w-full h-12 max-w-sm font-bold shadow-sm rounded-lg py-3 bg-primary text-gray-800
                             flex items-center text-white justify-center transition-all duration-300 ease-in-out focus:outline-none
                             hover:shadow focus:shadow-sm focus:shadow-outline"
@@ -59,7 +67,7 @@
                 </div>
                 <span class="ml-4"> Se connecter avec Google </span>
             </button>
-        </div>
+        </form>
     </div>
     <div class="my-8 border-b w-full max-w-sm text-center">
         <div
@@ -68,7 +76,7 @@
             Ou avec votre compte
         </div>
     </div>
-    <form method="POST" use:enhance={() => {
+    <form method="POST" action="?/login" use:enhance={() => {
 		loading = true;
 
 		return async ({ update }) => {

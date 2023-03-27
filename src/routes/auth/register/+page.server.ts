@@ -6,7 +6,17 @@ export const load: ServerLoad = ({locals}) => {
 }
 
 export const actions = {
-  default: async ({request, cookies}) => {
+  google: async({request, cookies}) => {
+    try {
+      const res = await axios().get<{ access_token: string }>('/auth/google')
+      return res.data
+    }
+    catch (err: any) {
+      console.log(err)
+      return fail(422, {message: "Une erreur est survenue"})
+    }
+  },
+  register: async ({request, cookies}) => {
     const data = await request.formData()
     const payload = {
       email: data.get('email'),
