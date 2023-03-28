@@ -3,11 +3,11 @@ import {fail, redirect} from '@sveltejs/kit'
 import type {PageServerLoad} from './$types'
 
 export const load = (({locals}) => {
-  if (locals.user) throw redirect(302, '/')
+  if (locals.accessToken) throw redirect(302, '/workspaces')
 }) satisfies PageServerLoad
 
 export const actions = {
-  google: async({request, cookies}) => {
+  google: async({}) => {
     try {
       const res = await axios().get<{ access_token: string }>('/auth/google')
       return res.data

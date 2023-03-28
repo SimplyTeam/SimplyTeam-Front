@@ -4,8 +4,15 @@ import type { Handle } from '@sveltejs/kit'
 import { env } from '$env/dynamic/private'
 
 export const handle: Handle = async ({ event, resolve }) => {
+  const url = new URL(event.url)
+
+  // Check if the "access-token" parameter is present in the URL
+  const accessTokenGoogle = url.searchParams.get('access_token')
+  if(accessTokenGoogle) {
+    // If it is, set the "access_token" cookie to the value of the parameter
+    event.cookies.set('access_token', accessTokenGoogle)
+  }
   const accessToken = event.cookies.get('access_token')
-  const refreshToken = event.cookies.get('refresh_token')
 
   if(!accessToken) return await resolve(event)
 
@@ -13,20 +20,10 @@ export const handle: Handle = async ({ event, resolve }) => {
         // get user from me request with accessToken when ready
 				event.locals = {
 					...event.locals,
-          accessToken,
-          refreshToken,
-					user: {
-            id: "1",
-            email: "toto@toto.fr",
-            name: "toto",
-            email_verified_at: new Date(),
-          }
-				}
-        console.log(event.locals);
-        
+          accessToken
+				}        
         return await resolve(event)
     }
     catch (error) {
-        console.log(error);
     }  
 }

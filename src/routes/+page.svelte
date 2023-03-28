@@ -27,7 +27,7 @@
 </script>
 
 <header class='bg-primary h-screen'>
-	<nav class=' relative z-1 grid grid-cols-[1fr_auto_1fr] px-12 py-4'>
+	<nav class=' relative z-10 grid grid-cols-[1fr_auto_1fr] px-12 py-4'>
 		<a href=""><img src={whiteLogo} class="h-16" alt='SimplyTeam logo'></a>
 		<div class='flex gap-8 text-white text-xl'>
 			<a href=''>Pricing</a>
@@ -39,7 +39,7 @@
 			<Button type="submit" class='ml-auto'>Déconnexion</Button>
 			</form>
 			{:else}
-			<Button class='ml-auto'>Se connecter</Button>
+			<a href="/auth/login" class="ml-auto"><Button>Se connecter</Button></a>
 		{/if}
 	</nav>
 	<div class='hero relative min-h-[60vh]'>
@@ -52,7 +52,7 @@
 				<p class='py-6'>
 					Notre application de gestionnaire de projet est conçue pour vous aider à rester productif tout en vous amusant.
 				</p>
-				<Button class='ml-auto'>Se connecter</Button>
+				<a href="/auth/login" class="ml-auto"><Button class='ml-auto'>Se connecter</Button></a>
 			</div>
 		</div>
 	</div>

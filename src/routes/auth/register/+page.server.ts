@@ -1,8 +1,9 @@
+import type { IUser } from '$lib/store/login'
 import axios from '$lib/utils/axios'
 import {fail, redirect, type ServerLoad} from '@sveltejs/kit'
 
 export const load: ServerLoad = ({locals}) => {
-  if (locals.user) throw redirect(302, '/')
+  if (locals.accessToken) throw redirect(302, '/workspaces')
 }
 
 export const actions = {
@@ -12,7 +13,6 @@ export const actions = {
       return res.data
     }
     catch (err: any) {
-      console.log(err)
       return fail(422, {message: "Une erreur est survenue"})
     }
   },
@@ -22,7 +22,7 @@ export const actions = {
       email: data.get('email'),
       name: data.get('name'),
       password: data.get('password'),
-      confirmPassword: data.get('confirmPassword')
+      password_confirmation: data.get('confirmPassword')
     }
 
     try {

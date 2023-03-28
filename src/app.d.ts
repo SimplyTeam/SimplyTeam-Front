@@ -5,13 +5,6 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			accessToken?: string
-			refreshToken?: string
-			user?: {
-				id: string
-				email: string
-				name: string
-				email_verified_at: Date,
-			}
 		}
 		// interface PageData {}
 		// interface Platform {}

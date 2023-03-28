@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Sidebar from '$lib/features/sidebar/Sidebar.svelte'
 	import workspacesIllustration from '$lib/assets/workspaces.svg'
+  import WithHeaderLayout from '$lib/components/layouts/WithHeaderLayout.svelte';
 </script>
 
 <div class="pl-[max(3vw,3rem)] h-screen">

@@ -7,6 +7,7 @@
   import Input from '$lib/components/Input.svelte'
   import type {ActionData} from './$types'
   import Toast from '$lib/components/Toast.svelte'
+  import { error } from '@sveltejs/kit';
 
   let popup;
   function init() {
@@ -78,19 +79,20 @@
     </div>
     <form method="POST" action="?/login" use:enhance={() => {
 		loading = true;
-
-		return async ({ update }) => {
+		return async ({ update, result }) => {
 			await update();
 			loading = false;
 				if(!login.email || !login.password) showToast('Veillez remplir les champs', 'error')
+                if(form) showToast(form?.errors?.message, 'error')
+                
 		}
 	}} class="flex flex-col w-full">
         <div class="flex flex-col items-center">
-            <Input name="email" errorMessage="{form?.errors?.email}" type="email" bind:value={login.email}
+            <Input name="email" errorMessage="{form?.errors?.email ?? form?.errors?.message}" type="email" bind:value={login.email}
                    placeholder="Email"/>
         </div>
         <div class="flex mt-5 flex-col items-center">
-            <Input type="password" errorMessage="{form?.errors?.password}" name="password" bind:value={login.password}
+            <Input type="password" errorMessage="{form?.errors?.password ?? form?.errors?.message}" name="password" bind:value={login.password}
                    placeholder="Mot de passe"/>
         </div>
         <div class="flex w-full max-w-sm justify-end items-center self-center">
