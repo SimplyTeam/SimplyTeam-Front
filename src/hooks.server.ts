@@ -17,11 +17,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 
     try {
         // get user from me request with accessToken when ready
-        // const user = await axios(accessToken).get('api/me')
+        const user = await axios(accessToken).get('api/me')
 				event.locals = {
 					...event.locals,
           accessToken,
-          user: {}
+          user: user.data
         }
         return await resolve(event)
     }

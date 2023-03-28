@@ -23,7 +23,7 @@
   let loading = false
   const showToast = (messageToast: string, themeToast: string) => {
     const message = messageToast
-    const duration = 3000
+    const duration = 4000
     const theme = themeToast
     const position = 'top-right'
 
@@ -86,10 +86,14 @@
     <div class="flex flex-col w-full">
         <form method="POST" action="?/register" use:enhance={() => {
 			loading = true;
-	
 			return async ({ update }) => {
 				await update();
 				loading = false;
+                if (form?.errors) {
+                    showToast('Une erreur est survenue', 'error')
+                } else {
+                    showToast('Bienvenue', 'success')
+                }
 			}
 		}}>
             <div class:hidden={otherField}>
