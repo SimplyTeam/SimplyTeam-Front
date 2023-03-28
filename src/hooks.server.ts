@@ -23,8 +23,11 @@ export const handle: Handle = async ({ event, resolve }) => {
           accessToken,
           user: user.data
         }
-        return await resolve(event)
     }
     catch (error) {
+        event.cookies.delete('access_token')
+    }
+    finally {
+        return await resolve(event)
     }  
 }
