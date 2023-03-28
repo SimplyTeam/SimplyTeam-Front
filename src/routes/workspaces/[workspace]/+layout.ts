@@ -6,3 +6,4 @@ export const load = (({ params }) => {
 	if (params.workspace !== 'undefined') workspace.set(params.workspace)
 	else throw redirect(303, '/workspaces')
 }) satisfies LayoutLoad
+

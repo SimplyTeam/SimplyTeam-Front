@@ -2,7 +2,7 @@ import axios from "$lib/utils/axios"
 import { fail, type Actions } from "@sveltejs/kit"
 
 export const actions: Actions = {
-  default: async ({request, cookies, locals }) => {
+  default: async ({cookies, locals }) => {
     try {
     await axios(locals.accessToken).post('/logout')
 

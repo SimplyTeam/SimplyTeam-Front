@@ -7,11 +7,9 @@ export const load = (({locals}) => {
 }) satisfies PageServerLoad
 
 export const actions = {
-  google: async({}) => {
-    try {
-    }
+  google: async() => {
+    try { /* empty */ }
     catch (err: any) {
-      console.log(err)
       return fail(422, {message: "Une erreur est survenue"})
     }
   },
