@@ -1,6 +1,4 @@
 <script lang="ts">
-import { authStore, type IUser } from '$lib/store/login'
-import { derived } from 'svelte/store'
 import Icon from '$lib/components/Icon.svelte'
 
 	export let value: string

@@ -6,7 +6,13 @@
   import {enhance} from '$app/forms'
   import type {ActionData} from './$types'
   import Toast from '$lib/components/Toast.svelte'
-
+  
+  interface IUser {
+    name?: string;
+    email: string;
+    password: string;
+    confirmPassword?: string;
+  }
   export let form: ActionData
   let login: IUser = {
     name: '',

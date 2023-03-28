@@ -1,7 +1,11 @@
-import type { IUser } from '$lib/store/login'
 import axios from '$lib/utils/axios'
 import {fail, redirect, type ServerLoad} from '@sveltejs/kit'
-
+interface IUser {
+  name?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
 export const load: ServerLoad = ({locals}) => {
   if (locals.accessToken) throw redirect(302, '/workspaces')
 }
@@ -26,7 +30,7 @@ export const actions = {
     }
 
     try {
-      const res = await axios().post<{ access_token: string, user: IUser }>('/register', payload)
+      const res = await axios().post<{ access_token: string, user: IUser }>('api/register', payload)
 
       cookies.set('access_token', res.data.access_token, {
         // send cookie for every page

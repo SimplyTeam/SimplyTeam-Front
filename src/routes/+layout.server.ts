@@ -1,7 +1,8 @@
 import type { LayoutServerLoad } from './$types'
 
-export const load = (async ({ locals: {accessToken}, fetch }) => {
+export const load = (async ({ locals: {accessToken, user}, fetch }) => {
 	return {
-        accessToken
+        accessToken,
+		user
 	}
 }) satisfies LayoutServerLoad

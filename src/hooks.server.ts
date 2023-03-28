@@ -1,11 +1,10 @@
 import type { Handle } from '@sveltejs/kit'
 
 // Import client credentials from json file
-import { env } from '$env/dynamic/private'
+import axios from '$lib/utils/axios'
 
 export const handle: Handle = async ({ event, resolve }) => {
   const url = new URL(event.url)
-
   // Check if the "access-token" parameter is present in the URL
   const accessTokenGoogle = url.searchParams.get('access_token')
   if(accessTokenGoogle) {
@@ -18,10 +17,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 
     try {
         // get user from me request with accessToken when ready
+        // const user = await axios(accessToken).get('api/me')
 				event.locals = {
 					...event.locals,
-          accessToken
-				}        
+          accessToken,
+          user: {}
+        }
         return await resolve(event)
     }
     catch (error) {

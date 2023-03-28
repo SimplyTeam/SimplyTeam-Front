@@ -9,8 +9,6 @@ export const load = (({locals}) => {
 export const actions = {
   google: async({}) => {
     try {
-      const res = await axios().get<{ access_token: string }>('/auth/google')
-      return res.data
     }
     catch (err: any) {
       console.log(err)
@@ -24,7 +22,7 @@ export const actions = {
       password: data.get('password')
     }
     try {
-      const res = await axios().post<{ access_token: string }>('/login', payload)
+      const res = await axios().post<{ access_token: string }>('api/login', payload)
 
       cookies.set('access_token', res.data.access_token, {
         // send cookie for every page

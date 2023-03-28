@@ -3,15 +3,19 @@
   import image from '$lib/assets/logo.png'
   import Button from '$lib/components/Button.svelte'
 
-  import type {IUser} from '$lib/store/login'
   import Input from '$lib/components/Input.svelte'
   import type {ActionData} from './$types'
   import Toast from '$lib/components/Toast.svelte'
   import { error } from '@sveltejs/kit';
-
+    interface IUser {
+    name?: string;
+    email: string;
+    password: string;
+    confirmPassword?: string;
+  }
   let popup;
   function init() {
-        popup =  window.open("http://127.0.0.1/api/auth/google", "_blank", "width=800, height=600");
+        popup =  window.open("http://localhost/auth/google", "_blank", "width=800, height=600");
      }
   const login: IUser = {
     email: '',
