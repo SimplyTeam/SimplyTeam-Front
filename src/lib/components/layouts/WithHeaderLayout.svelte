@@ -4,10 +4,7 @@
     export let subtitle: string
 </script>
 
-<div class="min-h-full flex flex-col w-full  pt-16">
-    <div class="">
-        
-    </div>
+<div class="flex flex-col w-full">
     <div class="flex gap-4 h-28 bg-gradient-to-r from-primary to-secondary">
         <img src={illustration} alt="header illustration" class="w-24 h-24" />
         <div class="h-full py-1">

@@ -1,6 +1,8 @@
 <script>
   import Icon from "$lib/components/Icon.svelte"
   import Logo from "$lib/features/sidebar/atoms/Logo.svelte"
+
+  import { currentWorkspace } from "$lib/stores/workspace"
 </script>
 
 <div class="flex flex-col gap-4">
@@ -18,6 +20,6 @@
   </div>
   <div class="flex items-center gap-4 bg-base-200 p-2">
     <Logo class="flex-none w-8 h-8" />
-    <div class="text-[0.5em] text-accent font-medium">Mon tim</div>
+    <div class="text-[0.5em] text-accent font-medium">{$currentWorkspace?.name}</div>
   </div>
 </div>

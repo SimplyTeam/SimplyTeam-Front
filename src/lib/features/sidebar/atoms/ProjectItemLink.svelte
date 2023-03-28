@@ -1,9 +1,11 @@
 <script lang="ts">
+	import { page } from "$app/stores"
+
 	export let label: string
 	export let icon = 'table'
 	export let href: string
-
-	export let isActive = false
+	
+	$: isActive = href === $page.url.pathname + $page.url.search	
 </script>
 
 <a
