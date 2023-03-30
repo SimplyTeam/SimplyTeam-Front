@@ -1,7 +1,6 @@
 <script lang="ts">
-	import SimpleLayout from '$lib/components/layouts/SimpleLayout.svelte'
-	import WithHeaderLayout from '$lib/components/layouts/WithHeaderLayout.svelte'
 	import badgeIllustration from '$lib/assets/badge.png'
+	import WithHeaderLayout from '$lib/components/layouts/WithHeaderLayout.svelte'
 </script>
 
 <WithHeaderLayout

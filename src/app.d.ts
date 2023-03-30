@@ -5,15 +5,21 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			accessToken?: string
-			user?: Object
+			user?: {
+				id: string
+				name: string
+				email: string
+			}
+			// interface PageData {}
+			// interface Platform {}
 		}
-		// interface PageData {}
-		// interface Platform {}
 	}
 }
-
 declare module '@fortawesome/pro-solid-svg-icons/index.es' {
-	export * from '@fortawesome/pro-solid-svg-icons';
+	export * from '@fortawesome/pro-solid-svg-icons'
 }
-
-export {};
+declare const Button: typeof import('./lib/components/Button.svelte')['default']
+declare const Icon: typeof import('./lib/components/Icon.svelte')['default']
+declare const SimpleLayout: typeof import('./lib/components/layouts/SimpleLayout.svelte')['default']
+declare const WithHeaderLayout: typeof import('./lib/components/layouts/WithHeaderLayout.svelte')['default']
+export {}

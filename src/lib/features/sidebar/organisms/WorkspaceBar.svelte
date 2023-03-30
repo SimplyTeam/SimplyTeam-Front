@@ -1,7 +1,7 @@
 <script>
-	import WorkspaceTitle from '$lib/features/sidebar/molecules/WorkspaceTitle.svelte'
 	import AddProject from '$lib/features/sidebar/molecules/AddProject.svelte'
 	import SearchBar from '$lib/features/sidebar/molecules/SearchBar.svelte'
+	import WorkspaceTitle from '$lib/features/sidebar/molecules/WorkspaceTitle.svelte'
 	import ProjectList from '../molecules/ProjectList.svelte'
 </script>
 

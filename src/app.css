@@ -2,21 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
 }
 
 @layer components {
-    .nav-item-active {
-        @apply bg-base-200 text-primary;
-    }
+	.nav-item-active {
+		@apply bg-base-200 text-primary;
+	}
 
-    .project-item-active {
-        @apply bg-secondary text-white;
-    }
+	.project-item-active {
+		@apply bg-secondary text-white;
+	}
 
-    .project-expanded {
-        @apply bg-primary text-white;
-    }
+	.project-expanded {
+		@apply bg-primary text-white;
+	}
 }

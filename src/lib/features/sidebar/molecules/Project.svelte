@@ -13,10 +13,10 @@
 		<div class="text-base">{project.name}</div>
 	</span>
 	<span slot="content">
-			<div class="flex flex-col gap-1">
-				{#each $projectPagesStore as page}
-					<ProjectItemLink label={page.label} href={page.path(project.id)} />
-				{/each}
+		<div class="flex flex-col gap-1">
+			{#each $projectPagesStore as page}
+				<ProjectItemLink label={page.label} href={page.path(project.id)} />
+			{/each}
 		</div>
 	</span>
 </ExpandedContent>

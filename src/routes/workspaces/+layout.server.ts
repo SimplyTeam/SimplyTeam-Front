@@ -1,6 +1,6 @@
-import { redirect } from '@sveltejs/kit';
-import type { LayoutServerLoad } from '../$types';
+import { redirect } from '@sveltejs/kit'
+import type { LayoutServerLoad } from '../$types'
 
-export const load = (({locals}) => {
-    if (!locals.accessToken) throw redirect(302, '/')
-  }) satisfies LayoutServerLoad
+export const load = (({ locals }) => {
+	if (!locals.accessToken) throw redirect(302, '/')
+}) satisfies LayoutServerLoad

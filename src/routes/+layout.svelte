@@ -1,9 +1,9 @@
 <script>
-    import "../app.css"    
+	import '../app.css'
 </script>
 
 <svelte:head>
-    <title>SimplyTeam</title>
+	<title>SimplyTeam</title>
 </svelte:head>
 
 <slot />

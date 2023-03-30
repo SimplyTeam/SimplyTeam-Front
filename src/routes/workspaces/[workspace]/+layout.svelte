@@ -1,5 +1,5 @@
 <script lang="ts">
-	import SearchBar from '$lib/features/sidebar/SearchBar.svelte';
+	import SearchBar from '$lib/features/sidebar/SearchBar.svelte'
 	import Sidebar from '$lib/features/sidebar/Sidebar.svelte'
 </script>
 
