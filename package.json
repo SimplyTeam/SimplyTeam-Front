@@ -3,11 +3,13 @@
 	"version": "0.0.1",
 	"private": true,
 	"lint-staged": {
-		"*.js": "eslint",
-		"*.ts": "eslint",
-		"*.svelte": [
+		"src/**/*.{js,ts,css,scss,md,json}": [
 			"prettier --plugin-search-dir . --write",
-			"eslint --fix"
+			"git add"
+		],
+		"src/**/*.{svelte,html}": [
+			"prettier --plugin-search-dir . --write",
+			"git add"
 		]
 	},
 	"husky": {
