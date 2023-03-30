@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>SimplyTeam</title>
+	<title>SimplyTeams</title>
 </svelte:head>
 
 <slot />
