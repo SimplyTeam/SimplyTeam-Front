@@ -98,7 +98,15 @@
 		>
 			<div class:hidden={otherField}>
 				<div class="flex flex-col items-center">
-					<Input errorMessage={form?.errors?.email} name="email" bind:value={login.email} type="email" placeholder="Email" fieldName={'email'} />
+					<Input
+						errorMessage={form?.errors?.email}
+						class="max-w-sm items-center"
+						name="email"
+						bind:value={login.email}
+						type="email"
+						placeholder="Email"
+						fieldName={'email'}
+					/>
 				</div>
 				<div class="flex mt-5 flex-col items-center">
 					<Input
@@ -107,6 +115,7 @@
 						bind:value={login.name}
 						type="text"
 						placeholder="Nom d'utilisateur"
+						class="max-w-sm items-center"
 						fieldName={'name'}
 					/>
 				</div>
@@ -128,6 +137,7 @@
 						bind:value={login.password}
 						type="password"
 						placeholder="Mot de passe"
+						class="max-w-sm items-center"
 						fieldName={'password'}
 					/>
 				</div>
@@ -137,6 +147,7 @@
 						bind:value={login.confirmPassword}
 						name="confirmPassword"
 						type="password"
+						class="max-w-sm items-center"
 						placeholder="Confirmer votre mot de passe"
 					/>
 				</div>

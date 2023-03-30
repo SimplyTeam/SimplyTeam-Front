@@ -100,13 +100,21 @@
 		class="flex flex-col w-full"
 	>
 		<div class="flex flex-col items-center">
-			<Input name="email" errorMessage={form?.errors?.email ?? form?.errors?.message} type="email" bind:value={login.email} placeholder="Email" />
+			<Input
+				name="email"
+				class="max-w-sm items-center"
+				errorMessage={form?.errors?.email ?? form?.errors?.message}
+				type="email"
+				bind:value={login.email}
+				placeholder="Email"
+			/>
 		</div>
 		<div class="flex mt-5 flex-col items-center">
 			<Input
 				type="password"
 				errorMessage={form?.errors?.password ?? form?.errors?.message}
 				name="password"
+				class="max-w-sm items-center"
 				bind:value={login.password}
 				placeholder="Mot de passe"
 			/>
