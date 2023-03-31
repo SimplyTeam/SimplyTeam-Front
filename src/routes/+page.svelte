@@ -2,7 +2,9 @@
 	import Button from '$lib/components/Button.svelte'
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
 	import CardIcon, { type CardIconProps } from '$lib/features/landing/molecules/CardIcon.svelte'
-
+	import type { CardIconProps } from '$lib/components/CardIcon.svelte'
+	import {page} from '$app/stores'
+	import { enhance } from '$app/forms'
 	import whiteLogo from '$lib/assets/logo-white.svg'
 
 	const sections: CardIconProps[] = [
@@ -25,26 +27,32 @@
 </script>
 
 <header class='bg-primary h-screen'>
-	<nav class='grid grid-cols-[1fr_auto_1fr] px-12 py-4'>
+	<nav class=' relative z-10 grid grid-cols-[1fr_auto_1fr] px-12 py-4'>
 		<a href=""><img src={whiteLogo} class="h-16" alt='SimplyTeam logo'></a>
 		<div class='flex gap-8 text-white text-xl'>
 			<a href=''>Pricing</a>
 			<a href=''>Teams</a>
 			<a href=''>Teams</a>
 		</div>
-		<Button class='ml-auto'>Se connecter</Button>
+		{#if $page.data.accessToken}
+		<form method='POST' use:enhance action='/auth/logout'>
+			<Button type="submit" class='ml-auto'>Déconnexion</Button>
+			</form>
+			{:else}
+			<a href="/auth/login" class="ml-auto"><Button>Se connecter</Button></a>
+		{/if}
 	</nav>
 	<div class='hero relative min-h-[60vh]'>
 		<div class='hero-content flex-col lg:flex-row-reverse'>
 			<div class='h-[20rem] md:w-2/3'>
-				<HeroIllustration class='absolute top-[-15vh] right-0 w-[100vh]' />
+				<HeroIllustration class='absolute z-0 top-[-15vh] right-0 w-[100vh]' />
 			</div>
 			<div class='text-white'>
 				<h1 class='text-5xl font-bold'>Gérez vos projets avec plaisir et simplement !</h1>
 				<p class='py-6'>
 					Notre application de gestionnaire de projet est conçue pour vous aider à rester productif tout en vous amusant.
 				</p>
-				<Button class='ml-auto'>Se connecter</Button>
+				<a href="/auth/login" class="ml-auto"><Button class='ml-auto'>Se connecter</Button></a>
 			</div>
 		</div>
 	</div>

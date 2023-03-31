@@ -28,3 +28,4 @@ export const load = (({ params }) => {
 	}
 	else throw redirect(303, '/workspaces')
 }) satisfies LayoutLoad
+
