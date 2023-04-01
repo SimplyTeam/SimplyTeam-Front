@@ -18,6 +18,7 @@
 <style lang="scss">
     .Avatar {
 			width: 100%;
+			height: 50px;
 			position: relative;
 			padding: .5rem 0;
 

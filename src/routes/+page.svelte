@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte'
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
-	import CardIcon from '$lib/features/landing/molecules/CardIcon.svelte'
+	import CardIcon, { type CardIconProps } from '$lib/features/landing/molecules/CardIcon.svelte'
 	import type { CardIconProps } from '$lib/components/CardIcon.svelte'
 	import {page} from '$app/stores'
 	import { enhance } from '$app/forms'
