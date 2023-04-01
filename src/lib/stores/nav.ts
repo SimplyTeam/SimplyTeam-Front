@@ -31,54 +31,61 @@ type CorePages = Partial<Record<Page, ICorePage>>
 type ProjectPages = Partial<Record<Page, IProjectPage>>
 
 // Pages that are shown in the core navigation
-export const corePages = derived<typeof currentWorkspace, CorePages>(currentWorkspace, ($currentWorkspace) => ({
-	[Page.Workspaces]: {
-		icon: 'building',
-		path: `/workspaces`,
-		label: 'Workspaces'
-	},
-	[Page.Dashboard]: {
-		icon: 'dashboard',
-		path: `/workspaces/${$currentWorkspace?.id}`,
-		label: 'Dashboard'
-	},
-	[Page.Quests]: {
-		path: `/workspaces/${$currentWorkspace?.id}/quests`,
-		label: 'Les quêtes',
-		icon: 'award'
-	},
-	[Page.Notifications]: {
-		icon: 'bell',
-		path: '/notifications',
-		label: 'Notifications'
-	},
-	[Page.Settings]: {
-		icon: 'cog',
-		path: '/settings',
-		label: 'Paramètres'
-	}
-}));
+export const corePages = derived<typeof currentWorkspace, CorePages>(
+	currentWorkspace,
+	($currentWorkspace) => ({
+		[Page.Workspaces]: {
+			icon: 'building',
+			path: `/workspaces`,
+			label: 'Workspaces'
+		},
+		[Page.Dashboard]: {
+			icon: 'dashboard',
+			path: `/workspaces/${$currentWorkspace?.id}`,
+			label: 'Dashboard'
+		},
+		[Page.Quests]: {
+			path: `/workspaces/${$currentWorkspace?.id}/quests`,
+			label: 'Les quêtes',
+			icon: 'award'
+		},
+		[Page.Notifications]: {
+			icon: 'bell',
+			path: '/notifications',
+			label: 'Notifications'
+		},
+		[Page.Settings]: {
+			icon: 'cog',
+			path: '/settings',
+			label: 'Paramètres'
+		}
+	})
+)
 
 // Pages that are shown in all projects dropdown navigation
-export const projectPages = derived<typeof currentWorkspace, ProjectPages>(currentWorkspace, ($currentWorkspace) =>	({
+export const projectPages = derived<typeof currentWorkspace, ProjectPages>(
+	currentWorkspace,
+	($currentWorkspace) => ({
 		[Page.Sprints]: {
 			path: (projectName: string) => `/workspaces/${$currentWorkspace?.id}/${projectName}/sprints`,
 			label: 'Les sprints'
 		},
 		[Page.MyTasks]: {
-			path: (projectName: string) => `/workspaces/${$currentWorkspace?.id}/${projectName}/sprints?filter=me`,
+			path: (projectName: string) =>
+				`/workspaces/${$currentWorkspace?.id}/${projectName}/sprints?filter=me`,
 			label: 'Mes tâches'
 		},
 		[Page.Backlog]: {
 			path: (projectName: string) => `/workspaces/${$currentWorkspace?.id}/${projectName}/backlog`,
 			label: 'Backlog'
 		}
-}))
+	})
+)
 
 const createCorePagesStore = () => {
 	const { subscribe } = derived<typeof corePages, ICorePage[]>(corePages, ($corePages) =>
 		Object.values($corePages)
-	);
+	)
 
 	function isActivePath(path: string) {
 		let isActive = false
@@ -87,7 +94,7 @@ const createCorePagesStore = () => {
 			isActive = value.url.pathname === path
 		})
 
-		return isActive;
+		return isActive
 	}
 
 	return {

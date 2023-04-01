@@ -1,5 +1,6 @@
 import type { IProject } from '$lib/stores/projects'
 import type { LayoutLoad } from './$types'
+
 export const load = (({ params }) => {
 	const project: IProject = {
 		name: 'Project 1',
