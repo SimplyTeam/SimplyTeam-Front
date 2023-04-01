@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AuthDescription from './components/AuthDescription.svelte'
+	import AuthDescription from '$lib/features/auth/molecules/AuthDescription.svelte'
 </script>
 
 <div class="max-w-screen h-screen bg-white shadow sm:rounded-lg flex justify-center flex-1">

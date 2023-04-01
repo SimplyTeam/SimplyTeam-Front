@@ -18,6 +18,8 @@ declare global {
 declare module '@fortawesome/pro-solid-svg-icons/index.es' {
 	export * from '@fortawesome/pro-solid-svg-icons'
 }
+declare module 'sveltekit-autoimport'
+declare module 'svelecte'
 declare const Button: typeof import('./lib/components/Button.svelte')['default']
 declare const Icon: typeof import('./lib/components/Icon.svelte')['default']
 declare const SimpleLayout: typeof import('./lib/components/layouts/SimpleLayout.svelte')['default']
