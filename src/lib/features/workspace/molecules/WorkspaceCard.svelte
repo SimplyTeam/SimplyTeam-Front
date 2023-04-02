@@ -6,11 +6,13 @@
 	$: numberOfUsers = workspace.users.length
 </script>
 
-<div class="card w-3/4 card-workspace md:w-1/4 min-h-[10rem] bg-primary mr-10 my-6 text-primary-content">
+<div
+	class="card w-3/4 card-workspace md:w-1/4 min-h-[10rem] bg-primary mr-10 my-6 text-primary-content"
+>
 	<a href="/workspaces/{workspace.id}">
 		<div class="card-body">
 			<div class="card-title justify-between">
-				<h2 class="card-title text-white">{workspace.name}</h2>
+				<h2 class="card-title text-ellipsis overflow-hidden text-white">{workspace.name}</h2>
 				{#if workspace.created_by.id === $page.data.user.user.id}
 					<Icon icon="crown" class="!text-warning font-extrabold" color="secondary" />
 				{/if}
