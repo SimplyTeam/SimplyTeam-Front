@@ -104,7 +104,10 @@ const createCorePagesStore = () => {
 }
 
 const createProjectPageStore = () => {
-	const { subscribe } = derived<typeof projectPages, IProjectPage[]>(projectPages, ($projectPages) => Object.values($projectPages))
+	const { subscribe } = derived<typeof projectPages, IProjectPage[]>(
+		projectPages,
+		($projectPages) => Object.values($projectPages)
+	)
 
 	return {
 		subscribe

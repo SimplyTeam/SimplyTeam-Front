@@ -15,7 +15,8 @@
 		},
 		{
 			title: 'Gamification',
-			description: 'Grâce à des fonctionnalités de gamification, atteignez vos objectifs et dépassez vos limites pour gagner des récompenses.',
+			description:
+				'Grâce à des fonctionnalités de gamification, atteignez vos objectifs et dépassez vos limites pour gagner des récompenses.',
 			icon: 'award'
 		},
 		{
@@ -50,13 +51,18 @@
 			</div>
 			<div class="text-white">
 				<h1 class="text-5xl font-bold">Gérez vos projets avec plaisir et simplement !</h1>
-				<p class="py-6">Notre application de gestionnaire de projet est conçue pour vous aider à rester productif tout en vous amusant.</p>
+				<p class="py-6">
+					Notre application de gestionnaire de projet est conçue pour vous aider à rester productif
+					tout en vous amusant.
+				</p>
 				<a href="/auth/login" class="ml-auto"><Button class="ml-auto">Se connecter</Button></a>
 			</div>
 		</div>
 	</div>
 </header>
-<section class="flex flex-wrap rounded-xl w-3/4 h-[60vh] items-start mx-auto -translate-y-20 bg-white p-4">
+<section
+	class="flex flex-wrap rounded-xl w-3/4 h-[60vh] items-start mx-auto -translate-y-20 bg-white p-4"
+>
 	<h2 class="w-full text-center text-3xl font-bold">
 		Pourquoi <span class="text-primary">nous choisir ?</span>
 	</h2>
