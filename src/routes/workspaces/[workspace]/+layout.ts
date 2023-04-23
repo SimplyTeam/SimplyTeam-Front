@@ -15,10 +15,11 @@ const user: IUser = {
 export const load = (({ params }) => {
 	const workspace: IWorkspace = {
 		created_by: user,
-		users: [user],
+		users: new Array<IUser>(3).fill(user),
 		description: 'description',
 		id: +params.workspace,
-		name: 'Mon espace'
+		name: 'Mon espace',
+		projects: []
 	}
 
 	// TODO Query directly from api

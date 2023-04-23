@@ -1,3 +1,4 @@
+import type { IProject } from '$lib/stores/projects'
 import type { IUser } from './user'
 
 export interface IWorkspace {
@@ -8,4 +9,5 @@ export interface IWorkspace {
 	users: Array<IUser>
 	created_at?: Date
 	updated_at?: Date
+	projects: Array<IProject>
 }
