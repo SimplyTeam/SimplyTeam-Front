@@ -26,19 +26,23 @@
 			<p class="text-sm max-w-lg text-black">{$currentWorkspace?.description}</p>
 		</div>
 	</div>
-	<div class="w-full bg-white mt-10">
-		<div class="tabs">
+	<div class="divider w-full my-0 py-0 h-0 bg-black after:opacity-100 !opacity-100" />
+	<div class="w-full pl-5 flex-1 flex-col bg-white">
+		<div class="text-xl font-bold mt-5">Paramètres d'espace de travail</div>
+		<div class="tabs mt-5">
 			<p
 				on:click={() => (currentTab = 'projects')}
 				class:tab-active={currentTab === 'projects'}
-				class="tab tab-bordered text-md"
+				class:!border-primary={currentTab === 'projects'}
+				class="tab w-1/4 tab-bordered text-xl text-bold"
 			>
 				Mes projets
 			</p>
 			<p
 				on:click={() => (currentTab = 'users')}
 				class:tab-active={currentTab === 'users'}
-				class="tab tab-bordered text-primary text-md tab-active"
+				class:!border-primary={currentTab === 'users'}
+				class="tab w-1/4 tab-bordered text-primary text-xl tab-active"
 			>
 				Mon équipes
 			</p>
