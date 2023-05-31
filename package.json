@@ -19,7 +19,9 @@
 	},
 	"scripts": {
 		"dev": "vite dev --port 3000 --host",
+		"start:test": "vite dev --port 3001 --host --mode testing",
 		"build": "vite build",
+		"test:e2e": "cypress open",
 		"preview": "vite preview",
 		"prepare": "husky install",
 		"check-types": "tsc --pretty --noEmit",
@@ -41,6 +43,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.13",
+		"axios-mock-adapter": "^1.21.4",
 		"cypress": "^12.12.0",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",

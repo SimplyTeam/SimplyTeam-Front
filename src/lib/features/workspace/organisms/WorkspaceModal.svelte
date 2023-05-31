@@ -27,7 +27,7 @@
 		loading = true
 		axios($page.data.accessToken)
 			.post('workspaces', payload)
-			.then((res) => {
+			.then(() => {
 				loading = true
 				showToast('Espace de travail créé avec succès', 'success')
 				showModal = false

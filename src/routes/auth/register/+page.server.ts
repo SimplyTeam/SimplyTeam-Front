@@ -13,7 +13,7 @@ export const load: ServerLoad = ({ locals }) => {
 }
 
 export const actions = {
-	google: async ({ request, cookies }) => {
+	google: async () => {
 		try {
 			const res = await axios().get<{ access_token: string }>('/auth/google')
 			return res.data

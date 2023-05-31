@@ -2,7 +2,7 @@ import axios from '$lib/utils/axios'
 import { fail, redirect } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 
-export const load = (({ locals, cookies }) => {
+export const load = (({ cookies}) => {
 	const accessToken = cookies.get('access_token')	?? null
 	if (accessToken) throw redirect(302, '/workspaces')
 }) satisfies PageServerLoad
