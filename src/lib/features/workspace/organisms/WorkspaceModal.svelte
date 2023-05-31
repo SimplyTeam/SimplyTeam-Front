@@ -7,7 +7,7 @@
 	import { createEventDispatcher } from 'svelte'
 	const dispatch = createEventDispatcher()
 	//props
-	export let showModal: Boolean
+	export let showModal: boolean
 
 	const list = []
 	let payload: { description: string | null; name: string; invitations: string[] } = {
@@ -45,13 +45,20 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<dialog class="rounded" bind:this={dialog} on:close={() => (showModal = false)} on:click|self={() => dialog.close()}>
+<dialog
+	class="rounded"
+	bind:this={dialog}
+	on:close={() => (showModal = false)}
+	on:click|self={() => dialog.close()}
+>
 	<div class="flex justify-center w-full h-full !p-0 flex-1">
 		<div class="w-6/12">
 			<div class="flex flex-col h-full px-10 pt-10 justify-between items-center">
 				<div class="flex flex-col  justify-center items-start text-start">
 					<h1 class="text-xl xl:text-2xl mb-3 font-bold">Créer un espace de travail</h1>
-					<h2 class="text-gray-500">Laissez-nous vous aider à concevoir l'environnement parfait pour votre équipe!</h2>
+					<h2 class="text-gray-500">
+						Laissez-nous vous aider à concevoir l'environnement parfait pour votre équipe!
+					</h2>
 				</div>
 				<div class="flex flex-col pb-10 w-full">
 					<div class="flex flex-col mt-5 items-center">
@@ -95,18 +102,24 @@
 					</div>
 				</div>
 				<div class="flex flex-col items-center w-full">
-					<Button {loading} on:click={() => createWorkspace()} class="w-full max-w-sm mt-5 mb-10">C'est parti !</Button>
+					<Button {loading} on:click={() => createWorkspace()} class="w-full max-w-sm mt-5 mb-10"
+						>C'est parti !</Button
+					>
 				</div>
 			</div>
 		</div>
 		<div class="flex-1 w-7/12 hidden bg-primary text-start lg:flex">
 			<div class="flex flex-col w-full justify-between pt-10 items-center">
-				<span class="text-xl xl:text-2xl animate-fadeIn font-medium w-3/4 text-white"> Créer votre espace de travail en ligne ! </span>
+				<span class="text-xl xl:text-2xl animate-fadeIn font-medium w-3/4 text-white">
+					Créer votre espace de travail en ligne !
+				</span>
 				<div class="mx-auto relative bg-contain bg-center bg-no-repeat">
 					<img src={workspacesIllustration} alt="Simply Team" />
 				</div>
 				<div class="mx-24 pb-10">
-					<span class="text-lg xl:text-xl font-light text-slate-100"> Créer votre espace de travail pour gérer vos sprint avec vos membres</span>
+					<span class="text-lg xl:text-xl font-light text-slate-100">
+						Créer votre espace de travail pour gérer vos sprint avec vos membres</span
+					>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,22 @@
+{
+	"ci": {
+		"collect": {
+			"numberOfRuns": 1,
+			"startServerCommand": "pnpm run build",
+			"psiStrategy": "desktop",
+			"url": [
+				"http://localhost:3000/",
+				"http://localhost:3000/auth/login",
+				"http://localhost:3000/auth/register"
+			]
+		},
+		"assert": {
+			"assertions": {
+				"categories:accessibility": ["error", { "minScore": 0.95 }]
+			}
+		},
+		"upload": {
+			"target": "temporary-public-storage"
+		}
+	}
+}

@@ -19,7 +19,10 @@
 	{/if}
 	<div class="relative form-control">
 		{#if errorMessage}
-			<div class="tooltip tooltip-error absolute right-2 top-1/2 -translate-y-1/2" data-tip={errorMessage}>
+			<div
+				class="tooltip tooltip-error absolute right-2 top-1/2 -translate-y-1/2"
+				data-tip={errorMessage}
+			>
 				<Icon color="error" icon="info-circle" />
 			</div>
 		{/if}

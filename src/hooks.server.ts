@@ -26,6 +26,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	} catch (error) {
 		event.cookies.delete('access_token')
 	} finally {
+		// eslint-disable-next-line no-unsafe-finally
 		return await resolve(event)
 	}
 }
