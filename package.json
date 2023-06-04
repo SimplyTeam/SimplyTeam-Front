@@ -34,9 +34,10 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@cypress-audit/lighthouse": "^1.4.2",
 		"@commitlint/cli": "^17.6.1",
 		"@commitlint/config-conventional": "^17.6.1",
+		"@cypress-audit/lighthouse": "^1.4.2",
+		"@faker-js/faker": "^8.0.2",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-node": "^1.2.3",
 		"@sveltejs/kit": "^1.5.0",

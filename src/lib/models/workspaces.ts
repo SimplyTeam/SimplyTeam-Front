@@ -1,4 +1,4 @@
-import type { IUser } from '$lib/models/user'
+import type { IUser } from '$lib/models/auth'
 export interface IWorkspace {
 	id: number
 	name: string

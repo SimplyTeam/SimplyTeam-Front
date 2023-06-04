@@ -2,25 +2,19 @@
 	import image from '$lib/assets/logo.png'
 	import Button from '$lib/components/molecules/Button.svelte'
 
-	import { enhance } from '$app/forms'
 	import Input from '$lib/components/molecules/Input.svelte'
 	import Toast from '$lib/components/atoms/Toast.svelte'
-	import type { ActionData } from './$types'
+	import { authStore } from '$lib/stores/auth'
+	import type { IRegisterErrors, IRegisterInput } from '$lib/models/auth'
 
-	interface IUser {
-		name?: string
-		email: string
-		password: string
-		confirmPassword?: string
-	}
-
-	export let form: ActionData
-	let login: IUser = {
+	let registerForm: IRegisterInput = {
 		name: '',
 		email: '',
 		password: '',
-		confirmPassword: ''
+		confirmedPassword: ''
 	}
+	let formErrors: IRegisterErrors | undefined = undefined
+
 	let loading = false
 	const showToast = (messageToast: string, themeToast: string) => {
 		const message = messageToast
@@ -36,11 +30,24 @@
 
 	let otherField = false
 	const checkOtherField = () => {
-		otherField = login.name !== '' && login.email !== ''
+		otherField = registerForm.name !== '' && registerForm.email !== ''
 	}
 	// computed qui permet de check si tous les champs sont remplis
-	$: isFilled = Object.values(login).every((value) => value !== '')
-	$: isFilledNameAndEmail = login.name !== '' && login.email !== ''
+	$: isFilled = Object.values(registerForm).every((value) => value !== '')
+	$: isFilledNameAndEmail = registerForm.name !== '' && registerForm.email !== ''
+
+	async function onRegister(): Promise<void> {
+		loading = true
+		try {
+			await authStore.register(registerForm)
+			showToast('Bienvenue', 'success')
+		} catch ({ response }) {
+			formErrors = response.data.errors
+			showToast('Une erreur est survenue', 'error')
+		} finally {
+			loading = false
+		}
+	}
 </script>
 
 <img alt="logo" src={image} class="w-20 mx-auto" />
@@ -85,29 +92,14 @@
 		</div>
 	</div>
 	<div class="flex flex-col w-full">
-		<form
-			method="POST"
-			action="?/register"
-			use:enhance={() => {
-				loading = true
-				return async ({ update }) => {
-					await update()
-					loading = false
-					if (form?.errors) {
-						showToast('Une erreur est survenue', 'error')
-					} else {
-						showToast('Bienvenue', 'success')
-					}
-				}
-			}}
-		>
+		<form on:submit|preventDefault={onRegister}>
 			<div class:hidden={otherField}>
 				<div class="flex flex-col items-center">
 					<Input
-						errorMessage={form?.errors?.email}
+						errorMessage={formErrors?.email?.[0]}
 						class="max-w-sm items-center"
 						name="email"
-						bind:value={login.email}
+						bind:value={registerForm.email}
 						type="email"
 						placeholder="Email"
 						fieldName={'email'}
@@ -115,9 +107,9 @@
 				</div>
 				<div class="flex mt-5 flex-col items-center">
 					<Input
-						errorMessage={form?.errors?.name}
+						errorMessage={formErrors?.name?.[0]}
 						name="name"
-						bind:value={login.name}
+						bind:value={registerForm.name}
 						type="text"
 						placeholder="Nom d'utilisateur"
 						class="max-w-sm items-center"
@@ -144,9 +136,9 @@
 			<div class:hidden={!otherField}>
 				<div class="flex mt-5 flex-col items-center">
 					<Input
-						errorMessage={form?.errors?.password}
+						errorMessage={formErrors?.password?.[0]}
 						name="password"
-						bind:value={login.password}
+						bind:value={registerForm.password}
 						type="password"
 						placeholder="Mot de passe"
 						class="max-w-sm items-center"
@@ -155,8 +147,8 @@
 				</div>
 				<div class="flex mt-5 flex-col items-center">
 					<Input
-						errorMessage={form?.errors?.confirmPassword}
-						bind:value={login.confirmPassword}
+						errorMessage={formErrors?.password_confirmation?.[0]}
+						bind:value={registerForm.confirmedPassword}
 						name="confirmPassword"
 						type="password"
 						class="max-w-sm items-center"

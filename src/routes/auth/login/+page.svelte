@@ -2,17 +2,11 @@
 	import { enhance } from '$app/forms'
 	import image from '$lib/assets/logo.png'
 	import Button from '$lib/components/molecules/Button.svelte'
-
+	import { goto } from '$app/navigation'
 	import Input from '$lib/components/molecules/Input.svelte'
 	import Toast from '$lib/components/atoms/Toast.svelte'
-	import type { ActionData } from './$types'
-
-	interface IUser {
-		name?: string
-		email: string
-		password: string
-		confirmPassword?: string
-	}
+	import type { ILoginErrors, ILoginInput } from '$lib/models/auth'
+	import { authStore } from '$lib/stores/auth'
 
 	let popup
 
@@ -20,12 +14,14 @@
 		popup = window.open('http://localhost/auth/google', '_blank', 'width=800, height=600')
 	}
 
-	const login: IUser = {
+	const loginForm: ILoginInput = {
 		email: '',
 		password: ''
 	}
+	let loginErrors: ILoginErrors | undefined = undefined
+
 	let loading = false
-	export let form: ActionData
+
 	const showToast = (messageToast: string, themeToast: string) => {
 		const message = messageToast
 		const duration = 3000
@@ -36,6 +32,21 @@
 			target: document.body,
 			props: { message, duration, theme, position }
 		})
+	}
+
+	async function onLogin() {
+		loading = true
+		try {
+			await authStore.login(loginForm)
+			goto('/workspaces')
+		} catch ({ response }) {
+			if (response && response.status === 422) {
+				loginErrors = response.data.errors
+				showToast('Une erreur est survenue : ' + response.data.errors.message, 'error')
+			}
+		} finally {
+			loading = false
+		}
 	}
 </script>
 
@@ -90,37 +101,24 @@
 			Ou avec votre compte
 		</div>
 	</div>
-	<form
-		method="POST"
-		action="?/login"
-		use:enhance={() => {
-			loading = true
-			return async ({ update }) => {
-				await update()
-				loading = false
-				if (!login.email || !login.password) showToast('Veillez remplir les champs', 'error')
-				if (form) showToast(form?.errors?.message, 'error')
-			}
-		}}
-		class="flex flex-col w-full"
-	>
+	<form on:submit|preventDefault={onLogin} class="flex flex-col w-full">
 		<div class="flex flex-col items-center">
 			<Input
 				name="email"
 				class="max-w-sm items-center"
-				errorMessage={form?.errors?.email ?? form?.errors?.message}
+				errorMessage={loginErrors?.email?.[0]}
 				type="email"
-				bind:value={login.email}
+				bind:value={loginForm.email}
 				placeholder="Email"
 			/>
 		</div>
 		<div class="flex mt-5 flex-col items-center">
 			<Input
 				type="password"
-				errorMessage={form?.errors?.password ?? form?.errors?.message}
+				errorMessage={loginErrors?.password?.[0]}
 				name="password"
 				class="max-w-sm items-center"
-				bind:value={login.password}
+				bind:value={loginForm.password}
 				placeholder="Mot de passe"
 			/>
 		</div>

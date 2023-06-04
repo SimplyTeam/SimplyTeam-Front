@@ -15,5 +15,11 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import './mockCommands'
+
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+beforeEach(() => {
+	cy.mockAll()
+})
