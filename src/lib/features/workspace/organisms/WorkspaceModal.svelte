@@ -26,7 +26,7 @@
 	function createWorkspace() {
 		loading = true
 		axios($page.data.accessToken)
-			.post('api/workspaces', payload)
+			.post('workspaces', payload)
 			.then((res) => {
 				loading = true
 				showToast('Espace de travail créé avec succès', 'success')

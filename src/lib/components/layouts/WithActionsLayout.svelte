@@ -12,7 +12,7 @@
 				<div class="w-1/6 mx-auto">
 					<Avatar src="https://i.pravatar.cc/300" />
 				</div>
-				<div class="flex-1 flex justify-center items-end">
+				<div class="flex-1 flex w-full justify-center items-end">
 					<slot name="actions" />
 				</div>
 			</div>

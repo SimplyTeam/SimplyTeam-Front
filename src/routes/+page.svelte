@@ -2,10 +2,10 @@
 	import { enhance } from '$app/forms'
 	import { page } from '$app/stores'
 	import whiteLogo from '$lib/assets/logo-white.svg'
-	import Button from '$lib/components/Button.svelte'
+	import Button from '$lib/components/molecules/Button.svelte'
 	import CardIcon, { type CardIconProps } from '$lib/features/landing/molecules/CardIcon.svelte'
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
-
+	
 	const sections: CardIconProps[] = [
 		{
 			title: 'Gestion des tâches',

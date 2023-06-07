@@ -13,7 +13,7 @@
 	let workspace: Array<IWorkspace> = []
 	async function getWorkspaces() {
 		try {
-			const res = await axios($page.data.accessToken).get('api/workspaces')
+			const res = await axios($page.data.accessToken).get('workspaces')
 			workspace = res.data.workspaces
 		} catch (error) {
 			console.log(error)

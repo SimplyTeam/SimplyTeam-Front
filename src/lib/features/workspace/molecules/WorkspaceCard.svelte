@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import Icon from '$lib/components/Icon.svelte'
+	import Icon from '$lib/components/atoms/Icon.svelte'
 	import type { IWorkspace } from '$lib/models/workspaces'
 	export let workspace: IWorkspace
 	$: numberOfUsers = workspace.users.length
 </script>
 
 <div
+	data-sveltekit-preload-data="off"
 	class="card w-3/4 card-workspace md:w-1/4 min-h-[10rem] bg-primary mr-10 my-6 text-primary-content"
 >
 	<a href="/workspaces/{workspace.id}">

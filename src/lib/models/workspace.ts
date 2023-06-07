@@ -6,7 +6,7 @@ export interface IWorkspace {
 	name: string
 	description: string
 	created_by: IUser
-	users: Array<IUser>
+	users?: Array<IUser>
 	created_at?: Date
 	updated_at?: Date
 	projects: Array<IProject>

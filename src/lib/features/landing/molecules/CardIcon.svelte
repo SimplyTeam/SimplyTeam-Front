@@ -7,7 +7,7 @@
 </script>
 
 <script lang="ts">
-	import Icon from '$lib/components/Icon.svelte'
+	import Icon from '$lib/components/atoms/Icon.svelte'
 	import classNames from 'classnames'
 
 	export let title: string
