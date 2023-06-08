@@ -32,5 +32,5 @@ export const actions: Actions = {
 		} catch (err: any) {
 			return fail(500, { message: 'Une erreur est survenue' })
 		}
-	},
+	}
 }

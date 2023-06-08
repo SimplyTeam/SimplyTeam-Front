@@ -11,12 +11,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<dialog
-	class="{$$props.class} rounded-xl"
-	bind:this={dialog}
-	on:close={() => (showModal = false)}
-	on:click|self={() => dialog.close()}
->
+<dialog class="{$$props.class} rounded-xl" bind:this={dialog} on:close={() => (showModal = false)}>
 	<div class="flex justify-center w-full h-full !p-0 flex-1">
 		<div class="flex justify-center w-full h-full !p-0 flex-1">
 			<div class="w-full">

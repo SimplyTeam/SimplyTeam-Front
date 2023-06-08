@@ -1,15 +1,14 @@
 <script lang="ts">
+	import { page } from '$app/stores'
 	import WithActionsLayout from '$lib/components/layouts/WithActionsLayout.svelte'
 	import Button from '$lib/components/molecules/Button.svelte'
 	import Input from '$lib/components/molecules/Input.svelte'
+	import ModalDeleteWorkspace from '$lib/features/settings/molecules/ModalDeleteWorkspace.svelte'
 	import ProjectList from '$lib/features/settings/organims/ProjectsList.svelte'
 	import UsersList from '$lib/features/settings/organims/UsersList.svelte'
 	import type { IWorkspace } from '$lib/models/workspace'
-	import { currentWorkspace } from '$lib/stores/workspace'
-	import { updateWorkspaceDescriptionOrName } from '$lib/stores/workspace'
+	import { currentWorkspace, updateWorkspace } from '$lib/stores/workspace'
 	import { onMount } from 'svelte'
-	import { page } from '$app/stores'
-	import ModalDeleteWorkspace from '$lib/features/settings/molecules/ModalDeleteWorkspace.svelte'
 
 	let currentTab: 'users' | 'projects' = 'users'
 	let timeout: NodeJS.Timeout
@@ -31,7 +30,7 @@
 	}
 	async function callAPI() {
 		if (!workspace) return
-		updateWorkspaceDescriptionOrName($page.data.accessToken, workspace)
+		updateWorkspace($page.data.accessToken, workspace)
 	}
 	function resetTimeout() {
 		clearTimeout(timeout)
@@ -45,7 +44,7 @@
 	})
 </script>
 
-<WithActionsLayout>
+<WithActionsLayout class="overflow-hidden">
 	<svelte:fragment slot="actions">
 		<Button
 			on:click={() => {
@@ -74,7 +73,7 @@
 					on:input={handleNomInput}
 					fontSize="text-lg"
 					fontWeight="font-bold"
-					class="w-full text-lg bg-transparent h-8"
+					class="w-full !text-lg border-none hover:border-dotted !font-bold bg-transparent h-8"
 				/>
 				<Input
 					label="Description de l'espace"
@@ -84,7 +83,7 @@
 					fontWeight="font-bold"
 					value={workspace?.description}
 					on:input={handleDescriptionInput}
-					class="w-full bg-transparent border-dashed h-8"
+					class="w-full bg-transparent border-none hover:border-dotted h-8"
 				/>
 			</form>
 		</div>

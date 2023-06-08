@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/components/molecules/Button.svelte'
 	import Modal from '$lib/components/molecules/Modal.svelte'
-	import animationData from '$lib/assets/lottie/test.json'
+	import animationData from '$lib/assets/lottie/trash.json'
 	import { page } from '$app/stores'
 	import { createEventDispatcher, onMount } from 'svelte'
 	import { currentWorkspace, deleteWorkspace } from '$lib/stores/workspace'

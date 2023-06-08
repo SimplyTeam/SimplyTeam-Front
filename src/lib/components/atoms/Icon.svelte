@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
 	export interface IconProps {
-		size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' 
+		size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl'
 		icon: string
 		color?:
 			| 'primary'
