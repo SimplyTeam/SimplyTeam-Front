@@ -12,9 +12,16 @@ module.exports = {
 		sourceType: 'module',
 		ecmaVersion: 2020
 	},
+	rules: {
+		'@typescript-eslint/no-explicit-any': 'off',
+		'@typescript-eslint/ban-types': 'off'
+	},
 	env: {
 		browser: true,
 		es2017: true,
 		node: true
+	},
+	globals: {
+		NodeJS: true
 	}
 }

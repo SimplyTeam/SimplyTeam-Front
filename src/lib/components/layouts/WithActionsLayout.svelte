@@ -1,7 +1,5 @@
 <script lang="ts">
 	import Avatar from '$lib/features/settings/atoms/Avatar.svelte'
-
-	export let illustration: string
 </script>
 
 <div class=" {$$props.class} flex h-[calc(100%-4rem)] bg-white">
