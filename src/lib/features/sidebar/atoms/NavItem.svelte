@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon from '$lib/components/Icon.svelte'
+	import Icon from '$lib/components/atoms/Icon.svelte'
 	export let icon: string
 	export let href: string
 	export let isActive = false

@@ -21,7 +21,7 @@ export const actions = {
 			password: data.get('password')
 		}
 		try {
-			const res = await axios().post<{ access_token: string }>('api/login', payload)
+			const res = await axios().post<{ access_token: string }>('login', payload)
 
 			cookies.set('access_token', res.data.access_token, {
 				// send cookie for every page

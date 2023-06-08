@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExpandedContent from '$lib/components/ExpandedContent.svelte'
+	import ExpandedContent from '$lib/components/organisms/ExpandedContent.svelte'
 	import type { ITask } from '$lib/stores/projects'
 	import TaskContent from './TaskContent.svelte'
 

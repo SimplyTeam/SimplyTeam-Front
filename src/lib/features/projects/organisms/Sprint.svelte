@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExpandedContent from '$lib/components/ExpandedContent.svelte'
+	import ExpandedContent from '$lib/components/organisms/ExpandedContent.svelte'
 	import type { ISprint } from '$lib/stores/projects'
 	import Task from '../molecules/Task.svelte'
 

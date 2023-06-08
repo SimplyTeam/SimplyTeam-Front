@@ -9,7 +9,7 @@ export const load = (async ({ locals, url }) => {
 		let success = false
 		let workspaceId: number
 		try {
-			const res = await axios(accessToken).post('api/workspaces/invitations/accept', {
+			const res = await axios(accessToken).post('workspaces/invitations/accept', {
 				token: inviteToken
 			})
 			workspaceId = res.data.id

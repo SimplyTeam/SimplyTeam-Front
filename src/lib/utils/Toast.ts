@@ -1,4 +1,4 @@
-import Toast from '$lib/components/Toast.svelte'
+import Toast from '$lib/components/atoms/Toast.svelte'
 export const showToast = (messageToast: string, themeToast: string) => {
 	const message = messageToast
 	const duration = 4000

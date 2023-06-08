@@ -2,7 +2,7 @@
 	import type { IProject } from '$lib/stores/projects'
 	import ProjectItemLink from '$lib/features/sidebar/atoms/ProjectItemLink.svelte'
 	import { projectPagesStore } from '$lib/stores/nav'
-	import ExpandedContent from '$lib/components/ExpandedContent.svelte'
+	import ExpandedContent from '$lib/components/organisms/ExpandedContent.svelte'
 
 	export let project: IProject
 	export let isExpanded = false

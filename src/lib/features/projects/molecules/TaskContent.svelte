@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Checkbox from '$lib/components/Checkbox.svelte'
-	import Icon from '$lib/components/Icon.svelte'
+	import Checkbox from '$lib/components/atoms/Checkbox.svelte'
+	import Icon from '$lib/components/atoms/Icon.svelte'
 	import type { ITask } from '$lib/stores/projects'
 	import TaskLabel from '../atoms/TaskLabel.svelte'
 

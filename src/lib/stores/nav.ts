@@ -15,8 +15,13 @@ export interface IProjectPage extends IPage {
 	path: (projectName: string) => string
 }
 
-enum Page {
+export interface IGlobalPage extends IPage {
+	path: string
+}
+
+export enum Page {
 	Workspaces = 'Workspaces',
+	WorkspaceSettings = 'WorkpaceSettings',
 	Dashboard = 'Dashboard',
 	Sprints = 'Sprints',
 	MyTasks = 'MyTasks',
@@ -29,6 +34,7 @@ enum Page {
 
 type CorePages = Partial<Record<Page, ICorePage>>
 type ProjectPages = Partial<Record<Page, IProjectPage>>
+type GlobalPages = Partial<Record<Page, IGlobalPage>>
 
 // Pages that are shown in the core navigation
 export const corePages = derived<typeof currentWorkspace, CorePages>(
@@ -81,7 +87,15 @@ export const projectPages = derived<typeof currentWorkspace, ProjectPages>(
 		}
 	})
 )
-
+export const globalPages = derived<typeof currentWorkspace, GlobalPages>(
+	currentWorkspace,
+	($currentWorkspace) => ({
+		[Page.WorkspaceSettings]: {
+			path: `/workspaces/${$currentWorkspace?.id}/settings`,
+			label: 'Paramètres du workspace'
+		}
+	})
+)
 const createCorePagesStore = () => {
 	const { subscribe } = derived<typeof corePages, ICorePage[]>(corePages, ($corePages) =>
 		Object.values($corePages)

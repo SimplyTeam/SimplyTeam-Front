@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Icon, { type IconProps } from '$lib/components/Icon.svelte'
+	import Icon, { type IconProps } from '$lib/components/atoms/Icon.svelte'
 
 	export let icon: IconProps['icon'] | undefined = undefined
 	export let iconColor: IconProps['color'] = 'primary'

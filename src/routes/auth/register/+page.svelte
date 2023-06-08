@@ -1,10 +1,10 @@
 <script lang="ts">
 	import image from '$lib/assets/logo.png'
-	import Button from '$lib/components/Button.svelte'
+	import Button from '$lib/components/molecules/Button.svelte'
 
 	import { enhance } from '$app/forms'
-	import Input from '$lib/components/Input.svelte'
-	import Toast from '$lib/components/Toast.svelte'
+	import Input from '$lib/components/molecules/Input.svelte'
+	import Toast from '$lib/components/atoms/Toast.svelte'
 	import type { ActionData } from './$types'
 
 	interface IUser {
