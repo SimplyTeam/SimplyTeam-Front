@@ -16,6 +16,7 @@ module.exports = {
 		ecmaVersion: 2020
 	},
 	rules: {
+		'@typescript-eslint/no-namespace': 'off',
 		'@typescript-eslint/no-explicit-any': 'off',
 		'@typescript-eslint/ban-types': 'off'
 	},
