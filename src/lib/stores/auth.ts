@@ -18,7 +18,6 @@ function createAuthStore() {
 	return {
 		subscribe,
 		fetchSession: async () => {
-			console.log(localStorage.getItem('accessToken'))
 			if (!localStorage.getItem('accessToken')) {
 				set({
 					accessToken: '',
@@ -37,7 +36,6 @@ function createAuthStore() {
 					triedFetchingUser: true
 				}))
 			} catch (err) {
-				console.log('erroreur', err)
 				set({
 					accessToken: '',
 					user: undefined,
@@ -87,6 +85,5 @@ function createAuthStore() {
 export const authStore = createAuthStore()
 
 authStore.subscribe((store) => {
-	console.log(store)
 	localStorage.setItem('accessToken', store.accessToken)
 })

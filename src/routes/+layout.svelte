@@ -4,7 +4,6 @@
 	import { authStore } from '$lib/stores/auth.ts'
 
 	onMount(() => {
-		console.log('fetching session')
 		authStore.fetchSession()
 	})
 </script>

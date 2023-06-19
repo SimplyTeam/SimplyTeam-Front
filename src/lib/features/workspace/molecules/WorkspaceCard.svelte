@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import Icon from '$lib/components/atoms/Icon.svelte'
 	import type { IWorkspace } from '$lib/models/workspaces'
+	import { authStore } from '$lib/stores/auth'
+
 	export let workspace: IWorkspace
-	$: numberOfUsers = workspace.users.length
+	$: numberOfUsers = workspace?.users.length
 </script>
 
 <div
@@ -14,7 +15,7 @@
 		<div class="card-body">
 			<div class="card-title justify-between">
 				<h2 class="card-title text-ellipsis overflow-hidden text-white">{workspace.name}</h2>
-				{#if workspace.created_by.id === $page.data.user.user.id}
+				{#if workspace.created_by.id === $authStore.user.id}
 					<Icon icon="crown" class="!text-warning font-extrabold" color="secondary" />
 				{/if}
 			</div>

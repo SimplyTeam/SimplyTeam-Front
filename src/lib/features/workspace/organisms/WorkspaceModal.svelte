@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import workspacesIllustration from '$lib/assets/workspaces.svg'
 	import axios from '$lib/utils/axios'
 	import { showToast } from '$lib/utils/Toast'
@@ -25,7 +24,7 @@
 	// function qui envoie les données du formulaire à l'API
 	function createWorkspace() {
 		loading = true
-		axios($page.data.accessToken)
+		axios
 			.post('workspaces', payload)
 			.then(() => {
 				loading = true
@@ -38,7 +37,6 @@
 			.catch((err) => {
 				loading = false
 				error = err.response.data.errors
-				console.log(error)
 				showToast('Une erreur est survenue', 'error')
 			})
 	}

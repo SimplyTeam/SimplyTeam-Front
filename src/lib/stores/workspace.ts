@@ -8,11 +8,11 @@ export const currentWorkspace = writable<IWorkspace>()
 export const workspaces = writable<Array<IWorkspace>>([])
 
 export const getAllWorkspaces = async () => {
-	const response = await axios().get('/workspaces')
+	const response = await axios.get('/workspaces')
 	workspaces.set(response.data)
 }
-export const getWorkspace = async (access_token: string, id: number) => {
-	const response = await axios(access_token).get(`/workspaces/${id}`)
+export const getWorkspace = async (id: string) => {
+	const response = await axios.get(`/workspaces/${id}`)
 
 	currentWorkspace.set(response.data)
 }
@@ -21,7 +21,7 @@ export const createWorkspace = async (
 	payload: { name: string; description: string }
 ) => {
 	try {
-		const response = await axios(access_token).post('/workspaces', payload)
+		const response = await axios.post('/workspaces', payload)
 		await getAllWorkspaces()
 	} catch (err: any) {
 		return err.response.data
@@ -32,7 +32,7 @@ export const updateWorkspace = async (
 	payload: { id: number; name: string; description?: string; invitations?: Array<string> }
 ) => {
 	try {
-		const response = await axios(access_token).put(`/workspaces/${payload.id}`, payload)
+		const response = await axios.put(`/workspaces/${payload.id}`, payload)
 		currentWorkspace.set(response.data)
 	} catch (err: any) {
 		return err.response.data
@@ -40,7 +40,7 @@ export const updateWorkspace = async (
 }
 export const deleteWorkspace = async (access_token: string, id: number) => {
 	try {
-		const response = await axios(access_token).delete(`/workspaces/${id}`)
+		const response = await axios.delete(`/workspaces/${id}`)
 		showToast('Espace de travail supprimé', 'success')
 		goto('/workspaces', { replaceState: true })
 		await getAllWorkspaces()
@@ -55,10 +55,8 @@ export const deleteUserFromWorkspace = async (
 	user_id: number
 ) => {
 	try {
-		const response = await axios(access_token).delete(
-			`/workspaces/${workspace.id}/users/${user_id}`
-		)
-		await getWorkspace(access_token, workspace.id)
+		const response = await axios.delete(`/workspaces/${workspace.id}/users/${user_id}`)
+		await getWorkspace(workspace.id.toString())
 	} catch (err: any) {
 		showToast(err.response.data.error, 'error')
 	}
