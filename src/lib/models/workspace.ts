@@ -1,5 +1,5 @@
 import type { IProject } from '$lib/stores/projects'
-import type { IUser } from './user'
+import type { IUser } from './auth'
 
 export interface IWorkspace {
 	id: number

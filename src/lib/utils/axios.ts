@@ -1,12 +1,15 @@
 import axios from 'axios'
 
-function api(token?: string) {
-	return axios.create({
-		baseURL: import.meta.env.VITE_BASE_URL as string,
-		headers: {
-			Authorization: `Bearer ${token}`
-		}
-	})
-}
+const axiosInstance = axios.create({
+	baseURL: import.meta.env.VITE_BASE_URL
+})
 
-export default api
+axiosInstance.interceptors.request.use((config) => {
+	const accessToken = localStorage.getItem('accessToken')
+	if (accessToken) {
+		config.headers['Authorization'] = `Bearer ${accessToken}`
+	}
+	return config
+})
+
+export default axiosInstance

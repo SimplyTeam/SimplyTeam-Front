@@ -5,6 +5,7 @@
 	import Button from '$lib/components/molecules/Button.svelte'
 	import CardIcon, { type CardIconProps } from '$lib/features/landing/molecules/CardIcon.svelte'
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
+	import { authStore } from '$lib/stores/auth'
 
 	const sections: CardIconProps[] = [
 		{
@@ -36,10 +37,8 @@
 			<a href="">Teams</a>
 			<a href="">Teams</a>
 		</div>
-		{#if $page.data.accessToken}
-			<form method="POST" use:enhance action="/auth/logout">
-				<Button type="submit" class="ml-auto">Déconnexion</Button>
-			</form>
+		{#if $authStore.user}
+			<Button type="submit" class="ml-auto" on:click={authStore.logout}>Déconnexion</Button>
 		{:else}
 			<a href="/auth/login" class="ml-auto"><Button>Se connecter</Button></a>
 		{/if}
