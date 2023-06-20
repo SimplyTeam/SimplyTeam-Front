@@ -37,11 +37,11 @@
 
 <header class="bg-primary h-screen">
 	<nav class=" relative z-10 grid grid-cols-[1fr_auto_1fr] px-12 py-4">
-		<a href=""><img src={whiteLogo} class="h-16" alt="SimplyTeam logo" /></a>
+		<a href="/"><img src={whiteLogo} class="h-16" alt="SimplyTeam logo" /></a>
 		<div class="flex gap-8 text-white text-xl">
-			<a href="">Pricing</a>
-			<a href="">Teams</a>
-			<a href="">Teams</a>
+			<a href="/">Pricing</a>
+			<a href="/">Teams</a>
+			<a href="/">Teams</a>
 		</div>
 		{#if $authStore.user}
 			<Button type="submit" class="ml-auto" on:click={authStore.logout}>Déconnexion</Button>

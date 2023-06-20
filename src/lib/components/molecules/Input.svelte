@@ -20,7 +20,7 @@
 
 <div class="{$$props.class} w-full">
 	{#if labelInput}
-		<label class="label font-bold">
+		<label for="input" class="label font-bold">
 			<span class="label-text">{labelInput}</span>
 		</label>
 	{/if}
@@ -34,6 +34,7 @@
 			</div>
 		{/if}
 		<input
+			id="input"
 			use:typeAction
 			bind:value
 			class:border-error={errorMessage}

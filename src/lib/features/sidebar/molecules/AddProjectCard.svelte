@@ -8,12 +8,12 @@
 	import { showToast } from '$lib/utils/Toast'
 	import lottie from 'lottie-web'
 	import { createEventDispatcher, onMount } from 'svelte'
-	export let showModalAddUser = true
+	export let showModalAddUser = false
 	const dispatch = createEventDispatcher()
 
 	let container: HTMLDivElement
-	let projectName: string = ''
-	let projectNameError: string = ''
+	let projectName = ''
+	let projectNameError = ''
 	function closeModal() {
 		dispatch('closeModal')
 	}

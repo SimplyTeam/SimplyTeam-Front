@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import WithActionsLayout from '$lib/components/layouts/WithActionsLayout.svelte'
 	import Button from '$lib/components/molecules/Button.svelte'
 	import Input from '$lib/components/molecules/Input.svelte'
@@ -30,7 +29,7 @@
 	}
 	async function callAPI() {
 		if (!workspace) return
-		updateWorkspace($page.data.accessToken, workspace)
+		updateWorkspace(workspace)
 	}
 	function resetTimeout() {
 		clearTimeout(timeout)
@@ -93,6 +92,7 @@
 		<div class="text-xl font-bold mt-5">Paramètres d'espace de travail</div>
 		<div class="tabs mt-5">
 			<p
+				on:keydown
 				on:click={() => (currentTab = 'projects')}
 				class:tab-active={currentTab === 'projects'}
 				class:!border-primary={currentTab === 'projects'}
@@ -101,6 +101,7 @@
 				Mes projets
 			</p>
 			<p
+				on:keydown
 				on:click={() => (currentTab = 'users')}
 				class:tab-active={currentTab === 'users'}
 				class:!border-primary={currentTab === 'users'}

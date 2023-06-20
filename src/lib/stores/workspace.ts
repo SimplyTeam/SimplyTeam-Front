@@ -21,16 +21,18 @@ export const createWorkspace = async (
 	payload: { name: string; description: string }
 ) => {
 	try {
-		const response = await axios.post('/workspaces', payload)
+		await axios.post('/workspaces', payload)
 		await getAllWorkspaces()
 	} catch (err: any) {
 		return err.response.data
 	}
 }
-export const updateWorkspace = async (
-	access_token: string,
-	payload: { id: number; name: string; description?: string; invitations?: Array<string> }
-) => {
+export const updateWorkspace = async (payload: {
+	id: number
+	name: string
+	description?: string
+	invitations?: Array<string>
+}) => {
 	try {
 		const response = await axios.put(`/workspaces/${payload.id}`, payload)
 		currentWorkspace.set(response.data)
@@ -38,9 +40,9 @@ export const updateWorkspace = async (
 		return err.response.data
 	}
 }
-export const deleteWorkspace = async (access_token: string, id: number) => {
+export const deleteWorkspace = async (id: number) => {
 	try {
-		const response = await axios.delete(`/workspaces/${id}`)
+		await axios.delete(`/workspaces/${id}`)
 		showToast('Espace de travail supprimé', 'success')
 		goto('/workspaces', { replaceState: true })
 		await getAllWorkspaces()
@@ -49,13 +51,9 @@ export const deleteWorkspace = async (access_token: string, id: number) => {
 	}
 }
 
-export const deleteUserFromWorkspace = async (
-	access_token: string,
-	workspace: IWorkspace,
-	user_id: number
-) => {
+export const deleteUserFromWorkspace = async (workspace: IWorkspace, user_id: number) => {
 	try {
-		const response = await axios.delete(`/workspaces/${workspace.id}/users/${user_id}`)
+		await axios.delete(`/workspaces/${workspace.id}/users/${user_id}`)
 		await getWorkspace(workspace.id.toString())
 	} catch (err: any) {
 		showToast(err.response.data.error, 'error')

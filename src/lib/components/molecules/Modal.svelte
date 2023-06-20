@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte'
-	const dispatch = createEventDispatcher()
-	//props
 	export let showModal: Boolean
 
 	let dialog: HTMLDialogElement
@@ -10,7 +7,6 @@
 	$: if (dialog && !showModal) dialog.close()
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <dialog class="{$$props.class} rounded-xl" bind:this={dialog} on:close={() => (showModal = false)}>
 	<div class="flex justify-center w-full h-full !p-0 flex-1">
 		<div class="flex justify-center w-full h-full !p-0 flex-1">
@@ -66,9 +62,6 @@
 		to {
 			opacity: 1;
 		}
-	}
-	button {
-		display: block;
 	}
 	:global(.svelecte-control) {
 		--sv-active-border: none !important;

@@ -1,12 +1,10 @@
 <script lang="ts">
+	import animationData from '$lib/assets/lottie/deleteUser.json'
 	import Button from '$lib/components/molecules/Button.svelte'
 	import Modal from '$lib/components/molecules/Modal.svelte'
-	import { page } from '$app/stores'
-	import animationData from '$lib/assets/lottie/deleteUser.json'
-	import { createEventDispatcher } from 'svelte'
 	import { currentWorkspace, deleteUserFromWorkspace } from '$lib/stores/workspace'
-	import { onMount } from 'svelte'
 	import lottie from 'lottie-web'
+	import { createEventDispatcher, onMount } from 'svelte'
 
 	export let showModal = false
 	export let userIdToDelete: number
@@ -16,7 +14,7 @@
 	function handleDeleteUser() {
 		if (!$currentWorkspace) return
 		try {
-			deleteUserFromWorkspace($page.data.accessToken, $currentWorkspace, userIdToDelete)
+			deleteUserFromWorkspace($currentWorkspace, userIdToDelete)
 			closeModal()
 		} catch (error: any) {
 			console.log(error)

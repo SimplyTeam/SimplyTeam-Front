@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Icon from '$lib/components/atoms/Icon.svelte'
 	import { createEventDispatcher } from 'svelte'
 	import WorkspaceModal from './WorkspaceModal.svelte'
 	let showModal = false

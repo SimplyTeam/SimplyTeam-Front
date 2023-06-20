@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import animationData from '$lib/assets/lottie/addUser.json'
 	import Button from '$lib/components/molecules/Button.svelte'
 	import Modal from '$lib/components/molecules/Modal.svelte'
@@ -18,7 +17,7 @@
 	function handleAddUser() {
 		if (!$currentWorkspace) return
 		try {
-			updateWorkspace($page.data.accessToken, workspace)
+			updateWorkspace(workspace)
 			closeModal()
 		} catch (error: any) {
 			console.log(error)
