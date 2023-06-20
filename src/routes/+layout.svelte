@@ -1,10 +1,16 @@
 <script>
-	import '../app.css'
-	import { onMount } from 'svelte'
+	import { page } from '$app/stores'
 	import { authStore } from '$lib/stores/auth.ts'
+	import { onMount } from 'svelte'
+	import '../app.css'
 
-	onMount(() => {
-		authStore.fetchSession()
+	onMount(async () => {
+		const url = new URL($page.url)
+		const accessTokenGoogle = url.searchParams.get('access_token')
+		if (accessTokenGoogle) {
+			$authStore.accessToken = accessTokenGoogle
+		}
+		await authStore.fetchSession()
 	})
 </script>
 

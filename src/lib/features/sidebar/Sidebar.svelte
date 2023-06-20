@@ -1,7 +1,6 @@
 <script>
 	import UserBar from '$lib/features/sidebar/organisms/UserBar.svelte'
 	import WorkspaceBar from '$lib/features/sidebar/organisms/WorkspaceBar.svelte'
-
 	export let withWorkspace = true
 </script>
 

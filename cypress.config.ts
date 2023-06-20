@@ -6,7 +6,7 @@ export default defineConfig({
 		baseUrl: 'http://localhost:3000',
 		setupNodeEvents(on, config) {
 			// implement node event listeners here
-			on('before:browser:launch', (browser = {}, launchOptions) => {
+			on('before:browser:launch', (_, launchOptions) => {
 				prepareAudit(launchOptions)
 			})
 

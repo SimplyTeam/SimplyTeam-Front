@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/stores'
-	import { projects } from '$lib/stores/projects'
-	import Project from './Project.svelte'
+	import { projectsStore } from '$lib/stores/projects'
+	import Project from '../molecules/Project.svelte'
+
+	export let projectNameSearch = ''
+
+	$: projectsFiltered = $projectsStore.projects.filter((project) => {
+		return project.name.toLowerCase().includes(projectNameSearch.toLowerCase())
+	})
 </script>
 
 <div class="project-list overflow-auto pr-1">
-	{#each $projects as project}
+	{#each projectsFiltered as project}
 		<Project {project} isExpanded={$page.data.project?.id === project.id} />
 	{/each}
 </div>

@@ -1,11 +1,17 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
-	import { page } from '$app/stores'
+	import { goto } from '$app/navigation'
 	import whiteLogo from '$lib/assets/logo-white.svg'
 	import Button from '$lib/components/molecules/Button.svelte'
 	import CardIcon, { type CardIconProps } from '$lib/features/landing/molecules/CardIcon.svelte'
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
 	import { authStore } from '$lib/stores/auth'
+	import { onMount } from 'svelte'
+
+	onMount(async () => {
+		if ($authStore.user) {
+			goto('workspaces')
+		}
+	})
 
 	const sections: CardIconProps[] = [
 		{
