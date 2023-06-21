@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ExpandedContent from '$lib/components/organisms/ExpandedContent.svelte'
+	import ExpandedContent from '$lib/components/atoms/ExpandedContent.svelte'
 	import ProjectItemLink from '$lib/features/sidebar/atoms/ProjectItemLink.svelte'
 	import { projectPagesStore } from '$lib/stores/nav'
 	import type { IProject } from '$lib/stores/projects'

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/components/atoms/Icon.svelte'
-	import Button from '$lib/components/molecules/Button.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
 	import ModalAddUser from '$lib/features/settings/molecules/ModalAddUser.svelte'
 	import { currentWorkspace } from '$lib/stores/workspace'
 	import ModalDeleteUser from '../molecules/ModalDeleteUser.svelte'

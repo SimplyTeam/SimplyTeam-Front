@@ -1,8 +1,8 @@
 <script lang="ts">
 	import animationData from '$lib/assets/lottie/addUser.json'
-	import Button from '$lib/components/molecules/Button.svelte'
-	import Input from '$lib/components/molecules/Input.svelte'
-	import Modal from '$lib/components/molecules/Modal.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
+	import Input from '$lib/components/atoms/Input.svelte'
+	import Modal from '$lib/components/atoms/Modal.svelte'
 	import { projectsStore } from '$lib/stores/projects'
 	import { currentWorkspace } from '$lib/stores/workspace'
 	import { showToast } from '$lib/utils/Toast'

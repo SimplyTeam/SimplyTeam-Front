@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation'
 	import whiteLogo from '$lib/assets/logo-white.svg'
-	import Button from '$lib/components/molecules/Button.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
 	import CardIcon, { type CardIconProps } from '$lib/features/landing/molecules/CardIcon.svelte'
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
 	import { authStore } from '$lib/stores/auth'

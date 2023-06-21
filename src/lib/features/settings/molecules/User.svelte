@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/components/atoms/Icon.svelte'
-	import Button from '$lib/components/molecules/Button.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
 	import type { IUser } from '$lib/models/user'
 	import { currentWorkspace } from '$lib/stores/workspace'
 	import { createEventDispatcher } from 'svelte'

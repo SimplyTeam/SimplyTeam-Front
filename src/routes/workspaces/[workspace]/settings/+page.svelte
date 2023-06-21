@@ -1,7 +1,7 @@
 <script lang="ts">
 	import WithActionsLayout from '$lib/components/layouts/WithActionsLayout.svelte'
-	import Button from '$lib/components/molecules/Button.svelte'
-	import Input from '$lib/components/molecules/Input.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
+	import Input from '$lib/components/atoms/Input.svelte'
 	import ModalDeleteWorkspace from '$lib/features/settings/molecules/ModalDeleteWorkspace.svelte'
 	import ProjectList from '$lib/features/settings/organims/ProjectsList.svelte'
 	import UsersList from '$lib/features/settings/organims/UsersList.svelte'
@@ -17,6 +17,7 @@
 	}
 	let workspace: IWorkspace | null = $currentWorkspace ?? null
 	let showModaldeleteWorkspace = false
+
 	function handleNomInput(e: CustomEvent<any>) {
 		if (!e.detail || !workspace) return
 		workspace = { ...workspace, name: e.detail }

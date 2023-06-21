@@ -1,8 +1,8 @@
 <script lang="ts">
 	import workspacesIllustration from '$lib/assets/workspaces.svg'
 	import Icon from '$lib/components/atoms/Icon.svelte'
-	import Button from '$lib/components/molecules/Button.svelte'
-	import Input from '$lib/components/molecules/Input.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
+	import Input from '$lib/components/atoms/Input.svelte'
 	import { showToast } from '$lib/utils/Toast'
 	import axios from '$lib/utils/axios'
 	import Svelecte from 'svelecte'

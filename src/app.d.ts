@@ -20,7 +20,7 @@ declare module '@fortawesome/pro-solid-svg-icons/index.es' {
 }
 declare module 'sveltekit-autoimport'
 declare module 'svelecte'
-declare const Button: typeof import('./lib/components/molecules/Button.svelte')['default']
+declare const Button: typeof import('./lib/components/atoms/Button.svelte')['default']
 declare const Icon: typeof import('./lib/components/atoms/Icon.svelte')['default']
 declare const SimpleLayout: typeof import('./lib/components/layouts/SimpleLayout.svelte')['default']
 declare const WithHeaderLayout: typeof import('./lib/components/layouts/WithHeaderLayout.svelte')['default']

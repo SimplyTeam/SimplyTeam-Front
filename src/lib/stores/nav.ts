@@ -7,7 +7,7 @@ interface IPage {
 }
 
 export interface ICorePage extends IPage {
-	path?: string
+	path: string
 	icon: string
 }
 
