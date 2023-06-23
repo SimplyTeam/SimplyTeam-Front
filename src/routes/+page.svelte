@@ -1,11 +1,17 @@
 <script lang="ts">
-	import { enhance } from '$app/forms'
-	import { page } from '$app/stores'
+	import { goto } from '$app/navigation'
 	import whiteLogo from '$lib/assets/logo-white.svg'
-	import Button from '$lib/components/molecules/Button.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
 	import CardIcon, { type CardIconProps } from '$lib/features/landing/molecules/CardIcon.svelte'
 	import HeroIllustration from '$lib/features/landing/organisms/HeroIllustration.svelte'
 	import { authStore } from '$lib/stores/auth'
+	import { onMount } from 'svelte'
+
+	onMount(async () => {
+		if ($authStore.user) {
+			goto('workspaces')
+		}
+	})
 
 	const sections: CardIconProps[] = [
 		{
@@ -31,11 +37,11 @@
 
 <header class="bg-primary h-screen">
 	<nav class=" relative z-10 grid grid-cols-[1fr_auto_1fr] px-12 py-4">
-		<a href=""><img src={whiteLogo} class="h-16" alt="SimplyTeam logo" /></a>
+		<a href="/"><img src={whiteLogo} class="h-16" alt="SimplyTeam logo" /></a>
 		<div class="flex gap-8 text-white text-xl">
-			<a href="">Pricing</a>
-			<a href="">Teams</a>
-			<a href="">Teams</a>
+			<a href="/">Pricing</a>
+			<a href="/">Teams</a>
+			<a href="/">Teams</a>
 		</div>
 		{#if $authStore.user}
 			<Button type="submit" class="ml-auto" on:click={authStore.logout}>Déconnexion</Button>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
 	import image from '$lib/assets/logo.png'
-	import Button from '$lib/components/molecules/Button.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
 	import { goto } from '$app/navigation'
-	import Input from '$lib/components/molecules/Input.svelte'
+	import Input from '$lib/components/atoms/Input.svelte'
 	import Toast from '$lib/components/atoms/Toast.svelte'
 	import type { ILoginErrors, ILoginInput } from '$lib/models/auth'
 	import { authStore } from '$lib/stores/auth'

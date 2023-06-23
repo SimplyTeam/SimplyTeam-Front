@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store'
 import type { IRegisterInput, IUser } from '$lib/models/auth'
 import api from '$lib/utils/axios'
+import { writable } from 'svelte/store'
 
 interface AuthStore {
 	accessToken: string
@@ -17,6 +17,7 @@ function createAuthStore() {
 
 	return {
 		subscribe,
+		set,
 		fetchSession: async () => {
 			if (!localStorage.getItem('accessToken')) {
 				set({

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '$lib/components/atoms/Icon.svelte'
-	import Button from '$lib/components/molecules/Button.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
 	import type { IUser } from '$lib/models/user'
 	import { currentWorkspace } from '$lib/stores/workspace'
 	import { createEventDispatcher } from 'svelte'
@@ -16,7 +16,7 @@
 <div class="flex gap-4">
 	<div class="avatar">
 		<div class="w-10 h-10 rounded-full">
-			<img src="https://i.pravatar.cc/200" />
+			<img alt="img" src="https://i.pravatar.cc/200" />
 		</div>
 	</div>
 	<div class="flex-1 flex flex-col justify-center">

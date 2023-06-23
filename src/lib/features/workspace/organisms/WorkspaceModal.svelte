@@ -1,14 +1,16 @@
 <script lang="ts">
 	import workspacesIllustration from '$lib/assets/workspaces.svg'
-	import axios from '$lib/utils/axios'
+	import Icon from '$lib/components/atoms/Icon.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
+	import Input from '$lib/components/atoms/Input.svelte'
 	import { showToast } from '$lib/utils/Toast'
+	import axios from '$lib/utils/axios'
 	import Svelecte from 'svelecte'
 	import { createEventDispatcher } from 'svelte'
 	const dispatch = createEventDispatcher()
-	//props
+
 	export let showModal: boolean
 
-	const list = []
 	let payload: { description: string | null; name: string; invitations: string[] } = {
 		description: null,
 		name: '',
@@ -20,8 +22,6 @@
 	let loading = false
 	$: if (dialog && showModal) dialog.showModal()
 
-	//methods
-	// function qui envoie les données du formulaire à l'API
 	function createWorkspace() {
 		loading = true
 		axios
@@ -42,8 +42,8 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <dialog
+	on:keydown
 	class="rounded"
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
@@ -163,9 +163,6 @@
 		to {
 			opacity: 1;
 		}
-	}
-	button {
-		display: block;
 	}
 	:global(.svelecte-control) {
 		--sv-active-border: none !important;

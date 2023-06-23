@@ -1,20 +1,18 @@
 <script lang="ts">
-	import Button from '$lib/components/molecules/Button.svelte'
-	import Modal from '$lib/components/molecules/Modal.svelte'
 	import animationData from '$lib/assets/lottie/trash.json'
-	import { page } from '$app/stores'
-	import { createEventDispatcher, onMount } from 'svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
+	import Modal from '$lib/components/atoms/Modal.svelte'
 	import { currentWorkspace, deleteWorkspace } from '$lib/stores/workspace'
-	export let showModal = false
 	import lottie from 'lottie-web'
+	import { createEventDispatcher, onMount } from 'svelte'
 	const dispatch = createEventDispatcher()
 
 	let container: HTMLDivElement
-
+	export let showModal = false
 	function handleDeleteWorkspace() {
 		if (!$currentWorkspace) return
 		try {
-			deleteWorkspace($page.data.accessToken, $currentWorkspace.id)
+			deleteWorkspace($currentWorkspace.id)
 		} catch (error: any) {
 			console.log(error)
 		}

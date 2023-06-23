@@ -22,4 +22,4 @@
 	export let size: IconProps['size'] = 'xl'
 </script>
 
-<i class="la la-{icon} icon text-{size} text-{color} {$$props.class ?? ''}" />
+<i on:click on:keyup class="la la-{icon} icon text-{size} text-{color} {$$props.class ?? ''}" />

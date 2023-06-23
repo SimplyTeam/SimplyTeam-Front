@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import Icon from '$lib/components/atoms/Icon.svelte'
 
 	export let placeholder = 'Rechercher ici'
 	export let action = '/search'

@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { page } from '$app/stores'
 	import WithActionsLayout from '$lib/components/layouts/WithActionsLayout.svelte'
-	import Button from '$lib/components/molecules/Button.svelte'
-	import Input from '$lib/components/molecules/Input.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
+	import Input from '$lib/components/atoms/Input.svelte'
 	import ModalDeleteWorkspace from '$lib/features/settings/molecules/ModalDeleteWorkspace.svelte'
 	import ProjectList from '$lib/features/settings/organims/ProjectsList.svelte'
 	import UsersList from '$lib/features/settings/organims/UsersList.svelte'
@@ -18,6 +17,7 @@
 	}
 	let workspace: IWorkspace | null = $currentWorkspace ?? null
 	let showModaldeleteWorkspace = false
+
 	function handleNomInput(e: CustomEvent<any>) {
 		if (!e.detail || !workspace) return
 		workspace = { ...workspace, name: e.detail }
@@ -30,7 +30,7 @@
 	}
 	async function callAPI() {
 		if (!workspace) return
-		updateWorkspace($page.data.accessToken, workspace)
+		updateWorkspace(workspace)
 	}
 	function resetTimeout() {
 		clearTimeout(timeout)
@@ -93,6 +93,7 @@
 		<div class="text-xl font-bold mt-5">Paramètres d'espace de travail</div>
 		<div class="tabs mt-5">
 			<p
+				on:keydown
 				on:click={() => (currentTab = 'projects')}
 				class:tab-active={currentTab === 'projects'}
 				class:!border-primary={currentTab === 'projects'}
@@ -101,6 +102,7 @@
 				Mes projets
 			</p>
 			<p
+				on:keydown
 				on:click={() => (currentTab = 'users')}
 				class:tab-active={currentTab === 'users'}
 				class:!border-primary={currentTab === 'users'}

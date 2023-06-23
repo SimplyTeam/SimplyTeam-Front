@@ -1,8 +1,8 @@
 <script lang="ts">
 	import image from '$lib/assets/logo.png'
-	import Button from '$lib/components/molecules/Button.svelte'
+	import Button from '$lib/components/atoms/Button.svelte'
 
-	import Input from '$lib/components/molecules/Input.svelte'
+	import Input from '$lib/components/atoms/Input.svelte'
 	import Toast from '$lib/components/atoms/Toast.svelte'
 	import { authStore } from '$lib/stores/auth'
 	import type { IRegisterErrors, IRegisterInput } from '$lib/models/auth'

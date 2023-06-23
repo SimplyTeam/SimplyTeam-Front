@@ -1,69 +1,34 @@
-import { derived, writable } from 'svelte/store'
-
-export interface ITask {
-	name: string
-	id: string
-	description: string
-	status: string
-	// TODO - Change this to an array of users
-	assignees: Array<{
-		name: string
-		id: string
-		avatarUrl: string
-	}>
-	priority: string
-	estimate: number
-	timeSpent: number
-	subtasks: Omit<ITask, 'subtasks'>[]
-}
-
-export interface ISprint {
-	name: string
-	id: string
-	tasks: ITask[]
-}
-
-export interface IProject {
-	name: string
-	id: string
-	sprints: ISprint[]
-	backlog: ITask[]
-}
+import type { IProject } from '$lib/models/project'
+import api from '$lib/utils/axios'
+import { writable } from 'svelte/store'
 
 export interface IProjectsState {
 	projects: IProject[]
 	selectedProject?: IProject
 }
 
-const defaultState: IProject[] = [
-	{
-		name: 'Project 1',
-		id: '1',
-		sprints: [],
-		backlog: []
-	},
-	{
-		name: 'Project 2',
-		id: '2',
-		sprints: [],
-		backlog: []
-	},
-	{
-		name: 'Project 3',
-		id: '3',
-		sprints: [],
-		backlog: []
-	},
-	{
-		name: 'Project 4',
-		id: '4',
-		sprints: [],
-		backlog: []
+function createProjectStore() {
+	const { subscribe, set, update } = writable<IProjectsState>({
+		projects: [],
+		selectedProject: undefined
+	})
+	return {
+		subscribe,
+		set,
+		update,
+		addProjectByWorkspaceId: async (workspaceId: number | string, projectName: string) => {
+			await api.post(`/workspaces/${workspaceId}/projects`, {
+				name: projectName
+			})
+		},
+		getProjectsByWorkspaceId: async (workspaceId: number | string) => {
+			const { data } = await api.get(`/workspaces/${workspaceId}/projects`)
+			update((store) => ({
+				...store,
+				projects: data.projects
+			}))
+		}
 	}
-]
-
-export const projects = writable<IProject[]>(defaultState)
-
-export const projectById = (id: string) => {
-	return derived(projects, ($projects) => $projects.find((project) => project.id === id))
 }
+
+export const projectsStore = createProjectStore()

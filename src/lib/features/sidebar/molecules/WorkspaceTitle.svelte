@@ -9,15 +9,12 @@
 	<div class="flex justify-between">
 		<div class="text-[0.5em] font-medium">Espace de travail</div>
 
-		{#if $currentWorkspace && $authStore.user.id === $currentWorkspace.created_by.id}
+		{#if $currentWorkspace && $authStore.user?.id === $currentWorkspace.created_by.id}
 			<div class="dropdown">
-				<label tabindex="0" class="m-1"><Icon icon="ellipsis-h" color="base" /></label>
-				<ul
-					tabindex="0"
-					class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-sm"
-				>
+				<div tabindex="0" role="button" class="m-1"><Icon icon="ellipsis-h" color="base" /></div>
+				<ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-sm">
 					<li><a href="/workspaces/{$currentWorkspace.id}/settings">Paramètres</a></li>
-					<li><a>Supprimer</a></li>
+					<li>Supprimer</li>
 				</ul>
 			</div>
 		{/if}

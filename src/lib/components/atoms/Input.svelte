@@ -8,6 +8,7 @@
 	export let labelInput = ''
 	export let errorMessage = ''
 	const dispatch = createEventDispatcher()
+
 	function handleInput(event: InputEvent) {
 		const input = event.target as HTMLInputElement
 		dispatch('input', input.value)
@@ -19,20 +20,21 @@
 
 <div class="{$$props.class} w-full">
 	{#if labelInput}
-		<label class="label font-bold">
+		<label for="input" class="label font-bold">
 			<span class="label-text">{labelInput}</span>
 		</label>
 	{/if}
 	<div class="relative form-control">
 		{#if errorMessage}
 			<div
-				class="tooltip tooltip-error absolute right-2 top-1/2 -translate-y-1/2"
+				class="tooltip tooltip-error absolute right-2 z-20 top-1/2 -translate-y-1/2"
 				data-tip={errorMessage}
 			>
 				<Icon color="error" icon="info-circle" />
 			</div>
 		{/if}
 		<input
+			id="input"
 			use:typeAction
 			bind:value
 			class:border-error={errorMessage}

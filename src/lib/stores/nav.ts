@@ -1,18 +1,18 @@
-import { derived } from 'svelte/store'
 import { page } from '$app/stores'
+import { derived } from 'svelte/store'
 import { currentWorkspace } from './workspace'
 
 interface IPage {
 	label: string
 }
 
-interface ICorePage extends IPage {
+export interface ICorePage extends IPage {
 	path: string
 	icon: string
 }
 
 export interface IProjectPage extends IPage {
-	path: (projectName: string) => string
+	path?: (projectName: string) => string
 }
 
 export interface IGlobalPage extends IPage {
@@ -29,7 +29,8 @@ export enum Page {
 	Quests = 'Quests',
 	Notifications = 'Notifications',
 	Awards = 'Awards',
-	Settings = 'Settings'
+	Settings = 'Settings',
+	Logout = 'Logout'
 }
 
 type CorePages = Partial<Record<Page, ICorePage>>
