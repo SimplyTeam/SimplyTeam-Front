@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { twMerge, twJoin } from 'tailwind-merge'
 
-	export let progress: string = '45'
-	export let size: string = 'h-2.5'
-	export let labelInside: boolean = false
-	export let labelOutside: string = ''
+	export let progress = '45'
+	export let size = 'h-2.5'
+	export let labelInside = false
+	export let labelOutside = ''
 	export let color: 'primary' | 'blue' | 'gray' | 'red' | 'green' | 'yellow' | 'purple' | 'indigo' =
 		'primary'
-	export let labelInsideClass: string =
+	export let labelInsideClass =
 		'text-primary-100 text-xs font-medium text-center p-0.5 leading-none rounded-full'
-	export let divClass: string = 'w-full bg-gray-200 rounded-full'
+	export let divClass = 'w-full bg-gray-200 rounded-full'
 
 	// let barColor: string;
 	const barColors = {

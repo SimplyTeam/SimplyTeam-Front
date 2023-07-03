@@ -1,5 +1,5 @@
 export interface IQuest {
-  name: string,
-  description: string,
-  badge: string
+	name: string
+	description: string
+	badge: string
 }
