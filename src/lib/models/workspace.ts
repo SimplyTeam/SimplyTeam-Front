@@ -1,4 +1,4 @@
-import type { IProject } from '$lib/stores/projects'
+import type { IProject } from '$lib/models/project'
 import type { IUser } from './auth'
 
 export interface IWorkspace {
