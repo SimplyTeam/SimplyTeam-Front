@@ -26,37 +26,28 @@
 			{ value: 'desc', name: 'Décroissant' }
 		]
 	}
-	function filterQuests() {
-		dispatch('filter', filterObject)
-	}
 </script>
 
 <form
-	on:submit|preventDefault={() => filterQuests()}
+	on:submit|preventDefault={() => dispatch('filter', filterObject)}
 	class="rounded-xl justify-between items-end py-5 w-full flex"
 >
 	<Select
-		on:input={(e) => {
-			filterObject.type = e.detail
-		}}
+		bind:value={filterObject.type}
 		class="w-1/3 mx-3"
 		placeholder="Type de quête"
 		defaultClass="border-gray-200 pr-5"
 		items={filterOptions.type}
 	/>
 	<Select
-		on:input={(e) => {
-			filterObject.filter = e.detail
-		}}
+		bind:value={filterObject.filter}
 		class="w-1/3 mx-3"
 		placeholder="Filtrer par"
 		defaultClass="border-gray-200 pr-5"
 		items={filterOptions.filter}
 	/>
 	<Select
-		on:input={(e) => {
-			filterObject.order = e.detail
-		}}
+		bind:value={filterObject.order}
 		class="w-1/3 mx-3"
 		placeholder="Ordre par défaut"
 		items={filterOptions.order}

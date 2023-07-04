@@ -4,7 +4,7 @@
 	import ProgressBar from './ProgressBar.svelte'
 	export let quest: IQuest
 	$: progressCalcul = (
-		(quest?.user_quests?.completed_counts / quest?.completed_points) *
+		(quest.user_quests.completed_counts / quest.completed_points) *
 		100
 	).toString()
 </script>
@@ -14,11 +14,11 @@
 >
 	<div class="w-full pr-8 flex absolute justify-end">
 		<Badge>
-			+ {quest?.reward_points}EXP
+			+ {quest.reward_points}EXP
 		</Badge>
 	</div>
 	<div class="flex flex-col justify-center text-center items-center pb-10">
-		<img class="mt-8 w-1/4" alt="" src={quest?.badge} />
+		<img class="mt-8 w-1/4" alt="" src={quest.badge} />
 		<h5 class="mb-8 mt-5 text-md font-medium text-gray-900">
 			{quest.name}
 		</h5>
@@ -30,7 +30,7 @@
 			<div class="justify-center text-xs mt-5 text-center font-bold">Completé</div>
 		{:else}
 			<div class="justify-center text-xs mt-5 text-center">
-				{quest?.user_quests?.completed_counts}/{quest?.completed_points}
+				{quest.user_quests.completed_counts}/{quest.completed_points}
 			</div>
 		{/if}
 	</div>
