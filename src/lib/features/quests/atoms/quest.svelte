@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Badge from '$lib/components/atoms/Badge.svelte'
 	import type { IQuest } from '$lib/models/quest'
 	import ProgressBar from './ProgressBar.svelte'
 	export let quest: IQuest
@@ -9,14 +10,12 @@
 </script>
 
 <div
-	class=" w-[30%] hover:shadow-primary transition-all hover:scale-105 ease-in scale-100 px-10 mx-3 mt-5 relative bg-white border border-gray-200 rounded-lg shadow"
+	class=" w-full sm:w-2/5 lg:w-[30%] hover:shadow-primary transition-all hover:scale-105 ease-in scale-100 px-10 mx-3 mt-5 relative bg-white border border-gray-200 rounded-lg shadow"
 >
 	<div class="w-full pr-8 flex absolute justify-end">
-		<div
-			class="badge py-3 text-primary font-semibold bg-white justify-center text-center w-1/4 text-xs rounded-xl shadow-md border-none"
-		>
+		<Badge>
 			+ {quest?.reward_points}EXP
-		</div>
+		</Badge>
 	</div>
 	<div class="flex flex-col justify-center text-center items-center pb-10">
 		<img class="mt-8 w-1/4" alt="" src={quest?.badge} />

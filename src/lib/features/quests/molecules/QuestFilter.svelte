@@ -2,7 +2,9 @@
 	import Select from '$lib/components/Select.svelte'
 	import Button from '$lib/components/atoms/Button.svelte'
 	import Icon from '$lib/components/atoms/Icon.svelte'
+	import { createEventDispatcher } from 'svelte'
 
+	const dispatch = createEventDispatcher()
 	const filterObject = {
 		type: 'allType',
 		filter: 'allFilter',
@@ -25,7 +27,7 @@
 		]
 	}
 	function filterQuests() {
-		console.log(filterObject)
+		dispatch('filter', filterObject)
 	}
 </script>
 

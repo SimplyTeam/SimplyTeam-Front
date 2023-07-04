@@ -4,10 +4,10 @@
 
 	export let items: { value: string; name: string }[] = []
 	export let value: any = undefined
-	export let placeholder: string = ''
-	export let underline: boolean = false
+	export let placeholder = ''
+	export let underline = false
 	export let size: 'sm' | 'md' | 'lg' = 'md'
-	export let defaultClass: string = ''
+	export let defaultClass = ''
 
 	const dispatch = createEventDispatcher()
 

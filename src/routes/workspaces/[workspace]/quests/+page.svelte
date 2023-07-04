@@ -4,6 +4,8 @@
 	import QuestFilter from '$lib/features/quests/molecules/QuestFilter.svelte'
 	import QuestList from '$lib/features/quests/molecules/QuestList.svelte'
 	import { questStore } from '$lib/stores/quest'
+
+	// filtrer $questStore.quests avec le filtre
 </script>
 
 <WithHeaderLayout
