@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@fortawesome/free-brands-svg-icons':
     specifier: ^6.3.0
@@ -17,8 +21,8 @@ dependencies:
     specifier: ^2.3.2
     version: 2.3.2
   daisyui:
-    specifier: ^3.1.5
-    version: 3.1.5(postcss@8.4.24)(ts-node@10.9.1)
+    specifier: ^3.1.9
+    version: 3.1.9(postcss@8.4.24)(ts-node@10.9.1)
   install:
     specifier: ^0.13.0
     version: 0.13.0
@@ -2051,8 +2055,8 @@ packages:
       yauzl: 2.10.0
     dev: true
 
-  /daisyui@3.1.5(postcss@8.4.24)(ts-node@10.9.1):
-    resolution: {integrity: sha512-3nk5L//IU31ISzsonKEFG8ris8hS/MRAc+PrOTOyRbssjv1fYmNKSdIrOhG6op2ED3RyJL4p6I81JUwd7RWqTw==}
+  /daisyui@3.1.9(postcss@8.4.24)(ts-node@10.9.1):
+    resolution: {integrity: sha512-GkQR3iLnTfxNsQz7EZXS5bPY65iJM7jdiHtQZWDpRVmBrMlq8Nmrc+t8XmjGdOmJljAPFjtMSD9E9zAnhXF7qg==}
     engines: {node: '>=16.9.0'}
     peerDependencies:
       postcss: ^8
