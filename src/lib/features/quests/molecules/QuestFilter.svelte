@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Select from '$lib/components/Select.svelte'
+	import Select from '$lib/components/atoms/Select.svelte'
 	import Button from '$lib/components/atoms/Button.svelte'
 	import Icon from '$lib/components/atoms/Icon.svelte'
 	import { createEventDispatcher } from 'svelte'
