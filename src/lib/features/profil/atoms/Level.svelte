@@ -1,18 +1,10 @@
 <script lang="ts">
 	import voucherCode from '$lib/assets/voucherCode.svg'
-	export let level: {
-		level: number
-		isCurrentLevel: boolean
-		isNextLevel: boolean
-		isPassed: boolean
-		voucherCode: {
-			code: string
-			expiredDate: string
-		} | null
-	} | null = null
+	import type { ILevel } from '$lib/models/level'
+	export let level: ILevel | null = null
 
-	$: isCurrentLevel = level?.isCurrentLevel ? '#8E6ECA' : '#FFFFFF'
-	$: opacity = level?.isNextLevel ? 'opacity-50' : ''
+	$: isCurrentLevel = level?.status && level.status === 'current' ? '#8E6ECA' : '#FFFFFF'
+	$: opacity = level?.status && level.status === 'future' ? 'opacity-50' : ''
 </script>
 
 <div class="flex flex-col items-center place-content-start">
@@ -111,7 +103,7 @@
 		<g fill="#ffffff" fill-opacity="1">
 			<g transform="translate(180,240)">
 				<text x="0" y="0" text-anchor="middle" font-family="Montserrat" font-size="150" fill="white"
-					>{level?.level}</text
+					>{level?.id}</text
 				>
 			</g>
 		</g>

@@ -12,7 +12,7 @@
 		<img src={badge?.image} alt={badge?.name} class="w-20 h-20" />
 	</div>
 	<div class="flex-col m-2 flex">
-		<span class="text-2xl sm:text-xl text-white font-bold">{title}</span>
+		<span class="text-xl text-white font-bold">{title}</span>
 		<span class="text-sm sm:text-xs text-white">{badge?.name}</span>
 		<span class="text-sm sm:text-sm text-white opacity-70">{badge?.dateObtention}</span>
 	</div>

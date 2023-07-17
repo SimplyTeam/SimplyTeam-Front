@@ -1,70 +1,11 @@
 <script lang="ts">
 	import Level from '$lib/features/profil/atoms/Level.svelte'
-	export let arrayOfIllustrationLevel = [
-		{
-			level: 1,
-			isPassed: true,
-			isCurrentLevel: false,
-			isNextLevel: false,
-			voucherCode: null
-		},
-		{
-			level: 2,
-			isPassed: true,
-			isCurrentLevel: false,
-			isNextLevel: false,
-			voucherCode: null
-		},
-		{
-			level: 3,
-			isCurrentLevel: true,
-			isPassed: true,
-			isNextLevel: false,
-			voucherCode: null
-		},
-		{
-			level: 4,
-			isCurrentLevel: false,
-			isPassed: false,
-			isNextLevel: true,
-			voucherCode: null
-		},
-		{
-			level: 5,
-			isCurrentLevel: false,
-			isPassed: false,
-			isNextLevel: true,
-			voucherCode: null
-		},
-		{
-			level: 6,
-			isCurrentLevel: false,
-			isPassed: false,
-			isNextLevel: true,
-			voucherCode: null
-		},
-		{
-			level: 7,
-			isCurrentLevel: false,
-			isPassed: false,
-			isNextLevel: true,
-			voucherCode: null
-		},
-		{
-			level: 8,
-			isCurrentLevel: false,
-			isPassed: false,
-			isNextLevel: true,
-			voucherCode: {
-				code: '123456789',
-				expiredDate: '12/12/2021'
-			}
-		}
-	]
+	import type { ILevel } from '$lib/models/level'
+	export let arrayOfIllustrationLevel: Array<ILevel> = []
 </script>
 
 <div class="w-full min-h-20 py-3 bg-white flex justify-between {$$props.class}">
-	{#each arrayOfIllustrationLevel as level, i (level.level)}
+	{#each arrayOfIllustrationLevel as level, i (level.id)}
 		<div class="flex">
 			<Level {level} />
 			{#if i < arrayOfIllustrationLevel.length - 1}
