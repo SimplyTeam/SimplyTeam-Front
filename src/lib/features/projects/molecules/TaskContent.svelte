@@ -17,6 +17,7 @@
 		<TaskLabel icon="clock" class="bg-task-estimation">{task.estimatedTime}</TaskLabel>
 		<TaskLabel icon="calendar" class="bg-task-date">{dueDate}</TaskLabel>
 		<TaskLabel class={`bg-task-${task.status.code}`}>{task.status}</TaskLabel>
+		<TaskLabel class={`bg-task-${task.priority.code}`}>{task.priority}</TaskLabel>
 	</div>
 	<div class="w-24 flex justify-end">
 		{#if assignees.length > 0}
@@ -24,7 +25,7 @@
 				{#each assignees as assignee}
 					<div class="avatar">
 						<div class="w-8">
-							<img src={assignee.avatarUrl} alt="user avatar" />
+							<img src="https://i.pravatar.cc/300" alt="user avatar" />
 						</div>
 					</div>
 				{/each}
