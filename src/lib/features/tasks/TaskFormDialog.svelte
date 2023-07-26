@@ -63,6 +63,21 @@
     }
   }
 
+  async function onDelete() {
+    try {
+      await api.delete(
+        `/workspaces/${$taskForm.workspaceId}/projects/${$taskForm.projectId}/tasks/${$taskForm.task.id}`
+      )
+
+      showToast("La tâche a bien été supprimée", "success")
+      sprintsStore.fetchSprintsByProjectId($taskForm.workspaceId, $taskForm.projectId)
+      taskForm.close()
+    }
+    catch (error) {
+      showToast(error.response.data.message, "error")
+    }
+  }
+
   const showToast = (messageToast: string, themeToast: string) => {
     const message = messageToast
     const duration = 3000
@@ -163,8 +178,12 @@
       {:else}
         Commentaires
       {/if}
-      <Button type="submit" class="mt-auto">{$taskForm.mode === "create" ? "Enregister" : "Modifier"}</Button>
+      <div class="mt-auto self-end">
+        <Button type="submit" class="w-32">{$taskForm.mode === "create" ? "Enregister" : "Modifier"}</Button>
+        {#if $taskForm.mode === "edit"}
+          <Button type="button" class="mt-2 w-32 btn-error" on:click={onDelete}>Supprimer</Button>
+        {/if}
+      </div>
     </form>
   </div>
-
 </div>
