@@ -13,12 +13,18 @@ module.exports = {
 					todo: '#B3DFFF',
 					ongoing: '#FFE5B3',
 					done: '#F8F8FB',
-					blocked: '#B83E51'
+					blocked: '#B83E51',
+					normal: '#FDDDD5',
+					high: '#B83E51',
+					low: '#B3DFFF',
 				},
 				'base-400': '#F8F8FB'
 			}
 		}
 	},
+	safelist: [{
+		pattern: /(bg|text|border)-task-(date|estimation|todo|ongoing|done|blocked|normal|high|low)/
+	}],
 	daisyui: {
 		themes: [
 			{
@@ -29,6 +35,7 @@ module.exports = {
 					neutral: '#878499',
 					'base-100': '#fff',
 					'base-200': '#E4E8FA',
+					'base-300': '#D9D9D9',
 					'base-content': '#000',
 					info: '#FFA800',
 					success: '#8EB83E',

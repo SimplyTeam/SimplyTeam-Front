@@ -6,16 +6,18 @@
 
 	export let task: Omit<ITask, 'subtasks'>
 
-	const assignees = task.assignees.slice(0, 3)
+	$: assignees = task.assignees.slice(0, 3)
+	$: dueDate = task.dueDate ? new Date(task.dueDate).toLocaleDateString() : null
 </script>
 
-<div class="task-content-grid px-1">
+<div class="task-content-grid px-1 cursor-pointer" on:click|stopPropagation>
 	<Checkbox name={task.id} />
 	<div class="text-base">{task.name}</div>
 	<div class="flex justify-start items-center h-full py-1 ml-auto gap-4">
-		<TaskLabel icon="clock" class="bg-task-estimation">test</TaskLabel>
-		<TaskLabel icon="calendar" class="bg-task-date">test</TaskLabel>
-		<TaskLabel class="bg-task-ongoing">en cours</TaskLabel>
+		<TaskLabel icon="clock" class="bg-task-estimation">{task.estimatedTime}</TaskLabel>
+		<TaskLabel icon="calendar" class="bg-task-date">{dueDate}</TaskLabel>
+		<TaskLabel class={`bg-task-${task.status.code}`}>{task.status}</TaskLabel>
+		<TaskLabel class={`bg-task-${task.priority.code}`}>{task.priority}</TaskLabel>
 	</div>
 	<div class="w-24 flex justify-end">
 		{#if assignees.length > 0}
@@ -23,7 +25,7 @@
 				{#each assignees as assignee}
 					<div class="avatar">
 						<div class="w-8">
-							<img src={assignee.avatarUrl} alt="user avatar" />
+							<img src="https://i.pravatar.cc/300" alt="user avatar" />
 						</div>
 					</div>
 				{/each}
