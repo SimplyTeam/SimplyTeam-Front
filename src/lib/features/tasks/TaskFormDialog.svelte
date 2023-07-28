@@ -1,17 +1,18 @@
 <script lang="ts">
-  import { taskFormIsOpen, taskForm } from "$lib/stores/taskForm"
   import StatusSelect from "$lib/components/StatusSelect.svelte"
   import PrioritySelect from "$lib/components/PrioritySelect.svelte"
   import AssigneesSelect from "$lib/components/AssignesSelect.svelte"
   import AvatarChip from "$lib/components/AvatarChip.svelte"
   import DatePicker from "$lib/components/DatePicker.svelte"
   import Button from "$lib/components/atoms/Button.svelte"
-  import { sprintsStore } from "$lib/stores/sprintsStore"
-  import api from "$lib/utils/axios"
-  import Input from "$lib/components/atoms/Input.svelte"
-  import { currentWorkspace } from "$lib/stores/workspace"
   import Toast from "$lib/components/atoms/Toast.svelte"
+  import Input from "$lib/components/atoms/Input.svelte"
   import Select from "svelte-select"
+  import { taskFormIsOpen, taskForm } from "$lib/stores/taskForm"
+  import { sprintsStore } from "$lib/stores/sprintsStore"
+  import { backlogStore } from "$lib/stores/backlogStore"
+  import { currentWorkspace } from "$lib/stores/workspace"
+  import api from "$lib/utils/axios"
 
   let activeTab: "description" | "comments" = "description"
   let tasksOptions = []
@@ -62,6 +63,7 @@
       }
 
       sprintsStore.fetchSprintsByProjectId($taskForm.workspaceId, $taskForm.projectId)
+      backlogStore.fetchBacklogTasksByProjectId($taskForm.workspaceId, $taskForm.projectId  )
       taskForm.close()
     }
     catch (error) {
@@ -76,7 +78,8 @@
       )
 
       showToast("La tâche a bien été supprimée", "success")
-      sprintsStore.fetchSprintsByProjectId($taskForm.workspaceId, $taskForm.projectId)
+      sprintsStore.fetchSprintsByProjectId(params.workspace, params.project)
+      backlogStore.fetchBacklogTasksByProjectId(params.workspace, params.project)
       taskForm.close()
     }
     catch (error) {
