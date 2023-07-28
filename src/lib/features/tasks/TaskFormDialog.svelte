@@ -63,7 +63,7 @@
       }
 
       sprintsStore.fetchSprintsByProjectId($taskForm.workspaceId, $taskForm.projectId)
-      backlogStore.fetchBacklogTasksByProjectId($taskForm.workspaceId, $taskForm.projectId  )
+      backlogStore.fetchBacklogTasksByProjectId($taskForm.workspaceId, $taskForm.projectId)
       taskForm.close()
     }
     catch (error) {
@@ -81,14 +81,13 @@
       sprintsStore.fetchSprintsByProjectId(params.workspace, params.project)
       backlogStore.fetchBacklogTasksByProjectId(params.workspace, params.project)
       taskForm.close()
-    }
-    catch (error) {
+    } catch (error) {
       showToast(error.response.data.message, "error")
     }
   }
 
   async function queryTasksOptions() {
-    if(!formIsOpen) return []
+    if (!formIsOpen) return []
 
     const { data } = await api.get(`/workspaces/${$taskForm.workspaceId}/projects/${$taskForm.projectId}/tasks`)
 
@@ -120,90 +119,96 @@
     <!--    drawer overlay-->
     <label for="task-form-drawer" class="drawer-overlay"></label>
 
-    <form on:submit={onSubmit}
-          class="menu p-4 w-1/3 min-w-[25rem] h-full bg-base-200 text-base-content flex flex-col gap-3">
-      <input
-        class="input w-full bg-base-200 text-base-content text-lg"
-        bind:value={$taskForm.task.name}
-        placeholder="Nom de la tâche"
-      />
-
-      <div class="flex gap-2 ml-4 items-center">
-        <label class="text-lg">Priorité</label>
-        <PrioritySelect bind:selectedPriority={$taskForm.task.priority}/>
-      </div>
-
-      <div class="ml-4">
-        <div class="flex gap-2 items-center">
-          <label class="text-lg">Sprint</label>
-          <Select bind:value={$taskForm.task.sprintOption} taskLabel="test" items={sprintsOptions} disabled={taskHasParent}/>
-        </div>
-        <div class="divider">OU</div>
-        <div class="flex gap-2 items-center">
-          <label class="text-lg">Parenté</label>
-          <Select bind:value={$taskForm.task.parentTaskOption} items={tasksOptions} placeholder="Sélectionner une tâche" />
-        </div>
-      </div>
-
-
-      <div class="divider m-0"></div>
-
-      <div class="flex gap-2 ml-4 items-center">
-        <label class="text-lg">Assignées</label>
-        <AssigneesSelect
-          bind:selectedAssignees={$taskForm.task.assignedTo}
-          assignees={$currentWorkspace.users}
+    <form
+      on:submit={onSubmit}
+      class="menu p-4 w-1/3 min-w-[25rem] h-full bg-base-200 text-base-content grid grid-rows-[1fr_min-content] gap-3 min-h-0"
+    >
+      <div class="flex flex-col gap-3 flex-grow overflow-auto">
+        <input
+          class="input w-full bg-base-200 text-base-content text-lg"
+          bind:value={$taskForm.task.name}
+          placeholder="Nom de la tâche"
         />
-      </div>
-      <div class="flex gap-2 ml-4 items-center">
-        <label class="text-lg">Status</label>
-        <StatusSelect bind:selectedStatus={$taskForm.task.status}/>
-      </div>
 
-      <div class="flex gap-2 ml-4 items-center h-8">
-        <label class="text-lg">Date de fin</label>
-        <DatePicker date={$taskForm.task.dueDate}/>
-      </div>
+        <div class="flex gap-2 ml-4 items-center">
+          <label class="text-lg">Priorité</label>
+          <PrioritySelect bind:selectedPriority={$taskForm.task.priority}/>
+        </div>
 
-      <div class="flex gap-2 ml-4 items-center">
-        <label class="text-lg">Créer par</label>
-        <AvatarChip name={$taskForm.task.createdBy?.name}/>
-      </div>
-
-      <div class="flex gap-2 ml-4 items-center">
-        <label class="text-lg">Temps estimé</label>
-        <Input bind:value={$taskForm.task.estimatedTime}/>
-      </div>
-
-      <div class="flex gap-2 ml-4 items-center">
-        <label class="text-lg">Temps accompli</label>
-        <Input bind:value={$taskForm.task.completedTime}/>
-      </div>
+        <div class="ml-4">
+          <div class="flex gap-2 items-center">
+            <label class="text-lg">Sprint</label>
+            <Select bind:value={$taskForm.task.sprintOption} taskLabel="test" items={sprintsOptions}
+                    disabled={taskHasParent}/>
+          </div>
+          <div class="divider">OU</div>
+          <div class="flex gap-2 items-center">
+            <label class="text-lg">Parenté</label>
+            <Select bind:value={$taskForm.task.parentTaskOption} items={tasksOptions}
+                    placeholder="Sélectionner une tâche"/>
+          </div>
+        </div>
 
 
-      <div class="tabs">
-        <a
-          class="tab tab-bordered tab-active text-lg" class:tab-active={activeTab === "description"}
-          on:click={() => activeTab = "description"}
-        >
-          Description
-        </a>
-        <a class="tab tab-bordered text-lg"
-           class:tab-active={activeTab === "comments"}
-           on:click={() => activeTab = "comments"}
-        >
-          Commentaires
-        </a>
-      </div>
-      {#if activeTab === "description"}
+        <div class="divider m-0"></div>
+
+        <div class="flex gap-2 ml-4 items-center">
+          <label class="text-lg">Assignées</label>
+          <AssigneesSelect
+            bind:selectedAssignees={$taskForm.task.assignedTo}
+            assignees={$currentWorkspace.users}
+          />
+        </div>
+        <div class="flex gap-2 ml-4 items-center">
+          <label class="text-lg">Status</label>
+          <StatusSelect bind:selectedStatus={$taskForm.task.status}/>
+        </div>
+
+        <div class="flex gap-2 ml-4 items-center h-8">
+          <label class="text-lg">Date de fin</label>
+          <DatePicker date={$taskForm.task.dueDate}/>
+        </div>
+
+        <div class="flex gap-2 ml-4 items-center">
+          <label class="text-lg">Créer par</label>
+          <AvatarChip name={$taskForm.task.createdBy?.name}/>
+        </div>
+
+        <div class="flex gap-2 ml-4 items-center">
+          <label class="text-lg">Temps estimé</label>
+          <Input bind:value={$taskForm.task.estimatedTime}/>
+        </div>
+
+        <div class="flex gap-2 ml-4 items-center">
+          <label class="text-lg">Temps accompli</label>
+          <Input bind:value={$taskForm.task.completedTime}/>
+        </div>
+
+
+        <div class="tabs">
+          <a
+            class="tab tab-bordered tab-active text-lg" class:tab-active={activeTab === "description"}
+            on:click={() => activeTab = "description"}
+          >
+            Description
+          </a>
+          <a class="tab tab-bordered text-lg"
+             class:tab-active={activeTab === "comments"}
+             on:click={() => activeTab = "comments"}
+          >
+            Commentaires
+          </a>
+        </div>
+        {#if activeTab === "description"}
             <textarea
               class="textarea h-32 textarea-bordered textarea-primary max-h-64"
               placeholder="Description de la tâche"
               bind:value={$taskForm.task.description}
             ></textarea>
-      {:else}
-        Commentaires
-      {/if}
+        {:else}
+          Commentaires
+        {/if}
+      </div>
       <div class="mt-auto self-end">
         <Button type="submit" class="w-32">{$taskForm.mode === "create" ? "Enregister" : "Modifier"}</Button>
         {#if $taskForm.mode === "edit"}
