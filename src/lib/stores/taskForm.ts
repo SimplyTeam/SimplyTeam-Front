@@ -4,6 +4,11 @@ import type { IUser } from "$lib/models/auth"
 import { Priority } from "$lib/features/tasks/models/Priority"
 import { Status } from "$lib/features/tasks/models/Status"
 
+type SelectOption = {
+  value: number
+  label: string
+}
+
 interface TaskForm {
   id?: string
   name: string
@@ -16,7 +21,8 @@ interface TaskForm {
   createdBy?: IUser
   description: string
   comments: string[]
-  sprintId?: number
+  sprintOption: SelectOption,
+  parentTaskOption?: SelectOption,
 }
 
 interface TaskFormState {
@@ -37,7 +43,10 @@ const defaultTaskForm: TaskForm = {
   completedTime: 0,
   description: "",
   comments: [],
-  sprintId: 0,
+  sprintOption: {
+    value: 0,
+    label: "Backlog",
+  },
 }
 
 function createTaskFormStore() {
@@ -74,7 +83,10 @@ function createTaskFormStore() {
         createdBy: task.createdBy,
         description: task.description,
         comments: [],
-        sprintId: task.sprintId,
+        sprintOption: task.sprint
+          ? { value: +task.sprint.id, label: task.sprint.name, }
+          : { value: 0, label: "Backlog" },
+        parentTaskOption: task.parent && { value: +task.parent.id, label: task.parent.name }
       }
     }),
     close: () => update((state) => ({

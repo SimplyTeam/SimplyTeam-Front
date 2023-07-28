@@ -79,6 +79,7 @@
 		"sass": "^1.58.1",
 		"svelecte": "^3.15.3",
 		"svelte-fa": "^3.0.3",
+		"svelte-select": "^5.6.1",
 		"tailwind-merge": "^1.13.2"
 	}
 }
