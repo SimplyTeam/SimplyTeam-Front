@@ -11,14 +11,20 @@
   import Input from "$lib/components/atoms/Input.svelte"
   import { currentWorkspace } from "$lib/stores/workspace"
   import Toast from "$lib/components/atoms/Toast.svelte"
-  import Select from "$lib/components/Select.svelte"
+  import Select from "svelte-select"
 
   let activeTab: "description" | "comments" = "description"
-  $: formIsOpen = $taskFormIsOpen
+  let tasksOptions = []
   $: sprintsOptions = [
-    { name: "Backlog", value: 0},
-    ...$sprintsStore.sprints.map((sprint) => ({ name: sprint.name, value: sprint.id }))
+    { label: "Backlog", value: 0 },
+    ...$sprintsStore.sprints.map((sprint) => ({ label: sprint.name, value: +sprint.id }))
   ]
+  $: taskHasParent = !!$taskForm.task.parentTaskOption
+
+  $: formIsOpen = $taskFormIsOpen
+  $: if(formIsOpen) {
+    queryTasksOptions()
+  }
 
   async function onSubmit(event) {
     event.preventDefault()
@@ -35,9 +41,9 @@
       deadline: task.dueDate,
       assigned_to: task.assignedTo.map((user) => user.email),
       is_finish: false,
+      sprint_id: task.sprintOption.value,
+      parent_id: task.parentTaskOption?.value ?? null
     }
-
-    if (task.sprintId !== undefined) payload.sprint_id = task.sprintId === 0 ? null : task.sprintId
 
     try {
       if ($taskForm.mode === "create") {
@@ -78,6 +84,15 @@
     }
   }
 
+  async function queryTasksOptions() {
+    if(!formIsOpen) return []
+
+    const { data } = await api.get(`/workspaces/${$taskForm.workspaceId}/projects/${$taskForm.projectId}/tasks`)
+
+    tasksOptions = data.map((task) => ({ label: task.label, value: +task.id }))
+    return tasksOptions
+  }
+
   const showToast = (messageToast: string, themeToast: string) => {
     const message = messageToast
     const duration = 3000
@@ -115,10 +130,18 @@
         <PrioritySelect bind:selectedPriority={$taskForm.task.priority}/>
       </div>
 
-      <div class="flex gap-2 ml-4 items-center">
-        <label class="text-lg">Sprint</label>
-        <Select bind:value={$taskForm.task.sprintId} items={sprintsOptions}/>
+      <div class="ml-4">
+        <div class="flex gap-2 items-center">
+          <label class="text-lg">Sprint</label>
+          <Select bind:value={$taskForm.task.sprintOption} taskLabel="test" items={sprintsOptions} disabled={taskHasParent}/>
+        </div>
+        <div class="divider">OU</div>
+        <div class="flex gap-2 items-center">
+          <label class="text-lg">Parenté</label>
+          <Select bind:value={$taskForm.task.parentTaskOption} items={tasksOptions} placeholder="Sélectionner une tâche" />
+        </div>
       </div>
+
 
       <div class="divider m-0"></div>
 

@@ -1,6 +1,7 @@
 import type { IUser } from "$lib/models/auth"
 import { Status } from "$lib/features/tasks/models/Status"
 import { Priority } from "$lib/features/tasks/models/Priority"
+import type { ISprint } from "$lib/models/sprint"
 
 interface IRequestTask {
   assigned_to: IUser[]
@@ -16,10 +17,12 @@ interface IRequestTask {
   priority_id: number
   project_id: number
   realized_timestamp: number
-  sprint_id: number
+  sprint: ISprint
   status_id: number
   updated_at: string
   users: IUser[]
+  parent?: IRequestTask
+  subtasks?: Omit<IRequestTask, 'subtasks'>[]
 }
 
 export interface ITask {
@@ -33,11 +36,13 @@ export interface ITask {
   createdBy: IUser
   timeSpent: number
   estimatedTime: number
-  subtasks: Omit<ITask, 'subtasks'>[]
-  sprintId?: number
+  subtasks?: Omit<ITask, 'subtasks'>[]
+  sprint?: ISprint
+  parent?: ITask
 }
 
 export function taskFromRequest(task: IRequestTask): ITask {
+  console.log("test", task)
   return {
     name: task.label,
     id: task.id,
@@ -50,7 +55,8 @@ export function taskFromRequest(task: IRequestTask): ITask {
     timeSpent: task.realized_timestamp,
     estimatedTime: task.estimated_timestamp,
     // TODO ajouter les sous tache quand le back est implémenter
-    subtasks: [],
-    sprintId: task.sprint_id,
+    subtasks: task.subtasks?.map(taskFromRequest),
+    sprint: task.sprint,
+    parent: task.parent && taskFromRequest(task.parent),
   }
 }
