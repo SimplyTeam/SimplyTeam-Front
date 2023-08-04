@@ -7,7 +7,7 @@
 	$: if (dialog && !showModal) dialog.close()
 </script>
 
-<dialog class="{$$props.class} rounded-xl" bind:this={dialog} on:close={() => (showModal = false)}>
+<dialog class="{$$props.class} rounded-xl overflow-visible" bind:this={dialog} on:close={() => (showModal = false)}>
 	<div class="flex justify-center w-full h-full !p-0 flex-1">
 		<div class="flex justify-center w-full h-full !p-0 flex-1">
 			<div class="w-full">
