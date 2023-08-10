@@ -4,7 +4,7 @@
 </script>
 
 <nav>
-	{#each $corePagesStore as page}
+	{#each $corePagesStore.filter(page => !page.isHidden) as page}
 		<NavItem icon={page.icon} href={page.path} isActive={corePagesStore.isActivePath(page.path)} />
 	{/each}
 </nav>

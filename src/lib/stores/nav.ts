@@ -4,6 +4,7 @@ import { currentWorkspace } from './workspace'
 
 interface IPage {
 	label: string
+	isHidden?: boolean
 }
 
 export interface ICorePage extends IPage {
@@ -50,23 +51,25 @@ export const corePages = derived<typeof currentWorkspace, CorePages>(
 		[Page.Dashboard]: {
 			icon: 'dashboard',
 			path: `/workspaces/${$currentWorkspace?.id}`,
-			label: 'Dashboard'
+			label: 'Dashboard',
+			isHidden: !$currentWorkspace
 		},
 		[Page.Quests]: {
 			path: `/workspaces/${$currentWorkspace?.id}/quests`,
 			label: 'Les quêtes',
-			icon: 'award'
+			icon: 'award',
+			isHidden: !$currentWorkspace
 		},
 		[Page.User]: {
 			icon: 'user',
 			path: '/profil',
 			label: 'Profil'
 		},
-		[Page.Notifications]: {
-			icon: 'bell',
-			path: '/notifications',
-			label: 'Notifications'
-		},
+		// [Page.Notifications]: {
+		// 	icon: 'bell',
+		// 	path: '/notifications',
+		// 	label: 'Notifications'
+		// },
 		[Page.Settings]: {
 			icon: 'cog',
 			path: '/settings',
