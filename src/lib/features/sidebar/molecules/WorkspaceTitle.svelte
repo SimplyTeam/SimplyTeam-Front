@@ -2,7 +2,7 @@
 	import Icon from '$lib/components/atoms/Icon.svelte'
 	import Logo from '$lib/features/sidebar/atoms/Logo.svelte'
 	import { authStore } from '$lib/stores/auth'
-	import { currentWorkspace } from '$lib/stores/workspace'
+	import { currentWorkspace, deleteWorkspace } from '$lib/stores/workspace'
 </script>
 
 <div class="flex flex-col gap-4">
@@ -14,7 +14,7 @@
 				<div tabindex="0" role="button" class="m-1"><Icon icon="ellipsis-h" color="base" /></div>
 				<ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-sm">
 					<li><a href="/workspaces/{$currentWorkspace.id}/settings">Paramètres</a></li>
-					<li>Supprimer</li>
+					<li><a on:click={() => deleteWorkspace($currentWorkspace.id)} href="#">Supprimer</a></li>
 				</ul>
 			</div>
 		{/if}
