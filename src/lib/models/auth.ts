@@ -1,4 +1,5 @@
 export interface IUser {
+	level_id: number
 	id: number
 	name: string
 	email: string

@@ -23,6 +23,7 @@ export enum Page {
 	Workspaces = 'Workspaces',
 	WorkspaceSettings = 'WorkpaceSettings',
 	Dashboard = 'Dashboard',
+	User = 'User',
 	Sprints = 'Sprints',
 	MyTasks = 'MyTasks',
 	Backlog = 'Backlog',
@@ -55,6 +56,11 @@ export const corePages = derived<typeof currentWorkspace, CorePages>(
 			path: `/workspaces/${$currentWorkspace?.id}/quests`,
 			label: 'Les quêtes',
 			icon: 'award'
+		},
+		[Page.User]: {
+			icon: 'user',
+			path: '/profil',
+			label: 'Profil'
 		},
 		[Page.Notifications]: {
 			icon: 'bell',

@@ -5,6 +5,7 @@ import { writable } from 'svelte/store'
 interface AuthStore {
 	accessToken: string
 	user?: IUser
+	info?: any
 	triedFetchingUser?: boolean
 }
 
@@ -12,6 +13,7 @@ function createAuthStore() {
 	const { subscribe, set, update } = writable<AuthStore>({
 		accessToken: localStorage.getItem('accessToken') || '',
 		user: undefined,
+		info: undefined,
 		triedFetchingUser: false
 	})
 
@@ -70,6 +72,21 @@ function createAuthStore() {
 				accessToken: data.access_token,
 				user: data.user
 			})
+		},
+		info: async () => {
+			try {
+				const { data } = await api.get('/info')
+				update((store) => ({
+					...store,
+					info: data
+				}))
+			} catch (err) {
+				set({
+					accessToken: '',
+					user: undefined,
+					triedFetchingUser: true
+				})
+			}
 		},
 		logout: async () => {
 			await api.post('logout')

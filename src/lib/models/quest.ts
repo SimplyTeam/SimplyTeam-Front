@@ -9,4 +9,5 @@ export interface IQuest {
 	completed_points: number
 	user_quests: IUserQuest
 	quest_types: IQuestType
+	completed_at: string
 }
