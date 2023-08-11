@@ -4,7 +4,6 @@
 	import TaskFormDialog from "$lib/features/tasks/TaskFormDialog.svelte"
 
 	export let sprints: ISprint[] = []
-	$: console.log(sprints)
 </script>
 
 {#each sprints as sprint, index}
