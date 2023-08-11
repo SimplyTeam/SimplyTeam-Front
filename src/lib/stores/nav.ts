@@ -55,7 +55,7 @@ export const corePages = derived<typeof currentWorkspace, CorePages>(
 			isHidden: !$currentWorkspace
 		},
 		[Page.Quests]: {
-			path: `/workspaces/${$currentWorkspace?.id}/quests`,
+			path: `/quests`,
 			label: 'Les quêtes',
 			icon: 'award',
 			isHidden: !$currentWorkspace
