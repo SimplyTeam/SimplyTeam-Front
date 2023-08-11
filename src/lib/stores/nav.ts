@@ -57,19 +57,13 @@ export const corePages = derived<typeof currentWorkspace, CorePages>(
 		[Page.Quests]: {
 			path: `/quests`,
 			label: 'Les quêtes',
-			icon: 'award',
-			isHidden: !$currentWorkspace
+			icon: 'award'
 		},
 		[Page.User]: {
 			icon: 'user',
 			path: '/profil',
 			label: 'Profil'
 		},
-		// [Page.Notifications]: {
-		// 	icon: 'bell',
-		// 	path: '/notifications',
-		// 	label: 'Notifications'
-		// },
 		[Page.Settings]: {
 			icon: 'cog',
 			path: '/settings',
