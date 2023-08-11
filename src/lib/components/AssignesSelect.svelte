@@ -14,7 +14,6 @@
     selectedAssignees = selectedAssignees.filter(assignee => assignee.id !== assigneeToDelete.id)
   }
 </script>
-
 <div class="cursor-pointer">
   <div class="flex flex-wrap gap-2">
     {#each selectedAssignees as assignee}

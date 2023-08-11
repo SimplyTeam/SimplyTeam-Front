@@ -2,8 +2,7 @@
   import { DateInput, localeFromDateFnsLocale } from 'date-picker-svelte'
   import { twMerge } from "tailwind-merge"
   import Icon from "$lib/components/atoms/Icon.svelte"
-  import { fr } from 'date-fns/locale'
-
+  import { fr } from 'date-fns/locale' 
   export let date: Date = new Date()
   export let format: string = 'dd/MM/yyyy'
   export let label: string | undefined
