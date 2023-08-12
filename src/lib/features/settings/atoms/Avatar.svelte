@@ -2,7 +2,6 @@
 	export let sizeText = 'text-4xl'
 	export let name = ''
 	function getInitialsWithNameWithSecondCharInLowercase(name: string) {
-		console.log(name)
 		if (!name) return ''
 		const first = name[0].toUpperCase()
 		const second = name[1].toLowerCase()
