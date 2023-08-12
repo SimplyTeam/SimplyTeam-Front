@@ -6,35 +6,57 @@
   import Icon from "$lib/components/atoms/Icon.svelte"
   import { authStore } from "$lib/stores/auth"
   import { page } from '$app/stores'
-  import { taskFromRequest } from "$lib/models/task"
+  import { currentWorkspace } from "$lib/stores/workspace"
+  import { sprintsStore } from "$lib/stores/sprintsStore"
+  import SprintFormPopIn from "$lib/features/sprints/SprintFormPopIn.svelte"
 
   export let sprint: ISprint
   export let isOpen = false
+
   const { workspace, project } = $page.params
+  let isEditModalOpen = false
 </script>
 
 <ExpandedContent arrowPosition="right" hoverable={false} expanded={isOpen}>
-	<span slot="header">
-		<h2 class="text-xl">{sprint.name}</h2>
-	</span>
-  <span slot="content">
-		<div class="flex flex-col gap-1 bg-white py-1">
-			{#each sprint.tasks as task}
-				<Task
-          task={taskFromRequest(task)}
+  <div slot="header" class="flex items-center gap-2">
+    <h2 class="text-3xl">{sprint.name}</h2>
+    <div class="dropdown" on:click|stopPropagation>
+      <div tabindex="0" role="button" class="m-1">
+        <Icon icon="ellipsis-h" color="base"/>
+      </div>
+      <ul class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-sm z-10">
+        <li><a href="#" on:click={() => isEditModalOpen = true}>Modifier</a></li>
+        <li>
+          <a
+            on:click={() => sprintsStore.deleteSprintById($currentWorkspace.id, project, sprint.id)}
+            href="#"
+          >
+            Supprimer
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div slot="content">
+    <div class="flex flex-col gap-1 bg-white py-1">
+      {#each sprint.tasks as task}
+        <Task
+          task={task}
           onTaskClick={(task) => taskForm.openEditTaskForm(workspace, project, sprint.id, task)}
         />
-			{/each}
-		</div>
-		<button
+      {/each}
+    </div>
+    <button
       class="text-primary flex gap-2 justify-center items-center mt-2"
       on:click={() => taskForm.openCreateTaskForm(workspace, project, sprint.id, {
-				createdBy: $authStore.user,
-				sprintId: sprint.id,
-			})}
+		  createdBy: $authStore.user,
+		  sprintId: sprint.id,
+	    })}
     >
-			<Icon icon="plus-circle"/>
-			Ajouter une tâche
-		</button>
-	</span>
+      <Icon icon="plus-circle"/>
+      Ajouter une tâche
+    </button>
+  </div>
 </ExpandedContent>
+
+<SprintFormPopIn bind:isOpen={isEditModalOpen} mode="edit" sprintData={{ ...sprint }}/>

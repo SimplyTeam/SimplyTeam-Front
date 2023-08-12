@@ -10,8 +10,10 @@
 	import DatePicker from "$lib/components/DatePicker.svelte"
 
 	export let isOpen = false
+	export let mode: 'create' | 'edit'
 
-	let sprintForm: SprintForm = {
+	export let sprintData: SprintForm = {
+		id: '',
 		name: '',
 		beginAt: new Date(),
 		endAt: new Date()
@@ -21,11 +23,24 @@
 
 	async function handleAddSprint() {
 		try {
-			await sprintsStore.addSprintToProject(workspace, project, sprintForm)
+			await sprintsStore.addSprintToProject(workspace, project, sprintData)
 			await sprintsStore.fetchSprintsByProjectId(workspace, project)
 			isOpen = false
 		} catch ({ response }) {
 			if (response && response.status === 422) {
+				showToast('Une erreur est survenue : ' + response.data.errors.name, 'error')
+			}
+		}
+	}
+
+	async function handleEditSprint() {
+		try {
+			await sprintsStore.editSprintById(workspace, project, sprintData.id, sprintData)
+			await sprintsStore.fetchSprintsByProjectId(workspace, project)
+			isOpen = false
+		} catch (error) {
+			console.log(error)
+			if (error.response && error.response.status === 422) {
 				showToast('Une erreur est survenue : ' + response.data.errors.name, 'error')
 			}
 		}
@@ -36,28 +51,31 @@
 	<svelte:fragment slot="header">
 		<div class="w-full flex-col justify-center items-center">
 			<img src={addSprintIllu} class="w-1/2 mr-auto ml-auto items-center" />
-			<h1 class="text-center text-2xl font-bold mt-5">Créer un projet</h1>
+			<h1 class="text-center text-2xl font-bold mt-5">
+				{mode === "create" ? "Créer un sprint" : "Modifier le sprint"}
+			</h1>
 			<span class="text-xs text-gray-400" />
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="message">
 		<div class="flex mb-10 mt-5 flex-col items-center gap-2">
 			<Input
+				type="text"
 				labelInput="Nom du sprint"
 				name="text"
 				placeholder="Entrer un nom de sprint"
-				bind:value={sprintForm.name}
+				bind:value={sprintData.name}
 			/>
 			<div class="flex justify-between gap-4">
 				<DatePicker
 					label="Date de début"
 					class="h-12"
-					bind:date={sprintForm.beginAt}
+					bind:date={sprintData.beginAt}
 				/>
 				<DatePicker
 					label="Date de fin"
 					class="h-12"
-					bind:date={sprintForm.endAt}
+					bind:date={sprintData.endAt}
 				/>
 			</div>
 		</div>
@@ -72,10 +90,10 @@
 			</Button>
 			<Button
 				class="btn-sm !btn-error hover:scale-105 !text-white"
-				on:click={handleAddSprint}
+				on:click={mode === "create" ? handleAddSprint : handleEditSprint}
 			>
 				Confirmer
 			</Button>
-		</div></svelte:fragment
-	>
+		</div>
+	</svelte:fragment>
 </Modal>

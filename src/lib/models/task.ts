@@ -3,7 +3,7 @@ import { Status } from "$lib/features/tasks/models/Status"
 import { Priority } from "$lib/features/tasks/models/Priority"
 import type { ISprint } from "$lib/models/sprint"
 
-interface IRequestTask {
+export interface IRequestTask {
   assigned_to: IUser[]
   created_by: IUser
   created_at: string
@@ -54,7 +54,6 @@ export function taskFromRequest(task: IRequestTask): ITask {
     createdBy: task.created_by,
     timeSpent: task.realized_timestamp,
     estimatedTime: task.estimated_timestamp,
-    // TODO ajouter les sous tache quand le back est implémenter
     subtasks: task.subtasks?.map(taskFromRequest),
     sprint: task.sprint,
     parent: task.parent && taskFromRequest(task.parent),
