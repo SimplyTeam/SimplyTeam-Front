@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Checkbox from '$lib/components/atoms/Checkbox.svelte'
 	import Icon from '$lib/components/atoms/Icon.svelte'
+	import Avatar from '$lib/features/settings/atoms/Avatar.svelte'
 	import type { ITask } from '$lib/stores/projects'
 	import TaskLabel from '../atoms/TaskLabel.svelte'
 
@@ -21,13 +22,9 @@
 	</div>
 	<div class="w-24 flex justify-end">
 		{#if assignees.length > 0}
-			<div class="avatar-group -space-x-6 justify-end">
+			<div class="avatar-group -space-x-3 justify-end">
 				{#each assignees as assignee}
-					<div class="avatar">
-						<div class="w-8">
-							<img src="https://i.pravatar.cc/300" alt="user avatar" />
-						</div>
-					</div>
+					<Avatar name={assignee.name} sizeText="text-sm" class="w-11" />
 				{/each}
 				{#if task.assignees.length > 3}
 					<div class="avatar placeholder">

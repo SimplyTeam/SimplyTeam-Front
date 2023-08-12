@@ -21,7 +21,7 @@
 </script>
 
 {#if $authStore.info && $authStore.user}
-	<WithActionsLayout>
+	<WithActionsLayout user={$authStore.user}>
 		<svelte:fragment slot="actions">
 			<Button class="-mb-5 btn-error hover:scale-105 hover:bg-red-800 ease-in text-xs mr-10 z-10"
 				>Suppression de votre compte</Button
