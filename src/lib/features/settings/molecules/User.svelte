@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Icon from '$lib/components/atoms/Icon.svelte'
 	import Button from '$lib/components/atoms/Button.svelte'
+	import Avatar from '$lib/features/settings/atoms/Avatar.svelte'
 	import type { IUser } from '$lib/models/user'
 	import { currentWorkspace } from '$lib/stores/workspace'
 	import { createEventDispatcher } from 'svelte'
@@ -14,11 +15,7 @@
 </script>
 
 <div class="flex gap-4">
-	<div class="avatar">
-		<div class="w-10 h-10 rounded-full">
-			<img alt="img" src="https://i.pravatar.cc/200" />
-		</div>
-	</div>
+	<Avatar name={user.name} class="w-10 h-10" sizeText="text-sm" />
 	<div class="flex-1 flex flex-col justify-center">
 		<div class="flex">
 			<h2 class="text-lg font-bold text-black">{user?.name}</h2>

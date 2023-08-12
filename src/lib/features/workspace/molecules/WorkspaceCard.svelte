@@ -4,6 +4,11 @@
 	import { authStore } from '$lib/stores/auth'
 
 	export let workspace: IWorkspace
+	function getInitialsWithNameWithSecondCharInLowercase(name: string) {
+		const first = name[0].toUpperCase()
+		const second = name[1].toLowerCase()
+		return `${first}${second}`
+	}
 	$: numberOfUsers = workspace?.users.length
 </script>
 
@@ -23,12 +28,12 @@
 				<p class="text-ellipsis overflow-hidden">{workspace.description ?? ''}</p>
 			</div>
 			<div class="card-actions justify-end">
-				<div class="avatar-group -space-x-4">
+				<div class="avatar-group -space-x-2">
 					{#each workspace.users as user, i (user.id)}
 						{#if i < 4}
-							<div class="avatar">
-								<div class="w-6">
-									<img src="https://i.pravatar.cc/300" alt="user avatar" />
+							<div class="avatar bg-secondary text-white flex justify-center">
+								<div class="w-6 self-center text-center">
+									{getInitialsWithNameWithSecondCharInLowercase(user.name)}
 								</div>
 							</div>
 						{/if}
