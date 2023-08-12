@@ -1,6 +1,6 @@
 <script lang="ts">
 	import AvatarChip from '$lib/components/AvatarChip.svelte'
-	import type { IUser } from '$lib/models/auth.js'
+	import type {IUser} from '$lib/models/auth.js'
 	import InputChip from '$lib/components/InputChip.svelte'
 
 	export let selectedAssignees: IUser[] = []
@@ -19,10 +19,10 @@
 	<div class="flex flex-wrap gap-2">
 		{#each selectedAssignees as assignee}
 			<AvatarChip
-				name={assignee.name}
-				onRemove={() => removeAssignee(assignee)}
+							name={assignee.name}
+							onRemove={() => removeAssignee(assignee)}
 			/>
 		{/each}
-		<InputChip onAdd={(assignee) => addAssignee(assignee)} usersList={assignees} />
+		<InputChip onAdd={(assignee) => addAssignee(assignee)} usersList={assignees}/>
 	</div>
 </div>
