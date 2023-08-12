@@ -10,9 +10,9 @@
 	}
 </script>
 
-<div class="avatar border-solid border-white placeholder">
+<div class="avatar border-solid {$$props.class} border-white placeholder">
 	<div
-		class="bg-secondary {$$props.class} shadow-lg mt-8 border-2 border-solid border-800 text-white rounded-full sm:w-20 md:w-28 lg:32"
+		class="bg-secondary shadow-lg border-2 border-solid border-800 text-white rounded-full sm:w-20 md:w-28 lg:32"
 	>
 		<span class={sizeText}>{getInitialsWithNameWithSecondCharInLowercase(name)}</span>
 	</div>

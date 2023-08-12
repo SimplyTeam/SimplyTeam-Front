@@ -9,7 +9,7 @@
 <div class="h-full flex flex-col align-center p-1 min-w-[3rem] w-[3vw] gap-2">
 	<Logo />
 	{#if $authStore.user}
-		<Avatar class="w-1/2" sizeText="text-sm" name={$authStore.user.name} />
+		<Avatar sizeText="text-sm" name={$authStore.user.name} />
 		<LevelProgress progress={50} level={$authStore.user.level_id} />
 	{/if}
 	<Nav />
