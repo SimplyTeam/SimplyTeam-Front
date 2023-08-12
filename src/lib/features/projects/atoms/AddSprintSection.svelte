@@ -1,6 +1,6 @@
 <script>
 	import Icon from '$lib/components/atoms/Icon.svelte'
-	import AddSprintPopIn from "$lib/features/sprints/AddSprintPopIn.svelte"
+	import SprintFormPopIn from "$lib/features/sprints/SprintFormPopIn.svelte"
 
 	let addSprintPopInIsOpen = false
 </script>
@@ -9,4 +9,4 @@
 	<Icon icon="plus" color="white" />
 	Ajouter un sprint
 </button>
-<AddSprintPopIn bind:isOpen={addSprintPopInIsOpen} />
+<SprintFormPopIn mode="create" bind:isOpen={addSprintPopInIsOpen} />
