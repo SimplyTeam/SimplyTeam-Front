@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Avatar from '$lib/features/settings/atoms/Avatar.svelte'
 	import type { IUser } from '$lib/models/auth'
+	import { currentWorkspace } from '$lib/stores/workspace'
 	export let user: IUser
 </script>
 
@@ -10,7 +11,7 @@
 			<div class="w-full flex">
 				<div class="flex-1" />
 				<div class="w-[11%] h-32 mx-auto">
-					<Avatar name={user.name} class="mt-8" />
+					<Avatar name={$currentWorkspace.name} class="mt-8" />
 				</div>
 				<div class="flex-1 flex w-full justify-center items-end">
 					<slot name="actions" />

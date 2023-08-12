@@ -40,7 +40,7 @@
 		class="btn-sm  !btn-primary mb-5"
 	>
 		<Icon icon="plus-circle" class="text-white mx-2" /><span class="text-white text-xs"
-			>Ajouter un utilisateur</span
+			>Ajouter un membre</span
 		>
 	</Button>
 	{#if $currentWorkspace?.users}
