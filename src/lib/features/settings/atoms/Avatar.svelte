@@ -1,45 +1,19 @@
 <script lang="ts">
-	export let src: string
+	export let sizeText = 'text-4xl'
+	export let name = ''
+	function getInitialsWithNameWithSecondCharInLowercase(name: string) {
+		console.log(name)
+		if (!name) return ''
+		const first = name[0].toUpperCase()
+		const second = name[1].toLowerCase()
+		return `${first}${second}`
+	}
 </script>
 
-<div class="Avatar">
-	<svg class="Avatar__frame" viewBox="0 0 50 53" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<path
-			d="M23.1289 5.49024C24.2994 4.87078 25.7006 4.87078 26.8711 5.49024L43.6557 14.3733C44.9654 15.0664 45.7846 16.4269 45.7846 17.9087V35.0913C45.7846 36.5731 44.9654 37.9336 43.6557 38.6267L26.8711 47.5098C25.7006 48.1292 24.2994 48.1292 23.1289 47.5098L6.34432 38.6267C5.0346 37.9336 4.21539 36.5731 4.21539 35.0913V17.9087C4.21539 16.4269 5.0346 15.0664 6.34432 14.3733L23.1289 5.49024Z"
-			fill="url(#pattern0)"
-		/>
-		<path
-			d="M25.9381 3.30458L45.5354 14.1457C46.1541 14.4879 46.5461 15.1314 46.5665 15.8382L47.1783 37.0856C47.2001 37.843 46.792 38.5478 46.1241 38.9058L25.9449 49.7241C25.3547 50.0405 24.6452 50.0405 24.0549 49.7241L3.80624 38.8685C3.15663 38.5203 2.75122 37.8429 2.75122 37.1059V15.8941C2.75122 15.1571 3.15663 14.4797 3.80623 14.1315L24.0249 3.29199C24.6234 2.97113 25.3438 2.97587 25.9381 3.30458Z"
-			stroke="white"
-			stroke-width="4"
-		/>
-		<path
-			d="M26.6641 1.99203L46.2615 12.8331C47.3442 13.4321 48.0303 14.5582 48.0659 15.795L48.6777 37.0424C48.7158 38.368 48.0016 39.6012 46.8328 40.2278L26.6537 51.0461C25.6207 51.5999 24.3792 51.5999 23.3462 51.0461L3.0975 40.1905C1.96068 39.5811 1.25122 38.3958 1.25122 37.1059V15.8941C1.25122 14.6043 1.96068 13.4189 3.0975 12.8095L23.3162 1.96998C24.3636 1.40849 25.6243 1.41679 26.6641 1.99203Z"
-			stroke="#8E6ECA"
-		/>
-		<defs>
-			<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1" />
-		</defs>
-	</svg>
-	<img {src} alt="user avatar" class="Avatar__image" />
+<div class="avatar border-solid border-white placeholder">
+	<div
+		class="bg-secondary {$$props.class} shadow-lg mt-8 border-2 border-solid border-800 text-white rounded-full sm:w-20 md:w-28 lg:32"
+	>
+		<span class={sizeText}>{getInitialsWithNameWithSecondCharInLowercase(name)}</span>
+	</div>
 </div>
-
-<style lang="scss">
-	.Avatar {
-		width: 100%;
-		position: relative;
-		padding: 0.5rem 0;
-
-		&__frame {
-			position: absolute;
-			z-index: 10;
-		}
-
-		&__image {
-			width: 85%;
-			transform: translate(10%, 10%);
-			z-index: 1;
-			clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-		}
-	}
-</style>
