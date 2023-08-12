@@ -78,7 +78,7 @@
 		"lottie-web": "^5.12.0",
 		"moment": "^2.29.4",
 		"moment-with-locales-es6": "^1.0.1",
-		"sass": "^1.58.1",
+		"sass": "^1.65.1",
 		"svelecte": "^3.15.3",
 		"svelte-fa": "^3.0.3",
 		"svelte-select": "^5.6.1",
