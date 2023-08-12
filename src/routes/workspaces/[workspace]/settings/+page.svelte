@@ -44,7 +44,7 @@
 	})
 </script>
 
-<WithActionsLayout class="overflow-hidden">
+<WithActionsLayout name={$currentWorkspace.name} class="overflow-hidden">
 	<svelte:fragment slot="actions">
 		<Button
 			on:click={() => {
