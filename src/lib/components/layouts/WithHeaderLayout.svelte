@@ -6,8 +6,8 @@
 
 <div class="flex flex-col w-full">
 	<div class="flex h-28 bg-gradient-to-r from-primary to-secondary">
-		<img src={illustration} alt="header illustration" class=" {$$props.class} w-24 h-24" />
-		<div class="h-full py-1">
+		<img src={illustration} alt="header illustration" class="{$$props.class} px-10" />
+		<div class="h-full py-1 flex-col flex justify-center">
 			<h2 class="text-4xl mb-1 font-bold text-white">{title}</h2>
 			<p class="text-sm max-w-lg text-white">{subtitle}</p>
 		</div>
