@@ -33,7 +33,7 @@
 		</span>
 	</button>
 	{#if expanded}
-		<div transition:slide class="pt-1">
+		<div transition:slide|local class="pt-1">
 			<slot name="content" />
 		</div>
 	{/if}
