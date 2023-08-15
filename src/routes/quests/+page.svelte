@@ -20,7 +20,7 @@
 	<Sidebar withWorkspace={false} />
 	<SearchBar />
 	<WithHeaderLayout
-		class="w-40 h-40 -ml-3 self-center"
+		class="h-32 -ml-3 self-center"
 		illustration={'/quest/maitre-temps-silver.svg'}
 		title="Quêtes"
 		subtitle="Accomplissez des quêtes de gestion de projet pour débloquer des récompenses et des niveaux de quête, et boostez votre productivité !"

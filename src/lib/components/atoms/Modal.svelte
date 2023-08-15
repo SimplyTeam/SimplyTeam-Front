@@ -7,16 +7,20 @@
 	$: if (dialog && !showModal) dialog.close()
 </script>
 
-<dialog class="{$$props.class} rounded-xl overflow-visible" bind:this={dialog} on:close={() => (showModal = false)}>
+<dialog
+	class="{$$props.class} rounded-xl overflow-visible"
+	bind:this={dialog}
+	on:close={() => (showModal = false)}
+>
 	<div class="flex justify-center w-full h-full !p-0 flex-1">
 		<div class="flex justify-center w-full h-full !p-0 flex-1">
 			<div class="w-full">
-				<div class="flex flex-col h-full px-5 pt-5 items-center">
-					<div class="flex flex-col justify-center items-start text-start">
+				<div class="flex flex-col w-full h-full items-center">
+					<div class="flex flex-col w-full justify-center items-start text-start">
 						<slot name="header" />
 					</div>
 					<slot name="message" />
-					<div class="mb-10 w-full">
+					<div class="mb-10 w-full mx-10">
 						<slot name="action" />
 					</div>
 				</div>
