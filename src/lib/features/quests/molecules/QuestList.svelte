@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { IQuest } from '$lib/models/quest'
-	import Quest from '$lib/features/quests/atoms/quest.svelte'
+	import Quest from '$lib/features/quests/atoms/Quest.svelte'
 	export let questList: Array<IQuest>
 </script>
 

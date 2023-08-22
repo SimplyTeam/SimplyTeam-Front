@@ -1,5 +1,5 @@
 <script>
-	import ProgressBar from '$lib/features/quests/atoms/progressBar.svelte'
+	import ProgressBar from '$lib/features/quests/atoms/ProgressBar.svelte'
 	export let progress = 0
 	export let progressMax = 0
 	export let levelUser = 0
