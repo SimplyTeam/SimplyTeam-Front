@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { page } from '$app/stores'
+	import Icon from '$lib/components/atoms/Icon.svelte'
+
 	export let label: string
 	export let icon = 'table'
 	export let href: string
 
-	export let isActive = false
+	$: isActive = href === $page.url.pathname + $page.url.search
 </script>
 
 <a
@@ -14,4 +17,3 @@
 	<Icon {icon} color="neutral" />
 	<span class="text-base">{label}</span>
 </a>
-

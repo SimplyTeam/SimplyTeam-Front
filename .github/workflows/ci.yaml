@@ -1,0 +1,88 @@
+name: CI/CD
+on: push
+jobs:
+  setup-dev:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: Cache PNPM packages
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v2
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.0.0
+        with:
+          version: 6.0.2
+
+      - name: 'Install dependencies'
+        run: pnpm install
+
+  commit:
+    runs-on: 'ubuntu-latest'
+    needs: setup-dev
+    steps:
+      - uses: webiny/action-conventional-commits@v1.1.0
+  linter:
+    needs: setup-dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Restore cached dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.0.0
+        with:
+          version: 6.0.2
+
+      - name: 'Install dependencies'
+        run: pnpm install
+      - name: Lint
+        run: pnpm run lint
+#  test-e2e:
+#    runs-on: 'ubuntu-latest'
+#    needs: setup-dev
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Restore cached dependencies
+#        uses: actions/cache@v2
+#        with:
+#          path: ~/.pnpm-store
+#          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+#          restore-keys: ${{ runner.os }}-pnpm-
+#
+#      - name: Setup pnpm
+#        uses: pnpm/action-setup@v2.0.0
+#        with:
+#          version: 6.0.2
+#      - name: 'Install dependencies'
+#        run: pnpm install
+#
+#      - name: Cypress PNPM Patch
+#        run: cp pnpm-lock.yaml package-lock.json
+#
+#      - name: Cypress
+#        uses: cypress-io/github-action@v4
+#        env:
+#          VITE_BASE_URL: http://localhost/api
+#        with:
+#          install-command: echo
+#          build: pnpm run build
+#          start: npx vite --port 3000
+#          browser: chrome

@@ -1,10 +1,10 @@
 <script lang="ts">
-  import NavItem from '$lib/features/sidebar/atoms/NavItem.svelte'
-  import { corePagesStore } from '$lib/stores/nav'
+	import NavItem from '$lib/features/sidebar/atoms/NavItem.svelte'
+	import { corePagesStore } from '$lib/stores/nav'
 </script>
 
 <nav>
-  {#each $corePagesStore as page}
-    <NavItem icon={page.icon} href={page.path} isActive={corePagesStore.isActivePath(page.path)} />
-  {/each}
+	{#each $corePagesStore.filter(page => !page.isHidden) as page}
+		<NavItem icon={page.icon} href={page.path} isActive={corePagesStore.isActivePath(page.path)} />
+	{/each}
 </nav>

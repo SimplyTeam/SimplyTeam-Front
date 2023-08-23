@@ -1,8 +1,14 @@
+import { goto } from '$app/navigation'
+import { projectsStore } from '$lib/stores/projects'
+import { getWorkspace } from '$lib/stores/workspace'
 import type { LayoutLoad } from './$types'
-import { workspace } from '$lib/stores/nav'
-import { redirect } from '@sveltejs/kit'
-
-export const load = (({ params }) => {
-	if (params.workspace !== 'undefined') workspace.set(params.workspace)
-	else throw redirect(303, '/workspaces')
+export const load = (async ({ params }) => {
+	if (params.workspace !== 'undefined') {
+		try {
+			getWorkspace(params.workspace)
+			projectsStore.getProjectsByWorkspaceId(params.workspace)
+		} catch (err: any) {
+			goto('/workspaces')
+		}
+	} else goto('/workspaces')
 }) satisfies LayoutLoad

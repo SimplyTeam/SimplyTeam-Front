@@ -1,3 +1,11 @@
+<script lang="ts">
+  import SimpleLayout from '$lib/components/layouts/SimpleLayout.svelte'
+  import ProjectHeader from '$lib/features/projects/organisms/ProjectHeader.svelte'
+  import Backlog from "$lib/features/projects/organisms/Backlog.svelte"
+  import { backlogStore } from "$lib/stores/backlogStore"
+</script>
+
 <SimpleLayout>
-	This were the backlog should be displayed if I had any !!!!!
+    <ProjectHeader/>
+    <Backlog tasks={$backlogStore.tasks}/>
 </SimpleLayout>
