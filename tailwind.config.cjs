@@ -5,6 +5,9 @@ module.exports = {
 	plugins: [require('daisyui')],
 	theme: {
 		extend: {
+			boxShadow: {
+				'primary': '0px 6px 6px #8E6ECA',
+			},
 			colors: {
 				task: {
 					DEFAULT: '#FDDDD5',
@@ -18,7 +21,7 @@ module.exports = {
 					high: '#B83E51',
 					low: '#B3DFFF',
 				},
-				'base-400': '#F8F8FB'
+				'secondary-gradient': 'rgba(246,139,113,0.53)',
 			}
 		}
 	},
