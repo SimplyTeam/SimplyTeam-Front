@@ -39,7 +39,7 @@
 			bind:value
 			class:border-error={errorMessage}
 			class:border-gray-200={!errorMessage}
-			class="{$$props.class} w-full px-8 py-4 rounded-lg font-medium bg-indigo-100 border border-gray-200 placeholder-gray-500 text-xs focus:outline-none focus:border-gray-400 focus:bg-white"
+			class="{$$props.class} w-full px-8 py-4 bg-gray-50 rounded-lg font-medium border border-gray-200 placeholder-gray-500 text-xs focus:outline-none focus:border-gray-400 focus:bg-white"
 			{name}
 			on:input={handleInput}
 			{placeholder}
