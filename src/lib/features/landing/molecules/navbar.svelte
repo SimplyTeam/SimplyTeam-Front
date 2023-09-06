@@ -31,17 +31,26 @@
 									</p>
 									<ul class="mt-3 text-[15px]">
 										<li>
-											<a href="#" class="text-gray-600 hover:text-gray-800 py-1 block font-normal">
+											<a
+												href="/helpcenter/contact"
+												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
+											>
 												Nous contacter
 											</a>
 										</li>
 										<li>
-											<a href="#" class="text-gray-600 hover:text-gray-800 py-1 block font-normal">
+											<a
+												href="/helpcenter/politics"
+												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
+											>
 												Politique de confidentialité
 											</a>
 										</li>
 										<li>
-											<a href="#" class="text-gray-600 hover:text-gray-800 py-1 block font-normal">
+											<a
+												href="/helpcenter/mentions-legales/cgu"
+												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
+											>
 												CGU
 											</a>
 										</li>
@@ -53,17 +62,26 @@
 									</p>
 									<ul class="mt-3 text-[15px]">
 										<li>
-											<a href="#" class="text-gray-600 hover:text-gray-800 py-1 block font-normal">
+											<a
+												href="/helpcenter/getting-started"
+												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
+											>
 												Commencer sur SimplyTeam
 											</a>
 										</li>
 										<li>
-											<a href="#" class="text-gray-600 hover:text-gray-800 py-1 block font-normal">
+											<a
+												href="/helpcenter/faq"
+												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
+											>
 												FAQ
 											</a>
 										</li>
 										<li>
-											<a href="#" class="text-gray-600 hover:text-gray-800 py-1 block font-normal">
+											<a
+												href="release-note"
+												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
+											>
 												Release note
 											</a>
 										</li>
@@ -75,13 +93,19 @@
 				</div>
 			</li>
 			<li class="relative group px-8 py-2">
-				<a href="#" class="hover:opacity-50 cursor-default">Tarifs </a>
+				<a href="/#pricing-section" class="hover:opacity-50 cursor-default">Tarifs </a>
 			</li>
 		</ul>
 	</nav>
 	<nav>
 		<ul>
-			<li />
+			<li>
+				{#if $authStore.user}
+					<Button type="submit" class="ml-auto" on:click={authStore.logout}>Déconnexion</Button>
+				{:else}
+					<a href="/auth/login" class="ml-auto"><Button>Se connecter</Button></a>
+				{/if}
+			</li>
 		</ul>
 	</nav>
 </header>

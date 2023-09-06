@@ -28,7 +28,7 @@
 		/>
 	</div>
 	<span class="text-xl xl:text-2xl font-medium w-3/4 mb-12 text-white">
-		Prêt à relever des défissss passionnants et à transformer la gestion de projet en une aventure
+		Prêt à relever des défis passionnants et à transformer la gestion de projet en une aventure
 		ludique ?
 	</span>
 </div>

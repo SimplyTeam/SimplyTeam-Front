@@ -5,6 +5,5 @@
 
 <div class="pl-[max(15vw,15rem)] h-screen">
 	<Sidebar />
-	<SearchBar />
 	<slot />
 </div>
