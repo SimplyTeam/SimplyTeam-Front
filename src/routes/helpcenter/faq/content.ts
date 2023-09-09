@@ -10,7 +10,7 @@ export const faqContent: faq[] = [
     answer: `Vous avez des soucis au démarrage? Pas de panique! Consultez notre guide
     <span class="text-secondary font-bold">Getting Started </span>
     pour vous aider. Il vous guide rapidement à travers les premières étapes sur SimplyTeam. Cliquez
-    <span class="text-primary font-bold">ici </span> pour y accéder directement.`
+    <a href="/getting-started" class="text-primary font-bold">ici </a> pour y accéder directement.`
   },
   {
     question: 'Pourquoi choisir SimplyTeam ?',

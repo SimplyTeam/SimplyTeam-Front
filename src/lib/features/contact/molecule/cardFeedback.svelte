@@ -1,6 +1,6 @@
 <script>
+	import { goto } from '$app/navigation'
 	import Button from '$lib/components/atoms/Button.svelte'
-	import Icon from '$lib/components/atoms/Icon.svelte'
 	import CardContact from '$lib/features/contact/atoms/cardContact.svelte'
 </script>
 
@@ -15,7 +15,7 @@
 			faites-le nous savoir.
 		</p>
 		<div class="card-actions justify-center mt-5">
-			<Button class="btn">Nous contacter</Button>
+			<Button on:click={() => goto('contact/feedback')} class="btn">Nous contacter</Button>
 		</div>
 	</div>
 </CardContact>

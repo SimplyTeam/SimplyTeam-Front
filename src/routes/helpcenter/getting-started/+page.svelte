@@ -1,3 +1,8 @@
+<script lang="ts">
+	export let page = 1
+	import { onMount } from 'svelte'
+</script>
+
 <div
 	class="w-full flex flex-col items-center bg-primary mt-10 pt-10 flex justify-center items-center"
 >
@@ -34,34 +39,28 @@
 		<!-- nav -->
 		<nav>
 			<a
-				href="#"
+				href="#learn"
 				class="block py-2.5 px-6 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 			>
 				Bien comprendre SimplyTeam
 			</a>
 			<a
-				href=""
+				href="#login"
 				class="block py-2.5 px-6 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 			>
 				Inscription et connexion
 			</a>
 			<a
-				href=""
+				href="#workspace"
 				class="block py-2.5 px-6 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 			>
-				Création d'un workspace et l'invitation de membres
+				Gestion des workspaces
 			</a>
 			<a
-				href=""
+				href="#taskAndObjectifs"
 				class="block py-2.5 px-6 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
 			>
 				Validation des tâches et des objectifs
-			</a>
-			<a
-				href=""
-				class="block py-2.5 px-6 rounded transition duration-200 hover:bg-blue-700 hover:text-white"
-			>
-				Les niveaux d'expériences
 			</a>
 		</nav>
 	</div>
@@ -70,7 +69,7 @@
 	<!-- content -->
 	<div class="p-10 w-7/12 text-justify overflow-y-auto">
 		<div class="flex flex-col">
-			<h1 class="text-3xl font-bold text-gray-900">Bien comprendre SimplyTeam</h1>
+			<h1 class="text-3xl font-bold text-gray-900" id="learn">Bien comprendre SimplyTeam</h1>
 			<div class="divider" />
 			<h2 class="text-md text-gray-500 break-words mb-10">
 				<div class="mt-2 flex flex-col">
@@ -93,7 +92,7 @@
 			</h2>
 		</div>
 		<div class="flex flex-col">
-			<h1 class="text-3xl font-bold text-gray-900">Inscription et connexion</h1>
+			<h1 class="text-3xl font-bold text-gray-900" id="login">Inscription et connexion</h1>
 			<div class="divider" />
 			<h2 class="text-md text-gray-500 break-words mb-10">
 				<div class="flex flex-col">
@@ -142,11 +141,91 @@
 			</h2>
 		</div>
 		<div class="flex flex-col">
-			<h1 class="text-3xl font-bold text-gray-900">Gestion des workspaces</h1>
+			<h1 class="text-3xl font-bold text-gray-900" id="workspace">Gestion des workspaces</h1>
 			<div class="divider" />
 			<h2 class="text-md text-gray-500 break-words mb-10">
-				<div class="flex flex-col" />
+				<div class="flex flex-col">
+					<span class="mt-2"
+						>Une fois connecter à SimplyTeam, vous serez redirigé vers l'interface de gestion des
+						espaces de travail. Vous pouvez créer des workspaces ou rejoindre des espaces de travail
+						existants. Vous aurez aussi accès à vos espaces de travail.</span
+					>
+					<span class="mt-2">Vos espaces de travail seront affiché avec une petite couronne.</span>
+					<img class="h-1/2 mt-2" src="/menuWorkspace.png" alt="Illustration FAQ" />
+					<span class="mt-2">
+						Les espaces de travail que vous avez rejoint seront affiché sans couronne.</span
+					>
+					<span class="mt-2"
+						>Par la suite, vous pouvez cliquez sur un workspace existants pour le rejoindre. Sinon
+						vous pouvez en créer un en cliquant sur "créer un espace de travail"
+					</span>
+					<span class="mt-2"
+						>Pour la création d'un workspace, vous aurez besoin d'un nom pour l'espace de travail,
+						un description et la possibilité d'ajouter des membres avec leurs emails</span
+					>
+					<span class="mt-2"
+						>Une fois votre workspace créé, vous serez redirigé vers l'interface de gestion des
+						projets.</span
+					>
+					<img class="h-1/2 mt-2" src="/createWorkspace.png" alt="Illustration FAQ" />
+				</div>
 			</h2>
+		</div>
+		<div class="flex flex-col">
+			<h1 class="text-3xl font-bold text-gray-900" id="taskAndObjectifs">
+				Validation des tâches et des objectifs
+			</h1>
+			<div class="divider" />
+			<div class="text-md text-gray-500 break-words mb-10">
+				<div class="flex flex-col">
+					<span class="mt-2">
+						Une fois dans votre espace de travail, vous pouvez créer des projets et des tâches. Pour
+						créer un projet, cliquez sur le bouton <span class="text-primary font-bold"
+							>Ajouter un projet</span
+						> et entrez un nom et une description pour votre projet.
+					</span>
+					<img class="h-1/2 mt-2" src="/createProjet.png" alt="Illustration FAQ" />
+					<span class="mt-2">
+						Quand votre projet est créé, vous pouvez créer des sprints. Pour créer un sprint,
+						cliquez sur le bouton <span class="text-primary font-bold">Ajouter un sprint</span> et entrez
+						un nom et une description pour votre sprint avec une deadline.
+					</span>
+					<span class="mt-2">
+						Dans un projet, vous aurez 3 sous catégories:
+						<ul class="list-disc">
+							<li class="mx-3">Sprints</li>
+							<li class="mx-3">Mes tâches</li>
+							<li class="mx-3">Backlog</li>
+						</ul>
+					</span>
+					<span class="mt-2"
+						>La création de tâche se fait dans les sprints ou dans le backlog. Pour créer une tâche,
+						cliquez sur le bouton <span class="text-primary font-bold">Ajouter une tâche</span>
+						Sur la création d'une tâche, vous aurez besoin d'un nom, d'une description, d'une deadline,
+						d'une difficulté et d'une priorité. Vous pouvez mettre un commentaire et assigné une ou plusieurs
+						personnes à la tâche.
+					</span>
+					<img class="h-1/2 mt-2" src="/createTask.png" alt="Illustration FAQ" />
+				</div>
+				<div class="flex flex-col mt-2">
+					<span class="mt-2 text-2xl text-black"> Quêtes et objectifs </span>
+					<div class="divider" />
+					<span class="mt-2">
+						Pour les quêtes, vous aurez plusieurs niveaux pour une quête. Vous aurez selon la quête
+						un objectif à atteindre. Vous avez plusieurs types de quêtes:
+					</span>
+					<ul class="list-disc mt-2">
+						<li class="mx-3">Quêtes globales</li>
+						<li class="mx-3">Quêtes de sprint</li>
+						<li class="mx-3">Quêtes des tâches</li>
+					</ul>
+					<span class="mt-2">
+						Chaques quêtes fini vont donneront un nombre d'expériences définis. Cela vous permettra
+						de monté de niveau.
+					</span>
+					<img class="h-1/2 mt-2" src="/questMenu.png" alt="Illustration FAQ" />
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

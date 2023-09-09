@@ -9,6 +9,7 @@
 
 	function handleInput(event: InputEvent) {
 		const input = event.target as HTMLInputElement
+		console.log(input.value)
 		dispatch('input', input.value)
 	}
 </script>
@@ -20,7 +21,8 @@
 {/if}
 <textarea
 	bind:value
-	class="{$$props.class} peer bg-gray-50 border border-gray-200 rounded-lg block min-h-[auto] w-full border-1 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+	on:input={handleInput}
+	class="{$$props.class} peer border border-gray-200 rounded-lg block min-h-[auto] w-full border-1 py-[0.32rem] px-3 leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none  dark:placeholder:text-black [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
 	{rows}
 	{placeholder}
 />

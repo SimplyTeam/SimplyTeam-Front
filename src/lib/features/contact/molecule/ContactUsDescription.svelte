@@ -18,13 +18,7 @@
 		<div class="flex items-center mt-12">
 			<Icon icon="map-marker-alt" size="2xl" class="text-white" />
 			<span class="text-sm xl:text-xl animate-fadeIn font-medium text-white ml-4">
-				1 Rue de la Paix, 75000 Paris
-			</span>
-		</div>
-		<div class="flex items-center mt-12">
-			<Icon icon="phone" size="2xl" class="text-white" />
-			<span class="text-sm xl:text-xl animate-fadeIn font-medium text-white ml-4">
-				+33 6 12 34 56 78
+				27 rue raoul servant, 69007 Lyon
 			</span>
 		</div>
 		<div class="flex items-center mt-12">

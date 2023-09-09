@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Expand from '$lib/features/contact/atoms/expand.svelte'
 	import { faqContent } from './content'
+	import { goto } from '$app/navigation'
 </script>
 
 <div class="flex flex-col items-center h-screen">

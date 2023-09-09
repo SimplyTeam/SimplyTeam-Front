@@ -11,7 +11,7 @@
 	<nav class="relative">
 		<ul class="flex items-center justify-center font-semibold">
 			<li class="relative group px-8 py-2">
-				<button class="hover:opacity-50 cursor-default">Products</button>
+				<a href="/#features-section" class="hover:opacity-50 cursor-default">Fonctionnalités</a>
 			</li>
 			<li class="relative group px-8 py-2">
 				<button class="hover:opacity-50 cursor-default">Ressources</button>
@@ -36,14 +36,6 @@
 												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
 											>
 												Nous contacter
-											</a>
-										</li>
-										<li>
-											<a
-												href="/helpcenter/politics"
-												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
-											>
-												Politique de confidentialité
 											</a>
 										</li>
 										<li>
@@ -75,14 +67,6 @@
 												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
 											>
 												FAQ
-											</a>
-										</li>
-										<li>
-											<a
-												href="release-note"
-												class="text-gray-600 hover:text-gray-800 py-1 block font-normal"
-											>
-												Release note
 											</a>
 										</li>
 									</ul>

@@ -3,7 +3,7 @@
 </script>
 
 <div class="flex flex-col w-full justify-between items-center">
-	<span class="text-xl xl:text-2xl animate-fadeIn font-medium w-3/4 text-white mt-12">
+	<span class="text-xl xl:text-2xl animate-fadeIn font-medium w-3/4 text-white mt-24">
 		Connectez-vous pour découvrir notre plateforme de gestion de projet gamifiée !
 	</span>
 	<div class="mx-auto w-3/4 relative bg-contain bg-center bg-no-repeat">

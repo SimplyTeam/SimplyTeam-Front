@@ -47,12 +47,14 @@
 				manière dont vous travaillez.
 			</svelte:fragment>
 		</Expand>
-		<div class="collapse collapse-arrow border border-1">
-			<input type="radio" name="my-accordion-2" />
-			<div class="collapse-title text-xl font-medium">Click to open this one and close others</div>
-			<div class="collapse-content">
-				<p>hello</p>
-			</div>
-		</div>
+		<Expand>
+			<svelte:fragment slot="header">
+				<div class="text-xl font-medium">Comment puis-je mettre à niveau mon plan ?</div>
+			</svelte:fragment>
+			<svelte:fragment slot="content">
+				Vous pouvez mettre à niveau votre plan à tout moment en cliquant sur le bouton "Tarifs" dans
+				le menu.
+			</svelte:fragment>
+		</Expand>
 	</div>
 </div>
