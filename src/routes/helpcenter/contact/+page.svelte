@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Expand from '$lib/features/contact/atoms/expand.svelte'
-	import CardContactUs from '$lib/features/contact/molecule/cardContactUs.svelte'
+	import Expand from '$lib/features/contact/atoms/Expand.svelte'
+	import CardContactUs from '$lib/features/contact/molecule/CardContactUs.svelte'
 	import CardFeedback from '$lib/features/contact/molecule/CardFeedback.svelte'
 </script>
 
@@ -23,11 +23,13 @@
 				<div class="text-xl font-medium">Démarrer sur SimplyTeam</div>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
-				Vous avez des soucis au démarrage? Pas de panique! Consultez notre guide
-				<span class="text-secondary font-bold">Getting Started </span>
-				pour vous aider. Il vous guide rapidement à travers les premières étapes sur SimplyTeam. Cliquez
-				<span class="text-primary font-bold">ici </span> pour y accéder directement.
-			</svelte:fragment>
+				<div>
+					Vous avez des soucis au démarrage? Pas de panique! Consultez notre guide
+					<span class="text-secondary font-bold">Getting Started </span>
+					pour vous aider. Il vous guide rapidement à travers les premières étapes sur SimplyTeam. Cliquez
+					<span class="text-primary font-bold">ici </span> pour y accéder directement.
+				</div></svelte:fragment
+			>
 		</Expand>
 		<Expand>
 			<svelte:fragment slot="header">
@@ -52,8 +54,10 @@
 				<div class="text-xl font-medium">Comment puis-je mettre à niveau mon plan ?</div>
 			</svelte:fragment>
 			<svelte:fragment slot="content">
-				Vous pouvez mettre à niveau votre plan à tout moment en cliquant sur le bouton "Tarifs" dans
-				le menu.
+				<div>
+					Vous pouvez mettre à niveau votre plan à tout moment en cliquant sur le bouton "Tarifs"
+					dans le menu.
+				</div>
 			</svelte:fragment>
 		</Expand>
 	</div>

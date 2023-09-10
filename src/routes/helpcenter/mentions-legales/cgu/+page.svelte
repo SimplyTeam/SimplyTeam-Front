@@ -204,7 +204,7 @@
 			ARTICLE 8 : Publication par l’Utilisateur
 			<div class="divider" />
 		</div>
-		<div class="flex flex-col text-justify">
+		<div class="flex flex-col text-justify mb-10">
 			<span class="mt-2">
 				Le site permet aux membres de publier les contenus suivants : Tâche et commentaire. Dans ses
 				publications, le membre s’engage à respecter les règles de la Netiquette (règles de bonne

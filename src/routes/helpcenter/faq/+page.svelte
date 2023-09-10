@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Expand from '$lib/features/contact/atoms/expand.svelte'
+	import Expand from '$lib/features/contact/atoms/Expand.svelte'
 	import { faqContent } from './content'
 	import { goto } from '$app/navigation'
 </script>
 
-<div class="flex flex-col items-center h-screen">
+<div class="flex flex-col mb-5 items-center h-screen">
 	<div
 		class="w-full flex flex-col items-center bg-primary mt-10 pt-10 flex justify-center items-center"
 	>

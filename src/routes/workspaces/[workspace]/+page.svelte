@@ -8,7 +8,6 @@
 	let showModalAddUser = false
 
 	onMount(() => {
-		console.log($currentWorkspace)
 		if ($currentWorkspace && $currentWorkspace.projects.length === 0) {
 			showModalAddUser = true
 		} else {

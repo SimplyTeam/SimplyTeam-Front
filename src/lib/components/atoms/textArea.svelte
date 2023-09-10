@@ -9,7 +9,6 @@
 
 	function handleInput(event: InputEvent) {
 		const input = event.target as HTMLInputElement
-		console.log(input.value)
 		dispatch('input', input.value)
 	}
 </script>

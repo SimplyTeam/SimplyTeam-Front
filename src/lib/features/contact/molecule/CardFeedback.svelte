@@ -1,7 +1,7 @@
 <script>
 	import { goto } from '$app/navigation'
 	import Button from '$lib/components/atoms/Button.svelte'
-	import CardContact from '$lib/features/contact/atoms/cardContact.svelte'
+	import CardContact from '$lib/features/contact/atoms/CardContact.svelte'
 </script>
 
 <CardContact>
