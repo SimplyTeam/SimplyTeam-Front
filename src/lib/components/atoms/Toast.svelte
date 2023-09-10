@@ -40,6 +40,7 @@
 
 <style>
 	.toast {
+		z-index: 99;
 		position: fixed;
 		height: fit-content;
 		width: fit-content;

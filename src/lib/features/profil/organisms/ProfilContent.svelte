@@ -3,16 +3,19 @@
 	import CardRecent from '../molecules/CardRecent.svelte'
 	import LevelContent from '../molecules/LevelContent.svelte'
 	import ProgressBarContent from '../molecules/ProgressBarContent.svelte'
-	import Badge from '$lib/assets/badge.png'
 	import Fnac from '$lib/assets/badge/Fnac_Logo.svg'
-	let badge: {
-		name: string
-		dateObtention: string
-		image: string
-	} | null = {
-		name: 'Badge 1',
-		dateObtention: '12/12/2021',
-		image: Badge
+	import type { IQuest } from '$lib/models/quest'
+	import { questStore } from '$lib/stores/quest'
+	import { onMount } from 'svelte'
+
+	let getQuestsByFinishedLatest = {}
+	onMount(async () => {
+		await questStore.getQuests()
+	})
+	$: getQuestsByFinishedLatest = $questStore.quests.filter((quest: IQuest) => quest.is_completed)[0]
+	function badgeIllustration(image: string, grade: string): string {
+		const badge = image.split('.')[0]
+		return `/quest/${badge}-${grade}.svg`
 	}
 
 	let reward: {
@@ -35,7 +38,28 @@
 	/>
 	<LevelContent arrayOfIllustrationLevel={$authStore.info?.levels} class="mt-5" />
 	<div class="flex mt-5 justify-between">
-		<CardRecent {badge} title="Derniers badges obtenues" class="mr-5" />
-		<CardRecent badge={reward} title="Dernieres récompenses obtenues" />
+		{#if getQuestsByFinishedLatest}
+			<CardRecent
+				title="Derniers badges obtenues"
+				description={getQuestsByFinishedLatest.name}
+				image={badgeIllustration(getQuestsByFinishedLatest.image, getQuestsByFinishedLatest.grade)}
+				dateObtention={getQuestsByFinishedLatest.date_completed}
+				link="/profil/quests"
+				class="mr-5"
+			/>
+		{:else}
+			<CardRecent title="Derniers badges obtenues" description="Aucun badge obtenue" class="mr-5" />
+		{/if}
+		{#if reward}
+			<CardRecent
+				title="Dernières récompenses obtenues"
+				description={reward.name}
+				image={reward.image}
+				dateObtention={reward.dateObtention}
+				link="/profil/rewards"
+			/>
+		{:else}
+			<CardRecent title="Dernières récompenses obtenues" description="Aucune récompense obtenue" />
+		{/if}
 	</div>
 {/if}

@@ -14,6 +14,7 @@
 	import { authStore } from "$lib/stores/auth"
 
 	let workspace: Array<IWorkspace> = []
+	let workspaceNameSearch = ''
 	async function getWorkspaces() {
 		try {
 			const res = await axios.get('workspaces')
@@ -22,7 +23,9 @@
 			console.log(error)
 		}
 	}
-
+	$: workspaceFiltered = workspace.filter((workspace) => {
+		return workspace.name.toLowerCase().includes(workspaceNameSearch.toLowerCase())
+	})
 	onMount(async () => {
 		const inviteToken = new URL($page.url).searchParams.get('token')
 
@@ -45,12 +48,12 @@
 
 <div class="pl-[max(3vw,3rem)] h-screen">
 	<Sidebar withWorkspace={false} />
-	<SearchBar />
 	<WithHeaderLayout
 		illustration={workspacesIllustration}
 		title="Espace de travail"
 		subtitle="Optimisez votre productivité avec nos espaces de travail adaptés à vos besoins en gestion de projet."
 	>
+		<SearchBar on:input={(e) => (workspaceNameSearch = e.detail)} />
 		<div class="flex flex-wrap">
 			{#if !authStore.userHasPremium($authStore.user) && workspace.length >= 1}
 				<WorkspacePremiumNeededCard />
@@ -63,7 +66,7 @@
 			{/if}
 
 			{#if workspace.length > 0}
-				{#each workspace as workspace}
+				{#each workspaceFiltered as workspace}
 					<WorkspaceCard {workspace} />
 				{/each}
 			{/if}

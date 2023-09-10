@@ -5,6 +5,5 @@
 
 <div class="pl-[max(3vw,3rem)] h-screen">
 	<Sidebar withWorkspace={false} />
-	<SearchBar />
 	<slot />
 </div>

@@ -18,7 +18,6 @@
 
 <div class="pl-[max(3vw,3rem)] h-screen">
 	<Sidebar withWorkspace={false} />
-	<SearchBar />
 	<WithHeaderLayout
 		class="h-32 -ml-3 self-center"
 		illustration={'/quest/maitre-temps-silver.svg'}

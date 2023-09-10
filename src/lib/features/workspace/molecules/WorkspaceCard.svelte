@@ -10,13 +10,17 @@
 		return `${first}${second}`
 	}
 	$: numberOfUsers = workspace?.users.length
+	$: linkToWorkspace =
+		workspace && workspace.projects?.length <= 0
+			? `/workspaces/${workspace.id}`
+			: `/workspaces/${workspace.id}/${workspace.projects[0].id}/sprints`
 </script>
 
 <div
 	data-sveltekit-preload-data="off"
 	class="card w-3/4 card-workspace md:w-1/4 min-h-[10rem] bg-primary mr-10 my-6 text-primary-content"
 >
-	<a href="/workspaces/{workspace.id}">
+	<a href={linkToWorkspace}>
 		<div class="card-body">
 			<div class="card-title justify-between">
 				<h2 class="card-title text-ellipsis overflow-hidden text-white">{workspace.name}</h2>
