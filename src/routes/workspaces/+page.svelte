@@ -10,6 +10,8 @@
 	import type { IWorkspace } from '$lib/models/workspaces'
 	import axios from '$lib/utils/axios'
 	import { onMount } from 'svelte'
+	import WorkspacePremiumNeededCard from "$lib/features/workspace/organisms/WorkspacePremiumNeededCard.svelte"
+	import { authStore } from "$lib/stores/auth"
 
 	let workspace: Array<IWorkspace> = []
 	async function getWorkspaces() {
@@ -50,11 +52,16 @@
 		subtitle="Optimisez votre productivité avec nos espaces de travail adaptés à vos besoins en gestion de projet."
 	>
 		<div class="flex flex-wrap">
-			<WorkspaceAddCard
-				on:refresh={async () => {
-					await getWorkspaces()
-				}}
-			/>
+			{#if !authStore.userHasPremium($authStore.user) && workspace.length >= 1}
+				<WorkspacePremiumNeededCard />
+			{:else}
+				<WorkspaceAddCard
+					on:refresh={async () => {
+						await getWorkspaces()
+					}}
+				/>
+			{/if}
+
 			{#if workspace.length > 0}
 				{#each workspace as workspace}
 					<WorkspaceCard {workspace} />

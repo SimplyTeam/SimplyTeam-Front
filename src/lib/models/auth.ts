@@ -3,6 +3,7 @@ export interface IUser {
 	id: number
 	name: string
 	email: string
+	premium_expiration_date: string
 }
 
 export interface IRegisterInput {
