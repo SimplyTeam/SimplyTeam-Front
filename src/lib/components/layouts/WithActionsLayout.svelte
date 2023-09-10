@@ -12,7 +12,7 @@
 				<div class="w-[11%] h-32 mx-auto">
 					<Avatar name={name} class="mt-8" />
 				</div>
-				<div class="flex-1 flex w-full justify-center items-end">
+				<div class="flex-1 flex flex-col lg:flex-row w-full gap-2 mr-2 justify-center items-end">
 					<slot name="actions" />
 				</div>
 			</div>

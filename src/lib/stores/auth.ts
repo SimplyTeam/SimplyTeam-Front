@@ -1,6 +1,7 @@
 import type { IRegisterInput, IUser } from '$lib/models/auth'
 import api from '$lib/utils/axios'
 import { writable } from 'svelte/store'
+import moment from "moment"
 
 interface AuthStore {
 	accessToken: string
@@ -17,35 +18,37 @@ function createAuthStore() {
 		triedFetchingUser: false
 	})
 
+	async function fetchSession()  {
+		if (!localStorage.getItem('accessToken')) {
+			set({
+				accessToken: '',
+				user: undefined,
+				triedFetchingUser: true
+			})
+			return
+		}
+
+		try {
+			const { data } = await api.get('/me')
+
+			update((store) => ({
+				...store,
+				user: data.user,
+				triedFetchingUser: true
+			}))
+		} catch (err) {
+			set({
+				accessToken: '',
+				user: undefined,
+				triedFetchingUser: true
+			})
+		}
+	}
+
 	return {
 		subscribe,
 		set,
-		fetchSession: async () => {
-			if (!localStorage.getItem('accessToken')) {
-				set({
-					accessToken: '',
-					user: undefined,
-					triedFetchingUser: true
-				})
-				return
-			}
-
-			try {
-				const { data } = await api.get('/me')
-
-				update((store) => ({
-					...store,
-					user: data.user,
-					triedFetchingUser: true
-				}))
-			} catch (err) {
-				set({
-					accessToken: '',
-					user: undefined,
-					triedFetchingUser: true
-				})
-			}
-		},
+		fetchSession,
 		register: async ({ email, name, password, confirmedPassword }: IRegisterInput) => {
 			const payload = {
 				email,
@@ -88,6 +91,22 @@ function createAuthStore() {
 				})
 			}
 		},
+		grantPremiumPlan: async () => {
+			try {
+				await api.post('/validatePayment', {
+					premium_expiration_date: moment().add(1, 'month').toDate()
+				})
+				await fetchSession()
+			}
+			catch (err) {
+				set({
+					accessToken: '',
+					user: undefined,
+					triedFetchingUser: true
+				})
+			}
+		},
+		userHasPremium: (user?: IUser) => user?.premium_expiration_date && new Date(user.premium_expiration_date) > new Date(),
 		logout: async () => {
 			await api.post('logout')
 
