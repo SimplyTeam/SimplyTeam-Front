@@ -2,10 +2,11 @@
 	import Icon from '$lib/components/atoms/Icon.svelte'
 	import { createEventDispatcher } from 'svelte'
 	const dispatch = createEventDispatcher()
-	export let loading = false
-	export let currentTab: 'users' | 'projects' = 'users'
 
-	$: styleForTab = (tab: 'users' | 'projects') => {
+	export let currentTab: 'users' | 'projects' | 'rewards' = 'users'
+	export let loading = false
+
+	$: styleForTab = (tab: 'users' | 'projects' | 'rewards') => {
 		if (tab === currentTab) {
 			return 'tab-active tab-bordered !border-primary'
 		} else {
@@ -28,6 +29,13 @@
 			on:click={() => dispatch('changeTab', 'projects')}
 			on:keydown
 			class="tab {styleForTab('projects')} text-xl text-bold"
+		/>
+		<div class="divider divider-horizontal divide-black" />
+		<Icon
+			icon="ticket-alt"
+			on:click={() => dispatch('changeTab', 'rewards')}
+			on:keydown
+			class="tab {styleForTab('rewards')} text-xl text-bold"
 		/>
 		<div class="divider divider-horizontal divide-black" />
 	</div>
