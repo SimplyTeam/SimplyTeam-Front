@@ -11,7 +11,7 @@
 	let popup
 
 	function init() {
-		popup = window.open('http://localhost/auth/google', '_blank', 'width=800, height=600')
+		popup = window.open(import.meta.env.VITE_BASE_GOOGLE_URL, '_blank', 'width=800, height=600')
 	}
 
 	const loginForm: ILoginInput = {

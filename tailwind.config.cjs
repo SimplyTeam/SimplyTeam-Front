@@ -9,6 +9,7 @@ module.exports = {
 				'primary': '0px 6px 6px #8E6ECA',
 			},
 			colors: {
+				'background' : '#F8F8FB',
 				task: {
 					DEFAULT: '#FDDDD5',
 					date: '#DED4F0',
