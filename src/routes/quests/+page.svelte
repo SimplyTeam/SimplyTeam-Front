@@ -5,15 +5,22 @@
 	import { questStore } from '$lib/stores/quest'
 	import type { IFilterObject } from '$lib/models/quest'
 	import Sidebar from '$lib/features/sidebar/Sidebar.svelte'
-	import SearchBar from '$lib/features/sidebar/SearchBar.svelte'
+	import { onMount } from 'svelte'
+	import QuestSkeleton from '$lib/features/quests/molecules/QuestSkeleton.svelte'
 
-	questStore.getQuests()
-
-	const updateQuestsByFilter = (filter: IFilterObject) => {
+	let loading = true
+	const updateQuestsByFilter = async (filter: IFilterObject) => {
 		const filterForQuests = { ...filter }
 		if (filterForQuests.quest_type === '4') delete filterForQuests.quest_type
-		questStore.getQuests(filterForQuests)
+		loading = true
+		await questStore.getQuests(filterForQuests)
+		loading = false
 	}
+
+	onMount(async () => {
+		await questStore.getQuests()
+		loading = false
+	})
 </script>
 
 <div class="pl-[max(3vw,3rem)] h-screen">
@@ -25,10 +32,14 @@
 		subtitle="Accomplissez des quêtes de gestion de projet pour débloquer des récompenses et des niveaux de quête, et boostez votre productivité !"
 	>
 		<QuestFilter on:filter={(e) => updateQuestsByFilter(e.detail)} />
-		{#if $questStore.quests.length === 0}
-			<p class="text-center text-gray-400 text-lg">Aucune quête ne correspond à votre recherche.</p>
-		{:else}
+		{#if $questStore.quests.length > 0 && !loading}
 			<QuestList questList={$questStore?.quests} />
+		{:else}
+			<div class="flex flex-1 flex-wrap">
+				{#each { length: 3 } as _, i}
+					<QuestSkeleton />
+				{/each}
+			</div>
 		{/if}
 	</WithHeaderLayout>
 </div>
