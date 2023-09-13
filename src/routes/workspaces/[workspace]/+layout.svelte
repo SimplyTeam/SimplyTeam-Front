@@ -3,8 +3,7 @@
 	import Sidebar from '$lib/features/sidebar/Sidebar.svelte'
 </script>
 
-<div class="pl-[max(15vw,15rem)] h-screen">
+<div class="pl-[max(15vw,15rem)] bg-background h-screen">
 	<Sidebar />
-	<SearchBar />
 	<slot />
 </div>

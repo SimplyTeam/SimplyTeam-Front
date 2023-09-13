@@ -7,10 +7,15 @@
 	import NavigationBarProfil from '$lib/features/sidebar/molecules/navigationBarProfil.svelte'
 	import ProfilContent from '$lib/features/profil/organisms/ProfilContent.svelte'
 	import QuestProfilContent from '$lib/features/profil/organisms/QuestProfilContent.svelte'
+	import Icon from '$lib/components/atoms/Icon.svelte'
+	import ProgressBarContent from '$lib/features/profil/molecules/ProgressBarContent.svelte'
+	import LevelContent from '$lib/features/profil/molecules/LevelContent.svelte'
 
+	let loading = true
 	onMount(async () => {
 		if (!$authStore.user) return
 		await authStore.info()
+		loading = false
 	})
 	let currentTab: 'users' | 'projects' = 'users'
 
@@ -20,17 +25,39 @@
 	}
 </script>
 
-{#if $authStore.info && $authStore.user}
-	<WithActionsLayout name={$authStore.user.name}>
+{#if $authStore.info && $authStore.user && !loading}
+	<WithActionsLayout name={$authStore?.user?.name}>
 		<svelte:fragment slot="actions">
-			<Button class="-mb-5 btn-error hover:scale-105 hover:bg-red-800 ease-in text-xs mr-10 z-10"
-				>Suppression de votre compte</Button
+			{#if !authStore.userHasPremium($authStore.user)}
+				<a href="profil/plan" class="lg:-mb-6 hover:scale-105 ease-in z-10">
+					<Button class="text-xs">
+						Plan premium
+						<Icon class="text-white" icon="crown" />
+					</Button>
+				</a>
+			{/if}
+
+			<Button class="lg:-mb-6 btn-error hover:scale-105 hover:bg-red-800 ease-in text-xs z-10"
+				>Supprimer votre compte <Icon class="text-white" icon="trash" /></Button
 			>
 		</svelte:fragment>
 		<svelte:fragment slot="content">
 			<ProfilLayout user={$authStore.user} />
 			<NavigationBarProfil {currentTab} on:changeTab={(e) => (currentTab = e.detail)} />
 			<svelte:component this={tabComponents[currentTab]} />
+		</svelte:fragment>
+	</WithActionsLayout>
+{:else}
+	<WithActionsLayout>
+		<svelte:fragment slot="actions">
+			<Button
+				class="lg:-mb-6 btn-error w-52 hover:scale-105 hover:bg-red-800 ease-in text-xs z-10"
+			/>
+		</svelte:fragment>
+		<svelte:fragment slot="content">
+			<ProfilLayout {loading} />
+			<NavigationBarProfil />
+			<LevelContent {loading} />
 		</svelte:fragment>
 	</WithActionsLayout>
 {/if}

@@ -2,23 +2,15 @@
 	import type { IUser } from '$lib/models/auth'
 	import Input from '$lib/components/atoms/Input.svelte'
 	export let user: IUser | null = null
+	export let loading = false
 </script>
 
 <div>
 	<div class="w-full flex bg-white">
 		<div class="flex w-[75%] my-7 justify-evenly items-center">
-			{#if user}
-				<div class="flex divide-x-2 items-center text-center divide-black">
-					<div class="flex flex-col px-5 items-center">
-						<span class="text-2xl text-primary font-bold">0</span>
-						<span class="text-sm">tâches réalisées</span>
-					</div>
-					<div class="flex flex-col px-5 mx-5 items-center">
-						<span class="text-2xl text-primary font-bold">0</span>
-						<span class="text-sm">Quêtes en cours</span>
-					</div>
-				</div>
-				<form class="flex flex-col">
+			<div class="flex divide-x-2 items-center text-center divide-black" />
+			{#if user && !loading}
+				<form class="flex flex-col ml-64">
 					<Input
 						placeholder="Peusdo"
 						label="Nom de l'espace"
@@ -40,6 +32,11 @@
 						class="w-full bg-transparent border-none hover:border-dotted h-8"
 					/>
 				</form>
+			{:else if loading}
+				<div class="flex flex-col ml-64">
+					<div class="w-64 h-5 bg-gray-300 rounded-lg mb-2 mx-10" />
+					<div class="w-64 h-5 bg-gray-300 rounded-lg mx-10" />
+				</div>
 			{/if}
 		</div>
 	</div>

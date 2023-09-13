@@ -11,6 +11,7 @@
 
 <a
 	{href}
+	data-sveltekit-preload-data="off"
 	class="flex items-center gap-2 py-5 pl-8 rounded h-6 hover:project-item-active w-full"
 	class:project-item-active={isActive}
 >

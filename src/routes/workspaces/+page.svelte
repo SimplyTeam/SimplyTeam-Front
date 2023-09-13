@@ -10,17 +10,26 @@
 	import type { IWorkspace } from '$lib/models/workspaces'
 	import axios from '$lib/utils/axios'
 	import { onMount } from 'svelte'
+	import WorkspacePremiumNeededCard from '$lib/features/workspace/organisms/WorkspacePremiumNeededCard.svelte'
+	import { authStore } from '$lib/stores/auth'
+	import WorkspaceCardSkeleton from '$lib/features/workspace/molecules/WorkspaceCardSkeleton.svelte'
 
 	let workspace: Array<IWorkspace> = []
+	let workspaceNameSearch = ''
+	let loading = false
 	async function getWorkspaces() {
 		try {
+			loading = true
 			const res = await axios.get('workspaces')
 			workspace = res.data.workspaces
+			loading = false
 		} catch (error) {
 			console.log(error)
 		}
 	}
-
+	$: workspaceFiltered = workspace.filter((workspace) => {
+		return workspace.name.toLowerCase().includes(workspaceNameSearch.toLowerCase())
+	})
 	onMount(async () => {
 		const inviteToken = new URL($page.url).searchParams.get('token')
 
@@ -43,22 +52,30 @@
 
 <div class="pl-[max(3vw,3rem)] h-screen">
 	<Sidebar withWorkspace={false} />
-	<SearchBar />
 	<WithHeaderLayout
 		illustration={workspacesIllustration}
 		title="Espace de travail"
 		subtitle="Optimisez votre productivité avec nos espaces de travail adaptés à vos besoins en gestion de projet."
 	>
+		<SearchBar on:input={(e) => (workspaceNameSearch = e.detail)} />
 		<div class="flex flex-wrap">
-			<WorkspaceAddCard
-				on:refresh={async () => {
-					await getWorkspaces()
-				}}
-			/>
-			{#if workspace.length > 0}
-				{#each workspace as workspace}
+			{#if !authStore.userHasPremium($authStore.user) && workspace.length >= 1}
+				<WorkspacePremiumNeededCard />
+			{:else}
+				<WorkspaceAddCard
+					on:refresh={async () => {
+						await getWorkspaces()
+					}}
+				/>
+			{/if}
+
+			{#if workspace.length > 0 && !loading}
+				{#each workspaceFiltered as workspace}
 					<WorkspaceCard {workspace} />
 				{/each}
+			{/if}
+			{#if loading}
+				<WorkspaceCardSkeleton />
 			{/if}
 		</div>
 	</WithHeaderLayout>

@@ -127,11 +127,11 @@
 
 		<form
 			on:submit={onSubmit}
-			class="menu p-4 w-1/3 min-w-[25rem] h-full bg-base-200 text-base-content grid grid-rows-[1fr_min-content] gap-3 min-h-0"
+			class="menu p-4 w-1/3 min-w-[25rem] h-full bg-white text-base-content grid grid-rows-[1fr_min-content] gap-3 min-h-0"
 		>
 			<div class="flex flex-col gap-3 flex-grow overflow-auto">
 				<input
-					class="input w-full bg-base-200 text-base-content text-lg"
+					class="input w-full border border-1 border-x-0 border-t-0 border-gray-200 text-base-content text-lg"
 					bind:value={$taskForm.task.name}
 					placeholder="Nom de la tâche"
 				/>
@@ -204,13 +204,6 @@
 					>
 						Description
 					</a>
-					<a
-						class="tab tab-bordered text-lg"
-						class:tab-active={activeTab === 'comments'}
-						on:click={() => (activeTab = 'comments')}
-					>
-						Commentaires
-					</a>
 				</div>
 				{#if activeTab === 'description'}
 					<textarea
@@ -218,9 +211,7 @@
 						placeholder="Description de la tâche"
 						bind:value={$taskForm.task.description}
 					/>
-				{:else}
-					Commentaires
-				{/if}
+				{:else}{/if}
 			</div>
 			<div class="mt-auto self-end">
 				<Button type="submit" class="w-32"

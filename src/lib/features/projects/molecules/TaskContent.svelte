@@ -11,8 +11,8 @@
 	$: dueDate = task.dueDate ? new Date(task.dueDate).toLocaleDateString() : null
 </script>
 
-<div class="task-content-grid px-1 cursor-pointer" on:click|stopPropagation>
-	<Checkbox name={task.id} />
+<div class="task-content-grid px-1 cursor-pointer bg-white" on:click|stopPropagation>
+	<div class="h-10 w-2.5 rounded-l-md bg-primary" />
 	<div class="text-base">{task.name}</div>
 	<div class="flex justify-start items-center h-full py-1 ml-auto gap-4">
 		<TaskLabel icon="clock" class="bg-task-estimation">{task.estimatedTime}</TaskLabel>

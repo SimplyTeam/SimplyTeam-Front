@@ -9,14 +9,15 @@ module.exports = {
 				'primary': '0px 6px 6px #8E6ECA',
 			},
 			colors: {
+				'background' : '#F8F8FB',
 				task: {
 					DEFAULT: '#FDDDD5',
 					date: '#DED4F0',
 					estimation: '#FDDDD5',
 					todo: '#B3DFFF',
-					ongoing: '#FFE5B3',
-					done: '#F8F8FB',
-					blocked: '#B83E51',
+					ongoing: '#FFA800',
+					done: '#8BCA6E',
+					blocked: '#F68B71',
 					normal: '#FDDDD5',
 					high: '#B83E51',
 					low: '#B3DFFF',

@@ -42,7 +42,6 @@ export interface ITask {
 }
 
 export function taskFromRequest(task: IRequestTask): ITask {
-  console.log("test", task)
   return {
     name: task.label,
     id: task.id,
