@@ -13,9 +13,9 @@
 			<div class="text-base w-full"><TaskContent {task} on:click={() => onTaskClick(task)} /></div>
 		</svelte:fragment>
 		<svelte:fragment slot="content">
-			<div class="flex flex-col gap-1 bg-white ml-[36px]">
+			<div class="flex flex-col gap-1 ml-12 bg-white">
 				{#each task.subtasks as subtask}
-					<div class="pr-2">
+					<div>
 						<TaskContent task={subtask} on:click={() => onTaskClick(subtask)} />
 					</div>
 				{/each}
@@ -23,7 +23,7 @@
 		</svelte:fragment>
 	</ExpandedContent>
 {:else}
-	<div class="ml-[36px] pr-2">
+	<div class="rounded-md ml-9 gap-1 bg-white">
 		<TaskContent {task} on:click={() => onTaskClick(task)} />
 	</div>
 {/if}

@@ -23,7 +23,6 @@ export interface IGlobalPage extends IPage {
 export enum Page {
 	Workspaces = 'Workspaces',
 	WorkspaceSettings = 'WorkpaceSettings',
-	Dashboard = 'Dashboard',
 	User = 'User',
 	Sprints = 'Sprints',
 	MyTasks = 'MyTasks',
@@ -47,12 +46,6 @@ export const corePages = derived<typeof currentWorkspace, CorePages>(
 			icon: 'building',
 			path: `/workspaces`,
 			label: 'Workspaces'
-		},
-		[Page.Dashboard]: {
-			icon: 'dashboard',
-			path: `/workspaces/${$currentWorkspace?.id}`,
-			label: 'Dashboard',
-			isHidden: !$currentWorkspace
 		},
 		[Page.Quests]: {
 			path: `/quests`,

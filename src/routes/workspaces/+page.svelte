@@ -10,15 +10,19 @@
 	import type { IWorkspace } from '$lib/models/workspaces'
 	import axios from '$lib/utils/axios'
 	import { onMount } from 'svelte'
-	import WorkspacePremiumNeededCard from "$lib/features/workspace/organisms/WorkspacePremiumNeededCard.svelte"
-	import { authStore } from "$lib/stores/auth"
+	import WorkspacePremiumNeededCard from '$lib/features/workspace/organisms/WorkspacePremiumNeededCard.svelte'
+	import { authStore } from '$lib/stores/auth'
+	import WorkspaceCardSkeleton from '$lib/features/workspace/molecules/WorkspaceCardSkeleton.svelte'
 
 	let workspace: Array<IWorkspace> = []
 	let workspaceNameSearch = ''
+	let loading = false
 	async function getWorkspaces() {
 		try {
+			loading = true
 			const res = await axios.get('workspaces')
 			workspace = res.data.workspaces
+			loading = false
 		} catch (error) {
 			console.log(error)
 		}
@@ -65,10 +69,13 @@
 				/>
 			{/if}
 
-			{#if workspace.length > 0}
+			{#if workspace.length > 0 && !loading}
 				{#each workspaceFiltered as workspace}
 					<WorkspaceCard {workspace} />
 				{/each}
+			{/if}
+			{#if loading}
+				<WorkspaceCardSkeleton />
 			{/if}
 		</div>
 	</WithHeaderLayout>
