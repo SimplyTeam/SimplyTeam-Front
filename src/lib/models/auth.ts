@@ -1,5 +1,6 @@
 export interface IUser {
 	level_id: number
+	earned_points: number
 	id: number
 	name: string
 	email: string

@@ -58,13 +58,15 @@ function createAuthStore() {
 				password,
 				password_confirmation: confirmedPassword
 			}
-
 			const { data } = await api.post<{ access_token: string; user: IUser }>('register', payload)
+
 			set({
 				triedFetchingUser: true,
 				accessToken: data.access_token,
 				user: data.user
 			})
+
+			await fetchSession()
 		},
 		login: async ({ email, password }: { email: string; password: string }) => {
 			const { data } = await api.post<{ access_token: string; user: IUser }>('login', {
