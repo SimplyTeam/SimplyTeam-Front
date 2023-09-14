@@ -8,8 +8,9 @@ interface IPage {
 }
 
 export interface ICorePage extends IPage {
-	path: string
-	icon: string
+	path?: string
+	icon: string,
+	function?: () => void
 }
 
 export interface IProjectPage extends IPage {
@@ -57,10 +58,13 @@ export const corePages = derived<typeof currentWorkspace, CorePages>(
 			path: '/profil',
 			label: 'Profil'
 		},
-		[Page.Settings]: {
-			icon: 'cog',
-			path: '/settings',
-			label: 'Paramètres'
+		[Page.Logout]: {
+			icon: 'sign-out-alt',
+			label: 'Déconnexion',
+			function: () => {
+				localStorage.removeItem('accessToken')
+				window.location.href = '/'
+			}
 		}
 	})
 )

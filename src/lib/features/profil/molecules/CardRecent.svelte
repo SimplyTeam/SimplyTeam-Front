@@ -8,15 +8,19 @@
 	export let link = ''
 </script>
 
-<div class="flex w-full rounded-md {$$props.class} bg-gradient-to-r from-primary to-secondary">
+<div
+	class="flex w-full shadow-md rounded-md {$$props.class} bg-gradient-to-r from-primary to-secondary"
+>
 	<div class="m-2">
 		{#if image}
 			<img src={image} class="w-20 h-20" />
 		{/if}
 	</div>
 	<div class="flex-col m-2 flex">
-		<span class="text-xl text-white font-bold">{title}</span>
-		<span class="text-sm sm:text-xs text-white">{description}</span>
+		{#if title && description}
+			<span class="text-xl text-white font-bold">{title}</span>
+			<span class="text-sm sm:text-xs text-white">{description}</span>
+		{/if}
 		{#if dateObtention}
 			<span class="text-sm sm:text-sm text-white opacity-70"
 				>{moment(dateObtention).locale('fr').format('LL')}</span

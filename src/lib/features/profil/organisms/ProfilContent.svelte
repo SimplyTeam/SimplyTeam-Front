@@ -3,7 +3,6 @@
 	import CardRecent from '../molecules/CardRecent.svelte'
 	import LevelContent from '../molecules/LevelContent.svelte'
 	import ProgressBarContent from '../molecules/ProgressBarContent.svelte'
-	import Fnac from '$lib/assets/badge/Fnac_Logo.svg'
 	import type { IQuest } from '$lib/models/quest'
 	import { questStore } from '$lib/stores/quest'
 	import { onMount } from 'svelte'
@@ -11,27 +10,19 @@
 	let getQuestsByFinishedLatest = {}
 	onMount(async () => {
 		await questStore.getQuests()
+		await authStore.getRewards()
 	})
 	$: getQuestsByFinishedLatest = $questStore.quests.filter((quest: IQuest) => quest.is_completed)[0]
+	$: rewardLatest = $authStore.info.rewards[0] || {}
 	function badgeIllustration(image: string, grade: string): string {
 		const badge = image.split('.')[0]
 		return `/quest/${badge}-${grade}.svg`
-	}
-
-	let reward: {
-		name: string
-		dateObtention: string
-		image: string
-	} | null = {
-		name: 'FNAC',
-		dateObtention: '12/12/2021',
-		image: Fnac
 	}
 </script>
 
 {#if $authStore.info && $authStore.user}
 	<ProgressBarContent
-		class="mt-5"
+		class="mt-5 shadow-md"
 		levelUser={$authStore.user.level_id}
 		progress={50}
 		progressMax={100}
@@ -50,13 +41,12 @@
 		{:else}
 			<CardRecent title="Derniers badges obtenues" description="Aucun badge obtenue" class="mr-5" />
 		{/if}
-		{#if reward}
+		{#if rewardLatest}
 			<CardRecent
 				title="Dernières récompenses obtenues"
-				description={reward.name}
-				image={reward.image}
-				dateObtention={reward.dateObtention}
-				link="/profil/rewards"
+				description={rewardLatest.description}
+				image={rewardLatest.image}
+				dateObtention={rewardLatest.dateObtention}
 			/>
 		{:else}
 			<CardRecent title="Dernières récompenses obtenues" description="Aucune récompense obtenue" />
