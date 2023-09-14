@@ -34,7 +34,6 @@ function createSprintsStore() {
 			const { data: sprints } = await api.get(
 				`/workspaces/${workspaceId}/projects/${projectId}/sprints`
 			)
-
 			update((store) => ({
 				...store,
 				sprints: sprints.map(sprintFromRequest)
