@@ -131,6 +131,7 @@
 		>
 			<div class="flex flex-col gap-3 flex-grow overflow-auto">
 				<input
+					name="name"
 					class="input w-full border border-1 border-x-0 border-t-0 border-gray-200 text-base-content text-lg"
 					bind:value={$taskForm.task.name}
 					placeholder="Nom de la tâche"
@@ -138,13 +139,14 @@
 
 				<div class="flex gap-2 ml-4 items-center">
 					<label class="text-lg">Priorité</label>
-					<PrioritySelect bind:selectedPriority={$taskForm.task.priority} />
+					<PrioritySelect name="priority" bind:selectedPriority={$taskForm.task.priority} />
 				</div>
 
 				<div class="ml-4">
 					<div class="flex gap-2 items-center">
 						<label class="text-lg">Sprint</label>
 						<Select
+							name="sprint"
 							bind:value={$taskForm.task.sprintOption}
 							taskLabel="test"
 							items={sprintsOptions}
@@ -155,6 +157,7 @@
 					<div class="flex gap-2 items-center">
 						<label class="text-lg">Parenté</label>
 						<Select
+							name="parent"
 							bind:value={$taskForm.task.parentTaskOption}
 							items={tasksOptions}
 							placeholder="Sélectionner une tâche"
@@ -167,6 +170,7 @@
 				<div class="flex gap-2 ml-4 items-center">
 					<label class="text-lg">Assignées</label>
 					<AssigneesSelect
+						name="assignees"
 						bind:selectedAssignees={$taskForm.task.assignedTo}
 						assignees={$currentWorkspace.users}
 					/>
@@ -188,12 +192,12 @@
 
 				<div class="flex gap-2 ml-4 items-center">
 					<label class="text-lg">Temps estimé</label>
-					<Input bind:value={$taskForm.task.estimatedTime} />
+					<Input name="estimatedTime" bind:value={$taskForm.task.estimatedTime} />
 				</div>
 
 				<div class="flex gap-2 ml-4 items-center">
 					<label class="text-lg">Temps accompli</label>
-					<Input bind:value={$taskForm.task.completedTime} />
+					<Input name="completedTime" bind:value={$taskForm.task.completedTime} />
 				</div>
 
 				<div class="tabs">
@@ -207,6 +211,7 @@
 				</div>
 				{#if activeTab === 'description'}
 					<textarea
+						name="description"
 						class="textarea h-32 textarea-bordered textarea-primary max-h-64"
 						placeholder="Description de la tâche"
 						bind:value={$taskForm.task.description}

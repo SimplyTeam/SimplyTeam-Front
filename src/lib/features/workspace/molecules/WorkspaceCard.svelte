@@ -19,6 +19,7 @@
 <div
 	data-sveltekit-preload-data="off"
 	class="card w-3/4 card-workspace md:w-1/4 min-h-[10rem] bg-primary mr-10 my-6 text-primary-content"
+	aria-label={workspace.name}
 >
 	<a href={linkToWorkspace}>
 		<div class="card-body">

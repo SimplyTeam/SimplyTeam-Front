@@ -5,6 +5,7 @@
 	import Input from '$lib/components/atoms/Input.svelte'
 	import Toast from '$lib/components/atoms/Toast.svelte'
 	import { authStore } from '$lib/stores/auth'
+	import { goto } from '$app/navigation'
 	import type { IRegisterErrors, IRegisterInput } from '$lib/models/auth'
 
 	let registerForm: IRegisterInput = {
@@ -41,6 +42,7 @@
 		try {
 			await authStore.register(registerForm)
 			showToast('Bienvenue', 'success')
+			goto('/workspaces')
 		} catch ({ response }) {
 			formErrors = response.data.errors
 			showToast('Une erreur est survenue', 'error')

@@ -65,8 +65,8 @@
 							errorMessage={error?.name}
 							placeholder=""
 							labelInput="Nom de l'espace de travail"
-							name="email"
-							type="email"
+							name="name"
+							type="text"
 						/>
 					</div>
 					<div class="flex flex-col mt-5 items-center">
@@ -75,7 +75,7 @@
 							errorMessage={error?.description}
 							placeholder=""
 							labelInput="Description"
-							name="text"
+							name="description"
 							type="text"
 						/>
 					</div>
