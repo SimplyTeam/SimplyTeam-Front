@@ -11,7 +11,9 @@
 		if ($currentWorkspace && $currentWorkspace.projects.length === 0) {
 			showModalAddUser = true
 		} else {
-			goto(`/workspaces/${currentWorkspace[0].id}/${currentWorkspace[0].projects[0].id}}/sprints`)
+			goto(
+				`/workspaces/${$currentWorkspace.id}/${parseInt($currentWorkspace.projects[0].id)}/sprints`
+			)
 		}
 	})
 </script>

@@ -148,7 +148,6 @@
 						<Select
 							name="sprint"
 							bind:value={$taskForm.task.sprintOption}
-							taskLabel="test"
 							items={sprintsOptions}
 							disabled={taskHasParent}
 						/>

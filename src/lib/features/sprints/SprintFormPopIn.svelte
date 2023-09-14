@@ -77,7 +77,7 @@
 	<svelte:fragment slot="action">
 		<div class="flex w-full h-full justify-center">
 			<Button
-				class="btn-sm mr-10 bg-gray-400 hover:scale-105 text-white border-none mr-2"
+				class="btn-sm mr-10 bg-gray-400 hover:scale-105 text-white border-none"
 				on:click={() => (isOpen = false)}
 			>
 				Annuler
