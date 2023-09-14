@@ -8,12 +8,19 @@
 	import { onMount } from 'svelte'
 
 	let getQuestsByFinishedLatest = {}
+
 	onMount(async () => {
 		await questStore.getQuests()
 		await authStore.getRewards()
 	})
 	$: getQuestsByFinishedLatest = $questStore.quests.filter((quest: IQuest) => quest.is_completed)[0]
 	$: rewardLatest = $authStore.info.rewards[0] ?? null
+
+	function getMaxProgress(level: number): number {
+		const levelInfo = $authStore.info.levels.find((levelInfo) => levelInfo.id === level)
+		return levelInfo?.max_point ?? 0
+	}
+
 	function badgeIllustration(image: string, grade: string): string {
 		const badge = image.split('.')[0]
 		return `/quest/${badge}-${grade}.svg`
@@ -24,8 +31,8 @@
 	<ProgressBarContent
 		class="mt-5 shadow-md"
 		levelUser={$authStore.user.level_id}
-		progress={50}
-		progressMax={100}
+		progress={$authStore.user.earned_points}
+		progressMax={getMaxProgress($authStore.user.level_id)}
 	/>
 	<LevelContent arrayOfIllustrationLevel={$authStore.info?.levels} class="mt-5" />
 	<div class="flex mt-5 justify-between">
