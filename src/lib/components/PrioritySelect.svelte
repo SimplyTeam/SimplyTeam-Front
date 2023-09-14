@@ -5,10 +5,12 @@
   import { clickOutside } from "$lib/utils/clickOutside"
 
   export let selectedPriority: Priority = Priority.Normal
+  export let name: string
   let selectIsOpen = false
 </script>
 
 <div
+  aria-label={name}
   class="cursor-pointer"
   use:clickOutside on:click-outside={() => selectIsOpen = false}
 >

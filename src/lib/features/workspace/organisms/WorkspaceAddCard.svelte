@@ -9,6 +9,7 @@
 <div
 	on:click={() => (showModal = true)}
 	aria-hidden="true"
+	aria-label="Créer un espace de travail"
 	class="card flex justify-center min-h-[10rem] text-center mr-10 my-6 w-3/4 md:w-1/4 card-workspace bg-white border-primary border-2 shadow-md text-neutral-content"
 >
 	<div class="card-body">
