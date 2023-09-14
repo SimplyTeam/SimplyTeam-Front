@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ExpandedContent from '$lib/components/atoms/ExpandedContent.svelte'
-	import type { ISprint } from '$lib/stores/projects'
+	import type { ISprint } from '$lib/models/sprint'
 	import { taskForm } from '$lib/stores/taskForm'
 	import Task from '../molecules/Task.svelte'
 	import Icon from '$lib/components/atoms/Icon.svelte'
@@ -30,7 +30,7 @@
 			return 'badge-warning'
 		}
 		textBadge = 'En cours'
-		return 'badge-green-500'
+		return 'badge-success'
 	}
 </script>
 
@@ -59,7 +59,7 @@
 		<div class="badge {colorBadgeByDate()}">{textBadge}</div>
 	</div>
 	<div slot="content">
-		<div class="flex flex-col gap-1 ml-8 my-3">
+		<div class="flex flex-col gap-1 my-3">
 			{#each sprint.tasks as task}
 				<Task
 					{task}

@@ -4,6 +4,8 @@
 	import AddSprintSection from '$lib/features/projects/atoms/AddSprintSection.svelte'
 	import SprintsList from '$lib/features/projects/organisms/SprintsList.svelte'
 	import { sprintsStore } from '$lib/stores/sprintsStore'
+	import { projectsStore } from '$lib/stores/projects'
+	import ProjectHeader from '$lib/features/projects/molecules/ProjectHeader.svelte'
 </script>
 
 <SimpleLayout>
@@ -13,7 +15,11 @@
 		title="Sprints"
 		subtitle="Créez des sprints pour organiser votre projet et gérer vos tâches."
 	>
-		<AddSprintSection />
-		<SprintsList sprints={$sprintsStore.sprints} />
+		{#if $projectsStore.selectedProject}
+			<ProjectHeader />
+			<div class="divider my-0" />
+			<AddSprintSection />
+			<SprintsList sprints={$sprintsStore.sprints} />
+		{/if}
 	</WithHeaderLayout>
 </SimpleLayout>

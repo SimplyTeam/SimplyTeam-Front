@@ -3,8 +3,8 @@
 	import { createEventDispatcher } from 'svelte'
 	export let value: string
 	export let placeholder: string
-	export let type: string
-	export let name: string
+	export let type: string = 'text'
+	export let name: string = ''
 	export let labelInput = ''
 	export let errorMessage = ''
 	const dispatch = createEventDispatcher()
