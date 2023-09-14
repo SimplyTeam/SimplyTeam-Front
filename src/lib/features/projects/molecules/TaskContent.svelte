@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Checkbox from '$lib/components/atoms/Checkbox.svelte'
 	import Icon from '$lib/components/atoms/Icon.svelte'
 	import Avatar from '$lib/features/settings/atoms/Avatar.svelte'
 	import type { ITask } from '$lib/stores/projects'

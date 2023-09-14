@@ -13,10 +13,11 @@
 		empty: `Ajouter un email`
 	}
 	let container: HTMLDivElement
-	let workspace: IWorkspace = { ...$currentWorkspace, invitations: [] as string[] }
+	let workspace: IWorkspace = { ...$currentWorkspace, invitations: [] }
 	function handleAddUser() {
 		if (!$currentWorkspace) return
 		try {
+			workspace.invitations = workspace.invitations.map((email) => ({ email: email, is_PO: false }))
 			updateWorkspace(workspace)
 			closeModal()
 		} catch (error: any) {

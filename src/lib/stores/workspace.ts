@@ -11,7 +11,7 @@ export const getAllWorkspaces = async () => {
 	const response = await axios.get('/workspaces')
 	workspaces.set(response.data)
 }
-export const getWorkspace = async (id: string) => {
+export const getWorkspace = async (id: string| number) => {
 	const response = await axios.get(`/workspaces/${id}`)
 
 	currentWorkspace.set(response.data)

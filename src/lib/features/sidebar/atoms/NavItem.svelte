@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Icon from '$lib/components/atoms/Icon.svelte'
-	export let icon: string
-	export let href: string
+	export let icon: string = ''
+	export let href: string = ''
 	export let isActive = false
-	export let logout: () => void
+	export let logout: () => void | null = null
 </script>
 
 {#if logout}

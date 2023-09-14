@@ -13,7 +13,7 @@
 		await authStore.getRewards()
 	})
 	$: getQuestsByFinishedLatest = $questStore.quests.filter((quest: IQuest) => quest.is_completed)[0]
-	$: rewardLatest = $authStore.info.rewards[0] || {}
+	$: rewardLatest = $authStore.info.rewards[0] ?? null
 	function badgeIllustration(image: string, grade: string): string {
 		const badge = image.split('.')[0]
 		return `/quest/${badge}-${grade}.svg`
