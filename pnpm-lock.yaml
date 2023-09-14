@@ -69,7 +69,7 @@ dependencies:
 devDependencies:
   '@badeball/cypress-cucumber-preprocessor':
     specifier: ^18.0.5
-    version: 18.0.5(cypress@12.12.0)
+    version: 18.0.5(cypress@13.2.0)
   '@commitlint/cli':
     specifier: ^17.6.1
     version: 17.6.1
@@ -113,8 +113,8 @@ devDependencies:
     specifier: ^1.21.4
     version: 1.21.4(axios@1.3.4)
   cypress:
-    specifier: ^12.12.0
-    version: 12.12.0
+    specifier: ^13.2.0
+    version: 13.2.0
   eslint:
     specifier: ^8.28.0
     version: 8.28.0
@@ -1382,7 +1382,7 @@ packages:
       - supports-color
     dev: true
 
-  /@badeball/cypress-cucumber-preprocessor@18.0.5(cypress@12.12.0):
+  /@badeball/cypress-cucumber-preprocessor@18.0.5(cypress@13.2.0):
     resolution: {integrity: sha512-/nMGGlNQe2gyQWfuovBSu8ZmVhKGEz5dLR2CSlRSHdHF9+4Ymaf7Nfo4akV6bAkV7Utvo+iET9ycN//iqAZHlA==}
     engines: {node: '>=18.0.0'}
     hasBin: true
@@ -1407,7 +1407,7 @@ packages:
       cli-table: 0.3.11
       common-ancestor-path: 1.0.1
       cosmiconfig: 8.2.0
-      cypress: 12.12.0
+      cypress: 13.2.0
       debug: 4.3.4(supports-color@8.1.1)
       error-stack-parser: 2.1.4
       esbuild: 0.19.2
@@ -1766,8 +1766,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@cypress/request@2.88.12:
-    resolution: {integrity: sha512-tOn+0mDZxASFM+cuAP9szGUGPI1HwWVSvdzm7V4cCsPdFTx6qMj29CwaQmRAMIEhORIUBFBsYROYJcveK4uOjA==}
+  /@cypress/request@3.0.1:
+    resolution: {integrity: sha512-TWivJlJi8ZDx2wGOw1dbLuHJKUYX7bWySw377nlnGOW3hP9/MUKIsEdXT/YngWxVdgNCHRBmFlBipE+5/2ZZlQ==}
     engines: {node: '>= 6'}
     dependencies:
       aws-sign2: 0.7.0
@@ -2990,8 +2990,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node@14.18.54:
-    resolution: {integrity: sha512-uq7O52wvo2Lggsx1x21tKZgqkJpvwCseBBPtX/nKQfpVlEsLOb11zZ1CRsWUKvJF0+lzuA9jwvA7Pr2Wt7i3xw==}
+  /@types/node@18.17.15:
+    resolution: {integrity: sha512-2yrWpBk32tvV/JAd3HNHWuZn/VDN1P+72hWirHnvsvTGSqbANi+kSeuQR9yAHnbvaBvHDsoTdXV0Fe+iRtHLKA==}
     dev: true
 
   /@types/node@20.4.7:
@@ -4422,15 +4422,15 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
-  /cypress@12.12.0:
-    resolution: {integrity: sha512-UU5wFQ7SMVCR/hyKok/KmzG6fpZgBHHfrXcHzDmPHWrT+UUetxFzQgt7cxCszlwfozckzwkd22dxMwl/vNkWRw==}
-    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+  /cypress@13.2.0:
+    resolution: {integrity: sha512-AvDQxBydE771GTq0TR4ZUBvv9m9ffXuB/ueEtpDF/6gOcvFR96amgwSJP16Yhqw6VhmwqspT5nAGzoxxB+D89g==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@cypress/request': 2.88.12
+      '@cypress/request': 3.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
-      '@types/node': 14.18.54
+      '@types/node': 18.17.15
       '@types/sinonjs__fake-timers': 8.1.1
       '@types/sizzle': 2.3.3
       arch: 2.2.0
@@ -4463,6 +4463,7 @@ packages:
       minimist: 1.2.8
       ospath: 1.2.2
       pretty-bytes: 5.6.0
+      process: 0.11.10
       proxy-from-env: 1.0.0
       request-progress: 3.0.0
       semver: 7.5.4
@@ -7469,6 +7470,11 @@ packages:
       mri: 1.2.0
       multimatch: 4.0.0
       prettier: 2.8.0
+    dev: true
+
+  /process@0.11.10:
+    resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
+    engines: {node: '>= 0.6.0'}
     dev: true
 
   /progress@2.0.3:
