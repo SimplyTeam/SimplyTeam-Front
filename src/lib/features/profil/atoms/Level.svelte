@@ -1,10 +1,14 @@
 <script lang="ts">
 	import voucherCode from '$lib/assets/voucherCode.svg'
+	import Button from '$lib/components/atoms/Button.svelte'
 	import type { ILevel } from '$lib/models/level'
+	import ModalReward from '../molecules/ModalReward.svelte'
 	export let level: ILevel | null = null
 
 	$: isCurrentLevel = level?.status && level.status === 'current' ? '#8E6ECA' : '#FFFFFF'
 	$: opacity = level?.status && level.status === 'future' ? 'opacity-50' : ''
+	$: isPassedLevel = level?.status === 'passed'
+	let openModal = false
 </script>
 
 <div class="flex flex-col items-center place-content-start">
@@ -116,7 +120,22 @@
 			/>
 		</g>
 	</svg>
-	{#if level?.voucherCode}
-		<img class=" cursor-pointer -mt-3 w-10" src={voucherCode} alt="" />
+	{#if level?.reward}
+		<ModalReward
+			levelPassed={isPassedLevel}
+			reward={level.reward}
+			showModal={openModal}
+			on:closeModal={() => (openModal = false)}
+		/>
+		<Button
+			on:click={() => (openModal = true)}
+			class=" bg-transparent hover:bg-transparent border-0"
+		>
+			<img
+				class="cursor-pointer hover:scale-110 transform ease-out scale-100 -mt-3 w-16"
+				src={voucherCode}
+				alt=""
+			/>
+		</Button>
 	{/if}
 </div>

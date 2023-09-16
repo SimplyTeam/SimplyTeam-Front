@@ -7,6 +7,7 @@ interface AuthStore {
 	accessToken: string
 	user?: IUser
 	info?: any
+	rewards?: any
 	triedFetchingUser?: boolean
 }
 
@@ -15,7 +16,8 @@ function createAuthStore() {
 		accessToken: localStorage.getItem('accessToken') || '',
 		user: undefined,
 		info: undefined,
-		triedFetchingUser: false
+		triedFetchingUser: false,
+		rewards: undefined
 	})
 
 	async function fetchSession()  {
@@ -56,13 +58,15 @@ function createAuthStore() {
 				password,
 				password_confirmation: confirmedPassword
 			}
-
 			const { data } = await api.post<{ access_token: string; user: IUser }>('register', payload)
+
 			set({
 				triedFetchingUser: true,
 				accessToken: data.access_token,
 				user: data.user
 			})
+
+			await fetchSession()
 		},
 		login: async ({ email, password }: { email: string; password: string }) => {
 			const { data } = await api.post<{ access_token: string; user: IUser }>('login', {
@@ -75,6 +79,21 @@ function createAuthStore() {
 				accessToken: data.access_token,
 				user: data.user
 			})
+		},
+		getRewards: async () => {
+			try {
+				const { data } = await api.get('/rewards')
+				update((store) => ({
+					...store,
+					rewards: data
+				}))
+			} catch (err) {
+			set({
+				accessToken: '',
+				user: undefined,
+				triedFetchingUser: true
+			})
+			}
 		},
 		info: async () => {
 			try {

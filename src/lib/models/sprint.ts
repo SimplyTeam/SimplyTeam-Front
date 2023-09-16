@@ -1,3 +1,4 @@
+import type { IProject } from './project'
 import type { IRequestTask, ITask } from './task'
 import { taskFromRequest } from "./task"
 
@@ -6,7 +7,8 @@ export interface ISprint {
 	id: string
 	beginAt: Date,
 	endAt: Date,
-	tasks: ITask[]
+	tasks: ITask[],
+	project: IProject[]
 }
 
 export interface IRequestSprint {
@@ -23,6 +25,7 @@ export function sprintFromRequest(sprint: IRequestSprint): ISprint {
 		id: sprint.id,
 		beginAt: new Date(sprint.begin_date),
 		endAt: new Date(sprint.end_date),
+		project: sprint.project ?? [],
 		tasks: sprint.tasks ? sprint.tasks.map(taskFromRequest) : [],
 	}
 }

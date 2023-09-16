@@ -8,7 +8,7 @@
 	export let isExpanded = false
 </script>
 
-<ExpandedContent expanded={isExpanded}>
+<ExpandedContent {project} expanded={isExpanded}>
 	<span slot="header">
 		<div class="text-ellipsis overflow-hidden text-base">{project.name}</div>
 	</span>

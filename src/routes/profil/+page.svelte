@@ -7,9 +7,8 @@
 	import NavigationBarProfil from '$lib/features/sidebar/molecules/navigationBarProfil.svelte'
 	import ProfilContent from '$lib/features/profil/organisms/ProfilContent.svelte'
 	import QuestProfilContent from '$lib/features/profil/organisms/QuestProfilContent.svelte'
+	import RewardProfilContent from '$lib/features/profil/organisms/RewardProfilContent.svelte'
 	import Icon from '$lib/components/atoms/Icon.svelte'
-	import ProgressBarContent from '$lib/features/profil/molecules/ProgressBarContent.svelte'
-	import LevelContent from '$lib/features/profil/molecules/LevelContent.svelte'
 
 	let loading = true
 	onMount(async () => {
@@ -17,11 +16,12 @@
 		await authStore.info()
 		loading = false
 	})
-	let currentTab: 'users' | 'projects' = 'users'
+	let currentTab: 'users' | 'projects' | 'rewards' = 'users'
 
 	const tabComponents = {
 		users: ProfilContent,
-		projects: QuestProfilContent
+		projects: QuestProfilContent,
+		rewards: RewardProfilContent
 	}
 </script>
 

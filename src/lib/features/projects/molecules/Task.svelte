@@ -10,10 +10,12 @@
 {#if task.subtasks.length > 0}
 	<ExpandedContent arrowPosition="right" hoverable={false} expandSelector="arrow">
 		<svelte:fragment slot="header">
-			<div class="text-base w-full"><TaskContent {task} on:click={() => onTaskClick(task)} /></div>
+			<div class="text-base w-full">
+				<TaskContent {task} on:click={() => onTaskClick(task)} />
+			</div>
 		</svelte:fragment>
 		<svelte:fragment slot="content">
-			<div class="flex flex-col gap-1 ml-12 bg-white">
+			<div class="flex flex-col gap-1 ml-11 bg-white">
 				{#each task.subtasks as subtask}
 					<div>
 						<TaskContent task={subtask} on:click={() => onTaskClick(subtask)} />

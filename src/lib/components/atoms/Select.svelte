@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { twMerge } from 'tailwind-merge'
 
-	export let items: { value: string; name: string }[] = []
+	export let items: { value: string | boolean; name: string }[] = []
 	export let placeholder = ''
-	export let value = ''
+	export let value: string | boolean = ''
 	export let underline = false
 	export let size: 'sm' | 'md' | 'lg' = 'md'
 	export let defaultClass = ''

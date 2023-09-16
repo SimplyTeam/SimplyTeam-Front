@@ -1,9 +1,11 @@
 export interface IUser {
 	level_id: number
+	earned_points: number
 	id: number
 	name: string
 	email: string
-	premium_expiration_date: string
+	premium_expiration_date: string,
+	is_PO: boolean
 }
 
 export interface IRegisterInput {
