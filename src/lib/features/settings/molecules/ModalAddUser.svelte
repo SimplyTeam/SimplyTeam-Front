@@ -45,9 +45,11 @@
 		<div class="w-full flex-col justify-center items-center">
 			<div class="w-1/2 mr-auto ml-auto items-center" bind:this={container} />
 			<h1 class="text-center text-2xl font-bold mt-5">Ajouter des membres</h1>
-			<span class="text-xs text-gray-400"
-				>Une invitation par email sera envoyé aux membres ajoutés</span
-			>
+			<div class="flex justify-center mt-2">
+				<span class="text-xs text-gray-400"
+					>Une invitation par email sera envoyé aux membres ajoutés</span
+				>
+			</div>
 		</div>
 	</svelte:fragment>
 	<svelte:fragment slot="message">

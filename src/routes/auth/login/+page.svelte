@@ -122,11 +122,6 @@
 				placeholder="Mot de passe"
 			/>
 		</div>
-		<div class="flex w-full max-w-sm justify-end items-center self-center">
-			<a href="/auth/forgot-password" class="text-sm text-gray-500 hover:text-primary">
-				Mot de passe oublié ?
-			</a>
-		</div>
 		<div class="flex flex-col items-center">
 			<Button type="submit" {loading} class="w-full max-w-sm mt-5">Se connecter</Button>
 			<div class="flex justify-center w-full max-w-sm items-center mt-6">

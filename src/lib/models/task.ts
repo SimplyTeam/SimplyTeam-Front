@@ -34,8 +34,8 @@ export interface ITask {
   priority: Priority
   dueDate: Date
   createdBy: IUser
-  timeSpent: number
   estimatedTime: number
+  completedTime: number
   subtasks?: Omit<ITask, 'subtasks'>[]
   sprint?: ISprint
   parent?: ITask
@@ -51,7 +51,7 @@ export function taskFromRequest(task: IRequestTask): ITask {
     priority: Priority.fromId(task.priority_id),
     dueDate: new Date(task.deadline),
     createdBy: task.created_by,
-    timeSpent: task.realized_timestamp,
+    completedTime: task.realized_timestamp,
     estimatedTime: task.estimated_timestamp,
     subtasks: task.subtasks?.map(taskFromRequest),
     sprint: task.sprint,

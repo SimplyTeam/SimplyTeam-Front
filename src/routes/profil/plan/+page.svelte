@@ -113,7 +113,7 @@
             <div class="h-full flex flex-col items-center justify-between p-2">
               <div transition:fade class="flex-1 flex items-center">
                 <div class="flex justify-center items-center bg-white h-[12rem] w-[12rem] rounded-full">
-                  <Icon icon="check" color="secondary" class="text-[10rem] my-auto"/>
+									<img class="w-[10rem]" src='/check.png' alt="" />
                 </div>
               </div>
 

@@ -96,7 +96,7 @@
 				'Utilisateurs illimités',
 				'Accès aux codes promo'
 			],
-			ctaWording: 'Essayer gratuitement',
+			ctaWording: 'Essayer SimplyTeam',
 			ctaLink: '/auth/register'
 		},
 		{
@@ -105,7 +105,7 @@
 			featuresTitle: "TOUTES LES FONCTIONNALITÉS DE L'OFFRE PREMIUM",
 			features: [],
 			ctaWording: 'Contactez le service commercial',
-			ctaLink: '/contact'
+			ctaLink: '/helpcenter/contact/contact-us'
 		}
 	]
 </script>

@@ -45,6 +45,8 @@ function createSprintsStore() {
 			sprintId: string,
 			payload: Partial<ISprint>
 		) => {
+			payload.begin_date = payload.beginAt
+			payload.end_date = payload.endAt
 			return api.put(
 				`/workspaces/${workspaceId}/projects/${projectId}/sprints/${sprintId}`,
 				payload
