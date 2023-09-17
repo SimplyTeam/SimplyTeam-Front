@@ -80,6 +80,8 @@ function createTaskFormStore() {
         assignedTo: task.assignees,
         status: task.status,
         dueDate: task.dueDate,
+        estimatedTime: task.estimatedTime,
+        completedTime: task.completedTime,
         createdBy: task.createdBy,
         description: task.description,
         comments: [],

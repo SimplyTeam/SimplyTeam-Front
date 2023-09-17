@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Avatar from '$lib/features/settings/atoms/Avatar.svelte'
 	import LevelProgress from '$lib/features/sidebar/atoms/LevelProgress.svelte'
 	import Logo from '$lib/features/sidebar/atoms/Logo.svelte'
@@ -10,7 +10,6 @@
 	<Logo />
 	{#if $authStore.user}
 		<Avatar sizeText="text-sm" name={$authStore.user.name} />
-		<LevelProgress progress={50} level={$authStore.user.level_id} />
 	{/if}
 	<Nav />
 </div>

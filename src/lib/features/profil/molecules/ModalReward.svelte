@@ -72,7 +72,7 @@
 						</div>
 					{:else}
 						<a href="profil/plan" class="lg:-mb-6 hover:scale-105 ease-in z-10">
-							<Button class="text-xs">
+							<Button class="text-xs mb-3">
 								Plan premium
 								<Icon class="text-white" icon="crown" />
 							</Button>
@@ -81,7 +81,7 @@
 				{:else if isPassed}
 					<p>Vous avez obtenu cette récompense. Regardez dans la section des récompenses</p>
 				{:else}
-					<p>Voici la promotion que vous obtiendrez sur vous atteignez le niveau</p>
+					<p>Voici la promotion que vous obtiendrez si vous atteignez le niveau</p>
 				{/if}
 			</div>
 		</div>
