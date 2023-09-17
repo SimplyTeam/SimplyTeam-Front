@@ -19,7 +19,11 @@
 		<p class="text-md mb-2 font-bold">{reward.brand}</p>
 		<p class="text-xs mb-2 text-start text-gray-400">{reward.description}</p>
 		<p class="text-xs text-start text-gray-300">
-			Disponible jusqu'à {moment(reward.date_completed).locale('fr').format('LL')}
+			{#if reward.date_achieved}
+				Disponible jusqu'à {moment(reward.date_achieved).locale('fr').format('LL')}
+			{:else}
+				Pas de limite de temps
+			{/if}
 		</p>
 	</div>
 </div>

@@ -26,7 +26,6 @@
 	$: if (formIsOpen) {
 		queryTasksOptions()
 	}
-
 	async function onSubmit(event) {
 		event.preventDefault()
 
@@ -45,7 +44,6 @@
 			sprint_id: task.sprintOption.value,
 			parent_id: task.parentTaskOption?.value ?? null
 		}
-
 		try {
 			if ($taskForm.mode === 'create') {
 				await api.post(
@@ -181,7 +179,7 @@
 
 				<div class="flex gap-2 ml-4 items-center h-8">
 					<label class="text-lg">Date de fin</label>
-					<DatePicker date={$taskForm.task.dueDate} />
+					<DatePicker bind:date={$taskForm.task.dueDate} />
 				</div>
 
 				<div class="flex gap-2 ml-4 items-center">
