@@ -4,6 +4,8 @@
 	import Modal from '$lib/components/atoms/Modal.svelte'
 	import type { IWorkspace } from '$lib/models/workspace'
 	import { currentWorkspace, updateWorkspace } from '$lib/stores/workspace'
+	import { showToast } from '$lib/utils/Toast'
+	import axios from '$lib/utils/axios'
 	import lottie from 'lottie-web'
 	import Svelecte from 'svelecte'
 	import { createEventDispatcher, onMount } from 'svelte'
@@ -14,14 +16,16 @@
 	}
 	let container: HTMLDivElement
 	let workspace: IWorkspace = { ...$currentWorkspace, invitations: [] }
-	function handleAddUser() {
+	async function handleAddUser() {
 		if (!$currentWorkspace) return
 		try {
 			workspace.invitations = workspace.invitations.map((email) => ({ email: email, is_PO: false }))
-			updateWorkspace(workspace)
+			const response = await axios.put(`/workspaces/${workspace.id}`, workspace)
+			currentWorkspace.set(response.data)
+			showToast('Les invitations ont bien été envoyées', 'success')
 			closeModal()
 		} catch (error: any) {
-			console.log(error)
+			showToast(error.response.data.message, 'error')
 		}
 	}
 
