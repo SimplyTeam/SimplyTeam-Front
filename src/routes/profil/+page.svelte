@@ -36,10 +36,6 @@
 					</Button>
 				</a>
 			{/if}
-
-			<Button class="lg:-mb-6 btn-error hover:scale-105 hover:bg-red-800 ease-in text-xs z-10"
-				>Supprimer votre compte <Icon class="text-white" icon="trash" /></Button
-			>
 		</svelte:fragment>
 		<svelte:fragment slot="content">
 			<ProfilLayout user={$authStore.user} />

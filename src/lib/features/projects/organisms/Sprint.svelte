@@ -13,6 +13,7 @@
 	import moment from 'moment-with-locales-es6'
 	export let sprint: ISprint
 	export let isOpen = false
+	export let sprintEnCours = false
 
 	const { workspace, project } = $page.params
 	let isEditModalOpen = false
@@ -21,6 +22,13 @@
 		const now = moment()
 		const endDate = moment(sprint.endAt)
 		const diff = endDate.diff(now, 'days')
+		if (sprintEnCours && endDate.isAfter(sprintEnCours.endAt)) {
+			textBadge = 'A venir'
+			return 'badge-primary text-white'
+		} else if (!sprintEnCours && endDate.isAfter(now)) {
+			textBadge = 'A venir'
+			return 'badge-primary text-white'
+		}
 		if (diff < 0) {
 			textBadge = 'Terminé'
 			return 'badge-error'
