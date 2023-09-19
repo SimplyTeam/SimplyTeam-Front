@@ -27,8 +27,8 @@ dependencies:
     specifier: ^2.3.2
     version: 2.3.2
   daisyui:
-    specifier: ^3.1.5
-    version: 3.1.5(postcss@8.4.24)(ts-node@10.9.1)
+    specifier: ^3.7.6
+    version: 3.7.6(ts-node@10.9.1)
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
@@ -4472,11 +4472,9 @@ packages:
       yauzl: 2.10.0
     dev: true
 
-  /daisyui@3.1.5(postcss@8.4.24)(ts-node@10.9.1):
-    resolution: {integrity: sha512-3nk5L//IU31ISzsonKEFG8ris8hS/MRAc+PrOTOyRbssjv1fYmNKSdIrOhG6op2ED3RyJL4p6I81JUwd7RWqTw==}
+  /daisyui@3.7.6(ts-node@10.9.1):
+    resolution: {integrity: sha512-7MsD3J1/LpRkxvkjm0OQBjmVhzEhQdi6lTfEP2Wrvgl/fjKst4KmfkM39g0iInroaFq1fEJbB/vobGDqFgXoYw==}
     engines: {node: '>=16.9.0'}
-    peerDependencies:
-      postcss: ^8
     dependencies:
       colord: 2.9.3
       css-selector-tokenizer: 0.8.0
